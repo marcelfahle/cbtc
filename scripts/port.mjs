@@ -1,3 +1,12 @@
+// RETIRED MIGRATION TOOL (2026-07-05). public/index.html is now the canonical,
+// hand-maintained page source (copy v3 lives there). Running this regenerates
+// the page from the OLD ploy snapshot and destroys everything since the port.
+if (!process.argv.includes('--i-know-this-wipes-current-copy')) {
+  console.error('Refusing to run: this would overwrite public/index.html with the pre-v3 ploy snapshot.');
+  console.error('If you truly want that, pass --i-know-this-wipes-current-copy');
+  process.exit(1);
+}
+
 // Transplants the ploy snapshot into public/index.html as a complete document.
 // Served verbatim (no Astro templating touches it) — faithful by construction.
 // Only substitutions: assets → self-hosted, ploy runtime scripts → removed,
