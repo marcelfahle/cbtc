@@ -1,0 +1,22 @@
+{
+  "name": "costablanca-trail-camp",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "port": "node scripts/port.mjs && node scripts/images.mjs"
+  },
+  "dependencies": {
+    "@astrojs/vercel": "^11.0.2",
+    "astro": "^7.0.6"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.3"
+  }
+}
