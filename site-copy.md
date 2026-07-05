@@ -268,6 +268,18 @@ Applied via `scripts/copy-v3.mjs` with these deviations from the draft above:
 - Various section bodies tightened to fit existing markup (single-paragraph
   slots) — same voice, same content.
 
+## v3.2 — humanizer pass (2026-07-05, live on site)
+
+alpha-humanizer skill applied over v3.1 via `scripts/copy-v32-human.mjs`
+(41 rewrites). Standing rules for ALL future copy on this site:
+- **Zero em dashes**, anywhere: body, headers, title tag, og tags, image alts.
+  Use periods, commas, colons, or parentheses. (En dashes in date ranges like
+  26–29 are fine.)
+- Don't repeat the "Not X — Y" contrast template; vary the construction.
+- No exact-3 parallel lists; use 2, 4, 5, or restructure (anaphora, parens).
+- Keep: contractions, opinions, sensory specifics, mixed sentence lengths
+  (fragments + one 30-word-plus sentence per long section).
+
 ## Meta
 
 Title: Costa Blanca Trail Camp — women-only trail running camp, Spain
