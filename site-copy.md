@@ -254,6 +254,20 @@ PS — if you're hesitating because you think you're not fast enough: the
 application asks about your running, not your PRs. Fit matters here. Speed
 doesn't.
 
+## v3.1 — shipped deltas (2026-07-05, live on site)
+
+Applied via `scripts/copy-v3.mjs` with these deviations from the draft above:
+- **Coach softening (user call):** "national-team coaches" → "national-team
+  athletes" in hero; hosts intro → "two national-team athletes who coach you
+  all four days"; "coach" kept as verb/week-role, dropped as title.
+- **Can/can't block** became FAQ #2 "What can four days actually change?"
+  (safer markup insert than a new hosts sub-section, same job).
+- "I'm scared I'll be the slowest." added as FAQ #1.
+- November header compressed for display type: "Dark at 4pm where you live.
+  Nineteen degrees here."
+- Various section bodies tightened to fit existing markup (single-paragraph
+  slots) — same voice, same content.
+
 ## Meta
 
 Title: Costa Blanca Trail Camp — women-only trail running camp, Spain
