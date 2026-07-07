@@ -280,6 +280,32 @@ alpha-humanizer skill applied over v3.1 via `scripts/copy-v32-human.mjs`
 - Keep: contractions, opinions, sensory specifics, mixed sentence lengths
   (fragments + one 30-word-plus sentence per long section).
 
+## v4 — six-day shape + general H1 (2026-07-07, live on site)
+
+Applied via `scripts/copy-v4-sixday.mjs` (16 replacements). Positioning broadened
+per user: retreat for ambitious road-to-trail women, technical Costa Blanca
+trails + Mediterranean lifestyle, not just the downhill hook.
+
+- **H1**: "Downhill is a skill." → **"Get good at mountains."** The old H1
+  survives as the opening kicker of the concept section body ("Downhill is a
+  skill, and skills can be taught.").
+- **Dates**: 26–29 Nov → **25–30 Nov 2026** everywhere (hero stats card, dates
+  eyebrow, timeline, footer). Wed 25 = arrival day, Thu–Sun = 4 coached days,
+  Mon 30 = departure day.
+- **Sold as "five nights, four coached days"** (benchmark rule: absorb
+  arrival/departure into the night count, never market buffer days). Dates
+  section body names the shape; value stack card is now "Five nights in the
+  villa" ("Wednesday to Monday…").
+- **Day 1 card** → "Shakeout & the goals circle" ("You landed yesterday and
+  actually slept…"); **Day 4 card** → "Recovery run & the handover", handover
+  moved to the evening, "Then the airport, annoyingly." retired (airport is now
+  Monday's problem).
+- **Timeline camp item**: "Wednesday is for landing. The running starts
+  Thursday."
+- **New FAQ** (after "Can I come alone?"): "My flight lands at 11pm. Is that a
+  problem?" — answers the late-flight/solo-logistics anxiety directly.
+- Meta/title/og unchanged ("four days" there still reads as the coached days).
+
 ## Meta
 
 Title: Costa Blanca Trail Camp — women-only trail running camp, Spain
