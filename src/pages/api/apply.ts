@@ -38,15 +38,17 @@ export const POST: APIRoute = async ({ request }) => {
     return json(400, { error: 'Tell us a line or two about your running.' });
   }
 
-  const apiKey = import.meta.env.RESEND_API_KEY;
+  // process.env, not import.meta.env: Vite inlines the latter at build time,
+  // which bakes in blanks when building locally without the secrets.
+  const env = (k: string) => process.env[k] ?? (import.meta.env as any)[k];
+  const apiKey = env('RESEND_API_KEY');
   // Comma-separated list of notification recipients.
-  const to = String(import.meta.env.APPLY_TO_EMAIL ?? '')
+  const to = String(env('APPLY_TO_EMAIL') ?? '')
     .split(',')
     .map((s: string) => s.trim())
     .filter(Boolean);
   const from =
-    import.meta.env.APPLY_FROM_EMAIL ??
-    'Costa Blanca Trail Camp <onboarding@resend.dev>';
+    env('APPLY_FROM_EMAIL') ?? 'Costa Blanca Trail Camp <onboarding@resend.dev>';
 
   if (!apiKey || to.length === 0) {
     console.error('apply endpoint not configured: missing RESEND_API_KEY / APPLY_TO_EMAIL');
