@@ -27,9 +27,15 @@ export const POST: APIRoute = async ({ request }) => {
   const formName = String(data?.formName ?? 'form').slice(0, 40);
   const email = String(data?.fields?.email ?? '').trim().slice(0, 200);
   const name = String(data?.fields?.name ?? '').trim().slice(0, 200);
+  const from_ = String(data?.fields?.from ?? '').trim().slice(0, 200);
+  const running = String(data?.fields?.running ?? '').trim().slice(0, 4000);
+  const link = String(data?.fields?.link ?? '').trim().slice(0, 300);
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return json(400, { error: 'Please enter a valid email address.' });
+  }
+  if (formName === 'apply' && running.length < 5) {
+    return json(400, { error: 'Tell us a line or two about your running.' });
   }
 
   const apiKey = import.meta.env.RESEND_API_KEY;
@@ -52,6 +58,9 @@ export const POST: APIRoute = async ({ request }) => {
     `Form: ${formName}`,
     name && `Name: ${name}`,
     `Email: ${email}`,
+    from_ && `Flying from: ${from_}`,
+    link && `Link: ${link}`,
+    running && `Their running:\n${running}`,
     `Page: ${data?.pageUrl ?? ''}`,
     `Time: ${new Date().toISOString()}`,
   ]

@@ -1,8 +1,9 @@
-// Replaces ploy's form island: intercepts both forms, POSTs JSON to /api/apply.
+// Intercepts both forms (data-form="apply" | "routes"), POSTs JSON to /api/apply.
+// All inputs carry name="" attributes (see scripts/form-v2.mjs).
 (function () {
   var SUCCESS = {
-    apply: 'Application received — you’ll hear from us within 48 hours.',
-    routes: 'Sent — the routes are on their way.',
+    apply: 'Application received. A real reply from Monika or Anna within 48 hours.',
+    routes: 'Sent. The routes are on their way to your inbox.',
   };
 
   document.querySelectorAll('form[data-form]').forEach(function (form) {
@@ -12,9 +13,11 @@
       var button = form.querySelector('button, [type="submit"]');
       var fields = {};
       form.querySelectorAll('input, textarea').forEach(function (el) {
-        var key = el.name || (el.type === 'email' ? 'email' : el.placeholder === 'Your name' ? 'name' : el.type);
-        fields[key] = el.value;
+        if (el.name) fields[el.name] = el.value;
       });
+
+      var errorEl = form.querySelector('[data-form-error]');
+      if (errorEl) errorEl.remove();
 
       var originalText = button ? button.textContent : '';
       if (button) {
@@ -34,17 +37,25 @@
         })
         .then(function (r) {
           if (!r.ok) throw new Error((r.data && r.data.error) || 'failed');
-          form.querySelectorAll('input, textarea').forEach(function (el) {
-            if (el.name !== 'website') el.disabled = true;
-          });
-          if (button) button.textContent = SUCCESS[formName] || 'Sent.';
+          var msg = document.createElement('p');
+          msg.className = 'flex min-h-[3rem] items-center justify-center rounded-lg bg-black/30 px-4 text-center text-base font-extrabold text-ploy-text-inverse shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)]';
+          msg.textContent = SUCCESS[formName] || 'Sent.';
+          var grid = form.querySelector('div') || form;
+          grid.replaceChildren(msg);
         })
         .catch(function (err) {
           if (button) {
             button.disabled = false;
             button.textContent = originalText;
           }
-          alert(err.message === 'failed' ? 'Something went wrong — please try again.' : err.message);
+          var p = document.createElement('p');
+          p.setAttribute('data-form-error', '');
+          p.className = 'mt-3 text-center text-sm font-bold text-[rgb(214,166,64)]';
+          p.textContent =
+            err && err.message && err.message !== 'failed'
+              ? err.message
+              : 'Something went wrong. Please try again, or email us directly.';
+          form.appendChild(p);
         });
     });
   });
