@@ -39,12 +39,16 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   const apiKey = import.meta.env.RESEND_API_KEY;
-  const to = import.meta.env.APPLY_TO_EMAIL;
+  // Comma-separated list of notification recipients.
+  const to = String(import.meta.env.APPLY_TO_EMAIL ?? '')
+    .split(',')
+    .map((s: string) => s.trim())
+    .filter(Boolean);
   const from =
     import.meta.env.APPLY_FROM_EMAIL ??
     'Costa Blanca Trail Camp <onboarding@resend.dev>';
 
-  if (!apiKey || !to) {
+  if (!apiKey || to.length === 0) {
     console.error('apply endpoint not configured: missing RESEND_API_KEY / APPLY_TO_EMAIL');
     return json(500, { error: 'Form backend not configured yet.' });
   }
@@ -73,7 +77,7 @@ export const POST: APIRoute = async ({ request }) => {
       Authorization: `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ from, to: [to], reply_to: email, subject, text }),
+    body: JSON.stringify({ from, to, reply_to: email, subject, text }),
   });
 
   if (!res.ok) {

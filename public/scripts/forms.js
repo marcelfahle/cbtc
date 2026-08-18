@@ -22,6 +22,7 @@
       var originalText = button ? button.textContent : '';
       if (button) {
         button.disabled = true;
+        button.setAttribute('aria-busy', 'true');
         button.textContent = 'Sending…';
       }
 
@@ -38,18 +39,22 @@
         .then(function (r) {
           if (!r.ok) throw new Error((r.data && r.data.error) || 'failed');
           var msg = document.createElement('p');
+          msg.setAttribute('role', 'status');
           msg.className = 'flex min-h-[3rem] items-center justify-center rounded-lg bg-black/30 px-4 text-center text-base font-extrabold text-ploy-text-inverse shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)]';
           msg.textContent = SUCCESS[formName] || 'Sent.';
           var grid = form.querySelector('div') || form;
           grid.replaceChildren(msg);
+          if (window.plausible) plausible(formName === 'apply' ? 'Apply Submitted' : 'Routes Submitted');
         })
         .catch(function (err) {
           if (button) {
             button.disabled = false;
+            button.removeAttribute('aria-busy');
             button.textContent = originalText;
           }
           var p = document.createElement('p');
           p.setAttribute('data-form-error', '');
+          p.setAttribute('role', 'alert');
           p.className = 'mt-3 text-center text-sm font-bold text-[rgb(214,166,64)]';
           p.textContent =
             err && err.message && err.message !== 'failed'
