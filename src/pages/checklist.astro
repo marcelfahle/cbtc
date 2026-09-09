@@ -1,0 +1,341 @@
+---
+// /checklist: the kit list we send accepted runners ("material obligatorio").
+// Unlisted. Ticks persist in the runner's browser (localStorage) so she can
+// pack over a week. Copy rules: site voice, no em dashes, no exclamation marks.
+import RunnerPage from '../layouts/RunnerPage.astro';
+
+type Level = 'must' | 'should' | 'nice' | 'obvio';
+interface Item { id: string; icon: string; name: string; es: string; level: Level; note: string; days?: string[] }
+interface Section { id: string; title: string; es: string; intro: string; items: Item[] }
+
+const LEVEL: Record<Level, string> = { must: 'Obligatorio', should: 'Recomendado', nice: 'Opcional', obvio: 'Obvio' };
+
+const sections: Section[] = [
+  {
+    id: 'feet', title: 'Feet', es: 'Los pies',
+    intro: 'Marina Alta rock is limestone: sharp, dry, and polished to glass where a few thousand feet have gone before you. Everything in this section is about not sliding on it.',
+    items: [
+      { id: 'shoes', icon: 'shoe', name: 'Trail shoes', es: 'zapatillas de trail', level: 'must', days: ['Every day'],
+        note: 'Our honest opinion, as promised: anything on a <strong>Vibram Megagrip</strong> outsole. Hoka, NNormal, La Sportiva, Scarpa, Merrell and Saucony all make one, and the yellow octagon on the sole is the tell. Grip beats cushion here. Worn in, with at least 100 km on them, and nothing bought the week before. Unsure? Photo of the sole in the group chat and we’ll tell you straight.' },
+      { id: 'socks', icon: 'sock', name: 'Running socks, five pairs', es: 'calcetines', level: 'should',
+        note: 'The pair you race in, times four coached days, plus one spare for the day the sea gets in. Merino or synthetic. Cotton is how blisters start.' },
+      { id: 'blister', icon: 'bandage', name: 'Blister kit', es: 'apósitos para ampollas', level: 'should',
+        note: 'Compeed or the tape you already trust, plus a small tube of anti-chafe. We carry a full kit, but your feet know your brands.' },
+    ],
+  },
+  {
+    id: 'back', title: 'Back and hands', es: 'La espalda y las manos',
+    intro: 'Days one, two and four are short enough to run light. The Long Day isn’t. Pack for Bèrnia and the rest takes care of itself.',
+    items: [
+      { id: 'vest', icon: 'vest', name: 'Running vest with two soft flasks', es: 'chaleco de hidratación con dos frascos blandos', level: 'must', days: ['Every day', 'Long Day'],
+        note: '5 to 12 litres, the kind you’ve actually run in. On the Long Day it carries 1.5 litres of water, your food, the shell and the blanket, and water points on Bèrnia are a rumour. Two 500 ml flasks beat a bladder here: quicker to refill at a village fountain, and you can see what’s left. A hip belt won’t cut it on day three.' },
+      { id: 'poles', icon: 'poles', name: 'Poles', es: 'bastones', level: 'should', days: ['Long Day'],
+        note: 'If you own them, bring them. Bèrnia’s climbs are where you learn what they’re for. If you don’t own any, don’t buy them yet: ask on your call and we’ll say which. Foldable ones ride in the vest. Fixed-length ones ride in your hand all day, which you’ll regret on the descents.' },
+      { id: 'daybag', icon: 'backpack', name: 'A small bag for the car', es: 'una mochila pequeña', level: 'nice',
+        note: 'Dry top, sandals, towel, the post-run snack. It waits in the van at the trailhead while you’re up on the ridge.' },
+    ],
+  },
+  {
+    id: 'layers', title: 'Layers', es: 'Las capas',
+    intro: 'Twenty degrees in the valley, twelve with wind on the ridge, and the ridge is where we eat lunch. Late October also has one more mood, which is rain, in bulk, for an afternoon.',
+    items: [
+      { id: 'shell', icon: 'shell', name: 'Wind shell', es: 'cortavientos', level: 'must', days: ['Every day'],
+        note: 'Packable, hooded if possible. It lives in the vest every day, worn or not. This is the one a Spanish race marshal checks at the start line, so consider us the marshal.' },
+      { id: 'sun', icon: 'sun', name: 'Sun protection: cap, SPF 50, lip balm', es: 'gorra, crema solar, protector labial', level: 'must', days: ['Every day'],
+        note: 'The autumn sun sits lower than in summer and hits you square in the face on every west-facing descent. Cream on before you leave the villa, again at lunch. Runners from the north get caught out every single edition, and this is the first one.' },
+      { id: 'rain', icon: 'rain', name: 'Waterproof jacket', es: 'chubasquero', level: 'should',
+        note: 'If the forecast says rain, this is the day-three jacket and the shell stays home. Taped seams beat “water-resistant”, whatever the label promises. Check the forecast with us on the logistics call the week you fly.' },
+      { id: 'midlayer', icon: 'tee', name: 'Long sleeve or light mid-layer', es: 'manga larga o capa intermedia', level: 'should',
+        note: 'A thin merino or a light fleece. For the first hour on shaded north faces, and for the twenty minutes of silence on Bèrnia when nobody’s moving fast.' },
+      { id: 'sunglasses', icon: 'sunglasses', name: 'Sunglasses', es: 'gafas de sol', level: 'should',
+        note: 'Limestone glare is real. Ones that stay on your face when you look down at your feet, which you’ll be doing a lot.' },
+      { id: 'buff', icon: 'buff', name: 'Neck tube', es: 'braga de cuello', level: 'nice',
+        note: 'Neck warmer at eight, sweat rag at noon, hat under the hood if it turns, pillow on the flight home. Weighs nothing.' },
+      { id: 'gloves', icon: 'gloves', name: 'Light gloves', es: 'guantes finos', level: 'nice',
+        note: 'For the two cold ridge mornings a year. October usually isn’t one of them. If your hands run cold, pack them anyway.' },
+      { id: 'runkit', icon: 'warm', name: 'Run kit for four days', es: 'ropa de correr', level: 'obvio',
+        note: 'Whatever you train in: shorts or tights, tops, sports bras, the socks from above. Four sets covers the week. Pack for warm afternoons and cool starts, and nothing cotton on the trail.' },
+    ],
+  },
+  {
+    id: 'safety', title: 'Safety kit', es: 'Material de seguridad',
+    intro: 'Spanish races call this the material obligatorio and check it at the start line. We’re gentler: we check it at the villa on day one, then trust you.',
+    items: [
+      { id: 'blanket', icon: 'blanket', name: 'Emergency blanket', es: 'manta térmica', level: 'must', days: ['Every day'],
+        note: 'The foil one. Fifty grams, lives at the bottom of your vest all week. If you’ve never used one, good. Keep it that way.' },
+      { id: 'phone', icon: 'phone', name: 'Phone, charged', es: 'móvil cargado', level: 'must', days: ['Every day'],
+        note: 'Full battery every morning, with the group chat, our numbers and 112 saved. Airplane mode kills the reception and keeps the GPS, which is what you want on the Long Day.' },
+      { id: 'meds', icon: 'pill', name: 'Personal meds', es: 'medicación personal', level: 'must', days: ['Every day'],
+        note: 'Anything you take, plus whatever you’d want at 2pm on a ridge: your inhaler, an antihistamine, an anti-diarrhoeal, the painkiller you trust. Tell us on the call what’s in there. Nobody else needs to know.' },
+      { id: 'whistle', icon: 'whistle', name: 'Whistle', es: 'silbato', level: 'should',
+        note: 'Most vests have one sewn into the chest strap. Check yours. If not, any two-euro whistle from a sports shop is fine.' },
+      { id: 'headlamp', icon: 'headlamp', name: 'Headlamp', es: 'frontal', level: 'should', days: ['Long Day'],
+        note: 'The clocks go back the weekend before camp, so it’s dark by six. We don’t plan to be out then. Plans and mountains have a relationship.' },
+      { id: 'battery', icon: 'battery', name: 'Small power bank', es: 'batería externa', level: 'nice', days: ['Long Day'],
+        note: 'If you’re recording Bèrnia for Strava, your phone won’t last the day on its own. A small one with a short cable.' },
+    ],
+  },
+  {
+    id: 'fuel', title: 'Fuel', es: 'La comida',
+    intro: 'Nothing new on race day, and the Long Day is your dress rehearsal. Train your gut now with what you will use then.',
+    items: [
+      { id: 'box', icon: 'box', name: 'The Long Day fuel from your box', es: 'lo que llega en la caja', level: 'should', days: ['Long Day'],
+        note: 'Around week four a package lands at your door with the exact fuelling for day three. Use it on your long runs, then bring what’s left. That’s the Bèrnia plan, and it’s also the plan for your goal race.' },
+      { id: 'snacks', icon: 'gel', name: 'Your usual snacks for the other days', es: 'tus geles y barritas de siempre', level: 'should',
+        note: 'A couple of things per run that you know sit well: gels, bars, dates, those odd rice cakes. Spanish shops sell 226ERS everywhere and little else, so if you’re loyal to a brand, pack it.' },
+      { id: 'salts', icon: 'salt', name: 'Electrolytes', es: 'sales minerales', level: 'should',
+        note: 'Tabs or powder for the flasks. Twenty degrees plus vertical is sweatier than it sounds.' },
+    ],
+  },
+  {
+    id: 'papers', title: 'Papers', es: 'Los papeles',
+    intro: 'Spain is an ID culture. The pharmacy wants it, the clinic wants it, the car-hire desk wants it, the race marshal wants it.',
+    items: [
+      { id: 'id', icon: 'id', name: 'ID card or passport', es: 'DNI o pasaporte', level: 'must',
+        note: 'The real one for the flight, obviously. A photo of it on your phone for the trail, and a paper copy in the vest on the Long Day.' },
+      { id: 'insurance', icon: 'shield', name: 'Travel insurance that covers trail running', es: 'seguro de viaje', level: 'must',
+        note: 'Insurance is mandatory for camp and it needs to cover trail running, which some cheap policies file under “mountaineering” and exclude. Read the small print, or send it to us and we will. Policy number and the emergency line saved in your phone.' },
+      { id: 'ehic', icon: 'health', name: 'EHIC or GHIC card', es: 'tarjeta sanitaria europea', level: 'should',
+        note: 'EU and UK runners: it gets you treated at the public clinic in Dénia like a local. Everyone else: your insurer’s card does the job.' },
+      { id: 'cash', icon: 'cash', name: 'A little cash', es: 'algo de efectivo', level: 'nice',
+        note: 'Twenty euros in small notes. The village bar on day two takes cards in theory.' },
+      { id: 'flight', icon: 'plane', name: 'Flight details, sent to us', es: 'los datos del vuelo', level: 'obvio',
+        note: 'Flight number and landing time in the group chat the week before. One of us is at arrivals whatever time you land. Wednesday is for landing, Monday is for leaving, so book the cheap flights.' },
+    ],
+  },
+  {
+    id: 'villa', title: 'Off the trail', es: 'Fuera del sendero',
+    intro: 'Evenings on the terrace, one massage table, a shared twin room, and one cold sea.',
+    items: [
+      { id: 'swim', icon: 'swim', name: 'Swimsuit', es: 'bañador', level: 'must', days: ['Long Day'],
+        note: 'For the sea after Bèrnia. Ten minutes from the trailhead, seventeen degrees, and the website did say non-negotiable. You’ll swear a little and then talk about it at dinner.' },
+      { id: 'towel', icon: 'towel', name: 'Quick-dry towel', es: 'toalla de secado rápido', level: 'should', days: ['Long Day'],
+        note: 'For the swim. The villa towels aren’t coming to the beach.' },
+      { id: 'sandals', icon: 'sandal', name: 'Sandals or recovery shoes', es: 'chanclas', level: 'should',
+        note: 'Your feet file a complaint on day three. Sandals for the villa, the van, the beach and the massage table.' },
+      { id: 'evening', icon: 'warm', name: 'A warm layer for evenings', es: 'algo de abrigo para la noche', level: 'should',
+        note: 'The terrace drops to twelve degrees after dark and dinner is outside whenever we can manage it. A hoodie or a light down jacket.' },
+      { id: 'massage', icon: 'massage', name: 'Loose shorts for massage day', es: 'ropa cómoda para el masaje', level: 'nice',
+        note: 'Day-three evening you’re on the table. Loose shorts make the therapist’s life easier and yours shorter.' },
+      { id: 'earplugs', icon: 'moon', name: 'Ear plugs', es: 'tapones para dormir', level: 'nice',
+        note: 'Shared twin rooms. Somebody snores. Statistically it’s not you.' },
+      { id: 'plug', icon: 'plug', name: 'Plug adapter', es: 'adaptador de enchufe', level: 'nice',
+        note: 'Spanish sockets are the round two-pin European kind, 230 V. Most of Europe plugs straight in. UK, Irish, US and Swiss plugs need an adapter.' },
+      { id: 'notebook', icon: 'notebook', name: 'Notebook and pen', es: 'libreta y boli', level: 'nice',
+        note: 'Your race notes come printed on day four. The goals circle and your video review produce sentences before that which you’ll want to keep. Phone notes work too.' },
+    ],
+  },
+];
+
+const leaveAtHome = [
+  { name: 'Brand-new shoes', note: 'The wrong pair at 180 euros is a real risk. The right pair with zero kilometres on it is a blister risk. Buy early, run them in, or run in what you have.' },
+  { name: 'Hiking boots', note: 'Ankles get stronger by moving, not by being strapped. Boots also weigh a kilo you will feel on every step of 1,400 m of climbing.' },
+  { name: 'A hydration bladder', note: 'Fine on flat trails. On Bèrnia you can’t see how much is left, and refilling one at a village fountain is a wrestling match.' },
+  { name: 'Cotton, anywhere near the trail', note: 'It holds sweat, it chafes, and it’s freezing the moment you stop on the ridge. Save it for dinner.' },
+  { name: 'A race-week taper mindset', note: 'This is a training block. Eat, sleep, recover, repeat. The freshness comes later, at your goal race.' },
+  { name: 'The idea that you’re the slowest', note: 'Someone will be. She gets one of us beside her on every climb and the same paella at dinner.' },
+];
+
+const phrases = [
+  { es: 'Vamos', en: 'let’s go, come on', note: 'You will hear it from Monika roughly every four minutes. It’s encouragement. Nobody’s complaining.' },
+  { es: 'Senda', en: 'the path, the trail', note: '“La senda va por ahí”: the path goes that way. Said with confidence, sometimes correctly.' },
+  { es: 'Cuidado', en: 'careful', note: 'Usually shouted about two seconds after it would have been useful. Slow down when you hear it anyway.' },
+  { es: 'Fuente', en: 'spring, water point', note: 'The one word on this list that changes your day. Village fountains are drinkable unless a sign says no potable.' },
+  { es: 'Cumbre', en: 'summit', note: 'Bèrnia has one, at 1,128 m. It’s a scramble, and it’s not on the plan. The ridge is the point.' },
+  { es: 'Bajada', en: 'descent', note: 'The word you came here for. Also the moment your video gets filmed on day two.' },
+];
+
+const total = sections.reduce((n, s) => n + s.items.length, 0);
+const mustCount = sections.reduce((n, s) => n + s.items.filter((i) => i.level === 'must').length, 0);
+
+const facts = [
+  { icon: 'calendar', label: 'Kit check', value: 'Day 1, at the villa, before dinner' },
+  { icon: 'mountain', label: 'Long Day', value: 'Serra de Bèrnia · 22 km · 1,400 m up' },
+  { icon: 'thermo', label: 'Late October here', value: '12 to 21 °C, dry, windy on the ridge' },
+  { icon: 'wave', label: 'The sea', value: '17 °C. Yes, you’re going in' },
+];
+---
+<RunnerPage
+  title="What to pack · Costa Blanca Trail Camp"
+  description="The kit list for Edition 1: what is mandatory, what we recommend, what to leave at home, and our honest shoe opinions. For accepted runners."
+  path="/checklist"
+  eyebrow="Edition 1 · 28 Oct – 2 Nov 2026"
+  heading="What to pack"
+  headingEs="Material obligatorio, y el resto"
+  facts={facts}
+  rail
+>
+  <Fragment slot="lede">
+    <p>The full list we promised, with our honest shoe opinions in it. {total} things, {mustCount} of them marked <strong>obligatorio</strong>: those get checked at the villa on day one, so nobody discovers a missing wind shell on a ridge at a thousand metres. Tick things off as you pack. Your ticks stay on this phone.</p>
+  </Fragment>
+  <Fragment slot="actions">
+    <button class="rp-btn rp-btn-ghost" type="button" data-print><svg class="ic"><use href="#i-print" /></svg> Print this list</button>
+  </Fragment>
+
+  <Fragment slot="rail">
+    <div class="rp-progress" data-progress>
+      <div class="rp-progress-n"><span data-count>0</span><small>of {total} packed</small></div>
+      <div class="rp-progress-bar"><i data-bar></i></div>
+      <p class="rp-progress-msg" data-msg></p>
+      <div class="rp-progress-actions">
+        <button type="button" data-print><svg class="ic"><use href="#i-print" /></svg> Print</button>
+        <button type="button" data-reset><svg class="ic"><use href="#i-x" /></svg> Clear ticks</button>
+      </div>
+    </div>
+    <nav aria-label="Sections">
+      <p class="rp-rail-title">On this page</p>
+      <div class="rp-toc">
+        {sections.map((s) => <a href={`#${s.id}`} data-toc={s.id}>{s.title} <small data-toc-count={s.id}>0/{s.items.length}</small></a>)}
+        <a href="#home">Leave at home</a>
+        <a href="#spanish">Trail Spanish</a>
+      </div>
+    </nav>
+  </Fragment>
+
+  <div class="rp-legend" aria-label="How to read the tags">
+    <span><span class="tag tag-must">Obligatorio</span> we check for it on day one</span>
+    <span><span class="tag tag-should">Recomendado</span> you’ll be glad</span>
+    <span><span class="tag tag-nice">Opcional</span> your call</span>
+    <span><span class="tag tag-obvio">Obvio</span> you were bringing it anyway</span>
+  </div>
+
+  {sections.map((s) => (
+    <section class="rp-section" id={s.id} data-section={s.id}>
+      <div class="rp-section-head">
+        <p class="rp-eyebrow">{s.items.length} items</p>
+        <h2 class="rp-h2">{s.title}<span class="es es-line">{s.es}</span></h2>
+        <p>{s.intro}</p>
+      </div>
+      <ul class="kit">
+        {s.items.map((it) => (
+          <li class="kit-item">
+            <label>
+              <input type="checkbox" data-kit={it.id} />
+              <span class="kit-icon"><svg class="ic"><use href={`#i-${it.icon}`} /></svg></span>
+              <span class="kit-body">
+                <span class="kit-head">
+                  <span class="kit-name">{it.name}</span>
+                  <span class="kit-es es">{it.es}</span>
+                </span>
+                <span class="kit-note" set:html={it.note} />
+                <span class="kit-tags">
+                  <span class:list={['tag', `tag-${it.level}`]}>{LEVEL[it.level]}</span>
+                  {it.days?.map((d) => <span class="tag tag-day">{d}</span>)}
+                </span>
+              </span>
+              <span class="kit-check" aria-hidden="true"><svg class="ic"><use href="#i-check" /></svg></span>
+            </label>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+
+  <section class="rp-section" id="home">
+    <div class="rp-section-head">
+      <p class="rp-eyebrow">Six things</p>
+      <h2 class="rp-h2">Leave at home<span class="es es-line">Déjalo en casa</span></h2>
+      <p>Lighter bag, better week.</p>
+    </div>
+    <ul class="rp-nope">
+      {leaveAtHome.map((n) => (
+        <li>
+          <svg class="ic"><use href="#i-x" /></svg>
+          <div><strong>{n.name}</strong><p>{n.note}</p></div>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="rp-section" id="spanish">
+    <div class="rp-section-head">
+      <p class="rp-eyebrow">Six words</p>
+      <h2 class="rp-h2">Spanish you will hear on the ridge<span class="es es-line">Un poco de español de montaña</span></h2>
+      <p>Nobody needs Spanish for this week. These six make the trail funnier.</p>
+    </div>
+    <ul class="rp-phrases">
+      {phrases.map((p) => (
+        <li class="rp-phrase"><b>{p.es}</b><i>{p.en}</i><p>{p.note}</p></li>
+      ))}
+    </ul>
+    <div class="rp-callout" style="margin-top:18px">
+      <svg class="ic"><use href="#i-chat" /></svg>
+      <div>
+        <p><strong>Cortavientos, manta térmica, silbato, móvil.</strong> That’s what the marshal at a Spanish race asks to see at the start line. Now you know what she’s saying, and you already own all four.</p>
+        <p>Something missing from this list, or something on it you disagree with? Say so in the group chat. Both of us have packed this list wrong more than once.</p>
+      </div>
+    </div>
+  </section>
+
+  <script slot="scripts" is:inline>
+    (function () {
+      var KEY = 'cbtc:checklist:v1';
+      var boxes = Array.prototype.slice.call(document.querySelectorAll('input[data-kit]'));
+      var total = boxes.length;
+      var countEl = document.querySelector('[data-count]');
+      var barEl = document.querySelector('[data-bar]');
+      var msgEl = document.querySelector('[data-msg]');
+
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { return []; }
+      }
+      function save(ids) {
+        try { localStorage.setItem(KEY, JSON.stringify(ids)); } catch (e) {}
+      }
+      function message(n) {
+        if (n === 0) return 'Nothing packed yet. Deep breath.';
+        if (n === total) return 'All packed. See you at arrivals.';
+        if (n / total > 0.75) return 'Nearly there. Check the obligatorio ones twice.';
+        if (n / total > 0.4) return 'Halfway. The vest is the heavy bit.';
+        return 'Getting there.';
+      }
+      function render() {
+        var n = boxes.filter(function (b) { return b.checked; }).length;
+        if (countEl) countEl.textContent = n;
+        if (barEl) barEl.style.width = (total ? (n / total) * 100 : 0) + '%';
+        if (msgEl) msgEl.textContent = message(n);
+        document.querySelectorAll('[data-section]').forEach(function (sec) {
+          var id = sec.getAttribute('data-section');
+          var all = sec.querySelectorAll('input[data-kit]');
+          var done = sec.querySelectorAll('input[data-kit]:checked');
+          var el = document.querySelector('[data-toc-count="' + id + '"]');
+          if (el) el.textContent = done.length + '/' + all.length;
+        });
+      }
+
+      var saved = load();
+      boxes.forEach(function (b) {
+        if (saved.indexOf(b.getAttribute('data-kit')) !== -1) b.checked = true;
+        b.addEventListener('change', function () {
+          save(boxes.filter(function (x) { return x.checked; }).map(function (x) { return x.getAttribute('data-kit'); }));
+          render();
+        });
+      });
+      render();
+
+      document.querySelectorAll('[data-print]').forEach(function (btn) {
+        btn.addEventListener('click', function () { window.print(); });
+      });
+      document.querySelectorAll('[data-reset]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          boxes.forEach(function (b) { b.checked = false; });
+          save([]);
+          render();
+        });
+      });
+
+      // Highlight the section in view in the rail.
+      var links = document.querySelectorAll('[data-toc]');
+      if ('IntersectionObserver' in window && links.length) {
+        var current = null;
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) current = e.target.id;
+          });
+          links.forEach(function (a) { a.classList.toggle('is-active', a.getAttribute('data-toc') === current); });
+        }, { rootMargin: '-20% 0px -65% 0px' });
+        document.querySelectorAll('[data-section]').forEach(function (s) { io.observe(s); });
+      }
+    })();
+  </script>
+</RunnerPage>

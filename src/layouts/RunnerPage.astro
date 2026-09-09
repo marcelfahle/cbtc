@@ -1,0 +1,111 @@
+---
+// Shared shell for "Runner notes": the pages we send to accepted runners
+// (kit list, route pages with Wikiloc embeds, logbook). Unlisted: noindex,
+// no site nav. Styles live in /public/styles/runner.css; icons in
+// src/components/RunnerIcons.astro.
+import RunnerIcons from '../components/RunnerIcons.astro';
+
+interface Fact { icon: string; label: string; value: string }
+
+interface Props {
+  title: string;          // <title> and og:title
+  description: string;    // meta description
+  path: string;           // e.g. "/checklist"
+  eyebrow: string;        // small gold line above the h1
+  heading: string;        // h1, English
+  headingEs?: string;     // Spanish mirror under the h1
+  facts?: Fact[];         // the strip under the lede
+  rail?: boolean;         // sticky left column (slot="rail")
+  ogImage?: string;
+}
+
+const {
+  title, description, path, eyebrow, heading, headingEs,
+  facts = [], rail = false, ogImage = '/images/hero.webp',
+} = Astro.props;
+
+const site = 'https://www.costablancatrailcamp.com';
+const url = site + path;
+const editionLine = 'Edition 1 · 28 October – 2 November 2026 · Marina Alta, Costa Blanca';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href={url} />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Costa Blanca Trail Camp" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={url} />
+  <meta property="og:image" content={site + ogImage} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={site + ogImage} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles/runner.css" />
+  <slot name="head" />
+</head>
+<body>
+  <RunnerIcons />
+
+  <header class="rp-hero">
+    <div class="rp-top">
+      <a class="rp-brand" href="/" aria-label="Costa Blanca Trail Camp home">
+        <svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="18.5" stroke="currentColor" stroke-width="2"></circle><path d="M9 24.5L16.5 14l5 6.5 3-3.5L31 24.5" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 28.5c2.4 0 2.4-1.8 4.8-1.8s2.4 1.8 4.8 1.8 2.4-1.8 4.8-1.8 2.4 1.8 4.8 1.8 2.4-1.8 4.8-1.8" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"></path></svg>
+        <span>Costa Blanca<br />Trail Camp</span>
+      </a>
+      <span class="rp-series"><svg class="ic"><use href="#i-flag" /></svg> Runner notes</span>
+    </div>
+
+    <div class="rp-hero-body">
+      <p class="rp-eyebrow">{eyebrow}</p>
+      <h1>{heading}{headingEs && <span class="es">{headingEs}</span>}</h1>
+      <div class="rp-lede"><slot name="lede" /></div>
+      <slot name="actions" />
+      {facts.length > 0 && (
+        <div class="rp-facts">
+          {facts.map((f) => (
+            <div class="rp-fact">
+              <svg class="ic"><use href={`#i-${f.icon}`} /></svg>
+              <div>
+                <span class="rp-fact-k">{f.label}</span>
+                <span class="rp-fact-v">{f.value}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </header>
+
+  <main class:list={['rp-main', { 'has-rail': rail }]}>
+    {rail && <aside class="rp-rail"><slot name="rail" /></aside>}
+    <div class="rp-content">
+      <slot />
+    </div>
+  </main>
+
+  <footer class="rp-foot">
+    <div class="rp-foot-in">
+      <a class="rp-brand" href="/">
+        <svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="18.5" stroke="currentColor" stroke-width="2"></circle><path d="M9 24.5L16.5 14l5 6.5 3-3.5L31 24.5" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 28.5c2.4 0 2.4-1.8 4.8-1.8s2.4 1.8 4.8 1.8 2.4-1.8 4.8-1.8 2.4 1.8 4.8 1.8 2.4-1.8 4.8-1.8" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"></path></svg>
+        <span>Costa Blanca<br />Trail Camp</span>
+      </a>
+      <p>{editionLine}. Runner notes are written for the eight of you and not linked from the site. Questions go in the group chat or on your call. <a href="/">costablancatrailcamp.com</a></p>
+    </div>
+  </footer>
+
+  <slot name="scripts" />
+</body>
+</html>
