@@ -91,7 +91,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   letter-spacing: -0.02em; line-height: 0.92; font-size: clamp(2.75rem, 8vw, 6rem); text-wrap: balance;
 }
 .rp-hero h1 .es { display: block; font-family: var(--rp-body); font-weight: 600; text-transform: none; letter-spacing: 0; font-size: clamp(1.1rem, 2.2vw, 1.5rem); color: var(--rp-gold); margin-top: 14px; line-height: 1.3; }
-.rp-lede { margin-top: 22px; max-width: 58ch; font-size: clamp(1.1rem, 1.6vw, 1.3rem); color: rgba(255, 255, 255, 0.82); }
+.rp-lede { margin-top: 24px; max-width: 58ch; font-size: clamp(1.1rem, 1.6vw, 1.3rem); color: rgba(255, 255, 255, 0.82); }
 .rp-lede strong { color: #fff; font-weight: 700; }
 
 .rp-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1px; margin-top: 36px; background: var(--rp-night-line); border: 1px solid var(--rp-night-line); border-radius: var(--rp-radius); overflow: hidden; }
@@ -193,7 +193,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .rp-btn .ic { font-size: 18px; }
 .rp-btn-ghost { border: 1px solid var(--rp-night-line); color: #fff; background: rgba(255, 255, 255, 0.04); }
 .rp-btn-ghost:hover { background: rgba(255, 255, 255, 0.1); }
-.rp-hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.rp-hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
 
 /* ---------- Footer ---------- */
 .rp-foot { border-top: 1px solid var(--rp-line); padding: 32px var(--rp-gutter) 40px; }
@@ -203,38 +203,71 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .rp-foot p { max-width: 60ch; }
 .rp-foot a { font-weight: 700; color: var(--rp-ink); border-bottom: 1px solid var(--rp-line-strong); }
 
-/* ---------- Print: a real packing list on one or two sheets ---------- */
+/* ---------- Print: a real packing list, A4, two sheets ---------- */
+.rp-print-only { display: none; }
 @media print {
-  @page { margin: 14mm; }
-  body { background: #fff; font-size: 10.5pt; }
-  .rp-hero { background: #fff !important; color: #000; padding: 0; }
-  .rp-hero::after, .rp-facts, .rp-hero-actions, .rp-rail, .rp-foot, .rp-legend, .rp-callout { display: none !important; }
-  .rp-top { border-bottom: 1px solid #000; padding: 0 0 8px; }
-  .rp-series, .rp-hero-body .rp-eyebrow { color: #000; }
-  .rp-hero-body { padding: 16px 0 8px; }
-  .rp-hero h1 { font-size: 28pt; }
-  .rp-hero h1 .es { color: #444; font-size: 12pt; }
-  .rp-lede { color: #222; font-size: 10.5pt; }
-  .rp-main { width: 100%; padding: 8px 0 0; display: block; }
-  .rp-content { gap: 18px; }
-  .rp-section { break-inside: avoid-page; }
-  .rp-section-head { margin-bottom: 8px; }
-  .kit { gap: 4px; }
-  .kit-item { border-color: #bbb; break-inside: avoid; }
-  .kit-item label { padding: 6px 8px; grid-template-columns: 22px minmax(0, 1fr) 16px; gap: 8px; }
-  .kit-icon { width: 22px; height: 22px; font-size: 16px; background: none; border-radius: 0; }
-  .kit-name { font-size: 10.5pt; }
-  .kit-note { font-size: 9pt; color: #333; }
-  .kit-check { width: 14px; height: 14px; margin-top: 2px; border-color: #000; border-radius: 3px; }
-  .kit-item:has(input:checked) { background: #fff; }
-  .kit-item:has(input:checked) .kit-check { background: #000; border-color: #000; color: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .tag { height: 16px; padding: 0 6px; font-size: 6.5pt; }
-  .tag-must { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  @page { size: A4; margin: 13mm 14mm; }
+  html { scroll-behavior: auto; }
+  body { background: #fff !important; color: #111; font-size: 9.5pt; line-height: 1.35; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .rp-print-only { display: block; }
+  .rp-screen-only { display: none !important; }
+  .rp-hero { background: #fff !important; color: #111; overflow: visible; }
+  .rp-hero::after, .rp-hero-actions, .rp-rail, .rp-foot, .rp-callout, .rp-progress-actions { display: none !important; }
+  .rp-facts { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: 10px; background: none; border: 0; border-radius: 0; }
+  .rp-fact { padding: 0; background: none; gap: 6px; }
+  .rp-fact .ic { color: #111; font-size: 14px; margin-top: 1px; }
+  .rp-fact-k { color: #666; font-size: 6.5pt; }
+  .rp-fact-v { color: #111; font-size: 9pt; margin-top: 0; }
+  .rp-top { border-bottom: 2px solid #111; padding: 0 0 6px; }
+  .rp-brand { color: #111; font-size: 0.8rem; }
+  .rp-brand svg { width: 22px; height: 22px; }
+  .rp-series { color: #111; }
+  .rp-hero-body { padding: 14px 0 10px; max-width: none; }
+  .rp-hero-body .rp-eyebrow { color: #111; font-size: 7pt; }
+  .rp-hero h1 { font-size: 26pt; margin-top: 8px; }
+  .rp-hero h1 .es { color: #555; font-size: 11pt; margin-top: 4px; }
+  .rp-lede { color: #222; font-size: 9.5pt; margin-top: 8px; max-width: 80ch; }
+  .rp-lede strong { color: #111; }
+  .rp-main { width: 100%; padding: 6px 0 0; display: block; }
+  .rp-content { display: block; }
+  .rp-legend { display: flex; gap: 4px 14px; padding: 6px 0; border: 0; border-bottom: 1px solid #ccc; border-radius: 0; background: none; font-size: 7.5pt; color: #444; margin-bottom: 6px; }
+  .rp-section { margin-top: 12px; break-inside: auto; }
+  .rp-section-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin-bottom: 4px; max-width: none; break-after: avoid; }
+  .rp-section-head .rp-eyebrow { display: none; }
+  .rp-section-head p { flex-basis: 100%; font-size: 8.5pt; color: #555; margin: 0; }
+  .rp-h2 { font-size: 13pt; }
+  .rp-h2 .es-line { display: inline; margin: 0 0 0 8px; font-size: 8.5pt; }
+  .kit { gap: 0; border-top: 1px solid #111; }
+  .kit-item { border: 0; border-bottom: 1px solid #ddd; border-radius: 0; background: none !important; break-inside: avoid; }
+  .kit-item label { grid-template-columns: 14px 18px minmax(0, 1fr); gap: 8px; padding: 5px 0; align-items: start; }
+  .kit-check { order: -1; width: 12px; height: 12px; margin-top: 3px; border: 1.5px solid #111; border-radius: 2px; }
+  .kit-item:has(input:checked) .kit-check { background: #111; border-color: #111; color: #fff; }
+  .kit-check .ic { font-size: 9px; }
+  .kit-icon { width: 18px; height: 18px; font-size: 14px; background: none !important; border-radius: 0; color: #111 !important; margin-top: 1px; }
+  .kit-body { gap: 1px; }
+  .kit-head { gap: 2px 8px; }
+  .kit-name { font-size: 9.5pt; color: #111 !important; text-decoration: none !important; }
+  .kit-es { font-size: 8pt; color: #555; }
+  .kit-note { font-size: 8pt; color: #444; opacity: 1 !important; }
+  .kit-note strong { color: #111; }
+  .kit-tags { margin-top: 1px; opacity: 1 !important; }
+  .tag { height: 12px; padding: 0 5px; font-size: 5.5pt; letter-spacing: 0.08em; }
+  .tag-must { background: #111 !important; border-color: #111 !important; color: #fff !important; }
+  .tag-should { color: #111; border-color: #111; }
+  .tag-nice, .tag-obvio { color: #555; border-color: #999; background: none; }
+  .tag-day { color: #555; border-color: #ccc; background: none; }
+  .rp-nope { border-top: 1px solid #111; }
+  .rp-nope li { padding: 4px 0; grid-template-columns: 16px minmax(0, 1fr); gap: 8px; border-bottom: 1px solid #ddd; break-inside: avoid; }
+  .rp-nope .ic { font-size: 12px; color: #111; margin-top: 2px; }
+  .rp-nope strong { font-size: 9.5pt; }
+  .rp-nope p { font-size: 8pt; color: #444; margin-top: 0; }
+  #spanish { break-before: auto; }
   .rp-phrases { grid-template-columns: repeat(3, 1fr); gap: 6px; }
-  .rp-phrase { background: #fff; color: #000; border: 1px solid #bbb; padding: 8px; }
-  .rp-phrase b { color: #000; font-size: 12pt; }
-  .rp-phrase p { color: #333; }
-  .rp-nope li { padding: 6px 0; }
+  .rp-phrase { background: none; color: #111; border: 1px solid #ccc; padding: 6px 8px; gap: 2px; break-inside: avoid; }
+  .rp-phrase b { color: #111; font-size: 11pt; }
+  .rp-phrase i { font-size: 8pt; }
+  .rp-phrase p { color: #444; font-size: 7.5pt; }
+  a[href]::after { content: none !important; }
 }
 
 /* ---------- Route pages ---------- */

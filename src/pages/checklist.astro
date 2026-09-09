@@ -77,14 +77,14 @@ const sections: Section[] = [
   },
   {
     id: 'fuel', title: 'Fuel', es: 'La comida',
-    intro: 'Nothing new on race day, and the Long Day is your dress rehearsal. Train your gut now with what you will use then.',
+    intro: 'Fuel is on us. We run on 226ERS or Tailwind and we bring enough for all four days, so the only thing to pack here is whatever your stomach insists on.',
     items: [
-      { id: 'box', icon: 'box', name: 'The Long Day fuel from your box', es: 'lo que llega en la caja', level: 'should', days: ['Long Day'],
-        note: 'Around week four a package lands at your door with the exact fuelling for day three. Use it on your long runs, then bring what’s left. That’s the Benigembla plan, and it’s also the plan for your goal race.' },
-      { id: 'snacks', icon: 'gel', name: 'Your usual snacks for the other days', es: 'tus geles y barritas de siempre', level: 'should',
-        note: 'A couple of things per run that you know sit well: gels, bars, dates, those odd rice cakes. Spanish shops sell 226ERS everywhere and little else, so if you’re loyal to a brand, pack it.' },
-      { id: 'salts', icon: 'salt', name: 'Electrolytes', es: 'sales minerales', level: 'should',
-        note: 'Tabs or powder for the flasks. Twenty degrees plus vertical is sweatier than it sounds.' },
+      { id: 'box', icon: 'box', name: 'What comes in the box', es: 'lo que llega en la caja', level: 'should', days: ['Long Day'],
+        note: 'Around week four a package lands at your door with the same 226ERS or Tailwind you’ll get on the Long Day. Use it on your long runs so your gut has met it before Benigembla. Nothing new on race day, and day three is your race-day rehearsal.' },
+      { id: 'snacks', icon: 'gel', name: 'Your own fuel, only if your gut has opinions', es: 'tus geles de siempre, solo si tu estómago manda', level: 'nice',
+        note: 'If you’re loyal to a brand, or there’s exactly one gel your stomach trusts at hour four, pack it. Nobody will be offended. Everyone else runs on what we bring, electrolytes included.' },
+      { id: 'treat', icon: 'bar', name: 'One real-food treat', es: 'algo de comida de verdad', level: 'nice', days: ['Long Day'],
+        note: 'Something salty or something you actually look forward to, for the top of the Cocoll. Gels get boring around hour four, and morale is a fuelling strategy.' },
     ],
   },
   {
@@ -105,7 +105,7 @@ const sections: Section[] = [
   },
   {
     id: 'villa', title: 'Off the trail', es: 'Fuera del sendero',
-    intro: 'Evenings on the terrace, one massage table, a shared twin room, and one cold sea.',
+    intro: 'Evenings on the terrace, one massage table, your own room most likely, and one cold sea.',
     items: [
       { id: 'swim', icon: 'swim', name: 'Swimsuit', es: 'bañador', level: 'must', days: ['Long Day'],
         note: 'For the sea after Benigembla. On the drive home, seventeen degrees, and the website did say non-negotiable. You’ll swear a little and then talk about it at dinner.' },
@@ -118,7 +118,7 @@ const sections: Section[] = [
       { id: 'massage', icon: 'massage', name: 'Loose shorts for massage day', es: 'ropa cómoda para el masaje', level: 'nice',
         note: 'Day-three evening you’re on the table. Loose shorts make the therapist’s life easier and yours shorter.' },
       { id: 'earplugs', icon: 'moon', name: 'Ear plugs', es: 'tapones para dormir', level: 'nice',
-        note: 'Shared twin rooms. Somebody snores. Statistically it’s not you.' },
+        note: 'You’ll most likely have your own room. If you do end up sharing, somebody snores, and statistically it’s not you.' },
       { id: 'plug', icon: 'plug', name: 'Plug adapter', es: 'adaptador de enchufe', level: 'nice',
         note: 'Spanish sockets are the round two-pin European kind, 230 V. Most of Europe plugs straight in. UK, Irish, US and Swiss plugs need an adapter.' },
       { id: 'notebook', icon: 'notebook', name: 'Notebook and pen', es: 'libreta y boli', level: 'nice',
@@ -166,10 +166,12 @@ const facts = [
   rail
 >
   <Fragment slot="lede">
-    <p>The full list we promised, with our honest shoe opinions in it. {total} things, {mustCount} of them marked <strong>obligatorio</strong>: those get checked at the villa on day one, so nobody discovers a missing wind shell on a ridge at a thousand metres. Tick things off as you pack. Your ticks stay on this phone.</p>
+    <p>The full list we promised, with our honest shoe opinions in it. {total} things, {mustCount} of them marked <strong>obligatorio</strong>: those get checked at the villa on day one, so nobody discovers a missing wind shell on a ridge at a thousand metres. <span class="rp-screen-only">Tick things off as you pack. Your ticks stay on this phone.</span></p>
   </Fragment>
   <Fragment slot="actions">
-    <button class="rp-btn rp-btn-ghost" type="button" data-print><svg class="ic"><use href="#i-print" /></svg> Print this list</button>
+    <div class="rp-hero-actions">
+      <button class="rp-btn rp-btn-ghost" type="button" data-print><svg class="ic"><use href="#i-print" /></svg> Print this list</button>
+    </div>
   </Fragment>
 
   <Fragment slot="rail">
