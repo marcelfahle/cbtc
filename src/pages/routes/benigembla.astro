@@ -1,0 +1,229 @@
+---
+// /routes/benigembla: the Long Day route page (Edition 1). Unlisted.
+// Route facts come from the Wikiloc track (id 151013404, "Badall Trail
+// Benigembla CTM 2023" by Jordi - Acuasfalto): 21.98 km loop, +1,184 m,
+// 313 to 1,039 m, waypoint km marks from the track description.
+import RunnerPage from '../../layouts/RunnerPage.astro';
+
+const wikiloc = {
+  id: '151013404',
+  url: 'https://es.wikiloc.com/rutas-carrera-por-montana/badall-trail-benigembla-ctm-2023-151013404',
+  embed: 'https://es.wikiloc.com/wikiloc/embedv2.do?id=151013404&elevation=on&images=off&maptype=H',
+  author: 'Jordi - Acuasfalto',
+};
+
+const stats = [
+  { icon: 'flag', value: '22', unit: 'km', label: 'Distance' },
+  { icon: 'elevation', value: '1,184', unit: 'm', label: 'Climbing' },
+  { icon: 'mountain', value: '1,039', unit: 'm', label: 'High point' },
+  { icon: 'clock', value: '5 to 6', unit: 'h', label: 'Our day, with stops' },
+];
+
+const facts = [
+  { icon: 'calendar', label: 'When', value: 'Day 3 · Saturday 31 October' },
+  { icon: 'mountain', label: 'Where', value: 'Benigembla, Vall de Pop · loop from the village' },
+  { icon: 'drop', label: 'Water', value: 'Two fountains before km 3.1, then none' },
+  { icon: 'wave', label: 'After', value: 'The sea, on the drive home' },
+];
+
+interface Way { km: string; name: string; alt?: string; icon: string; kind?: 'key' | 'water'; note: string; word?: string }
+const waypoints: Way[] = [
+  { km: '0', name: 'Benigembla', alt: '313 m', icon: 'flag', kind: 'key',
+    note: 'Village square, coffee if the bar is open. Vest check, flasks full, poles collapsed. We start on foot up through the village and the first climb starts almost immediately.' },
+  { km: '2.6', name: 'Font de Baix', icon: 'drop', kind: 'water', word: 'font · spring, fountain',
+    note: 'The lower fountain. Top up if you sipped on the way up.' },
+  { km: '3.1', name: 'Font de Dalt', icon: 'drop', kind: 'water', word: 'dalt · upper, above',
+    note: 'The upper fountain, and the last drinking water on the loop. Both flasks full here, whatever they weigh. There’s nothing else until the village, and that’s nineteen kilometres away.' },
+  { km: '7.7', name: 'Els Corrals', icon: 'mountain', word: 'corral · old stone livestock pen',
+    note: 'Ruined pens on the shoulder of the hill. By now you’ve been climbing for an hour. This is where we set the rhythm for the rest of the ascent: hike anything you can’t talk on, run the flat bits, no heroics.' },
+  { km: '10.1', name: 'Coveta de les Cabres', icon: 'mountain', word: 'coveta de les cabres · the goats’ little cave',
+    note: 'The goats’ little cave. A natural regroup point. Fuel here if you haven’t already, because the next five kilometres are the steepest of the day.' },
+  { km: '12.6', name: 'Cova de Dalt', icon: 'mountain', word: 'cova de dalt · the upper cave',
+    note: 'The upper cave, with the ridge in sight. Poles out if you brought them. The twenty minutes of silence happen somewhere between here and the top.' },
+  { km: '15.4', name: 'El Cocoll', alt: '1,039 m', icon: 'mountain', kind: 'key',
+    note: 'The high point of the day and the highest ground of the week. Lunch, wind shell on, photo. From here it’s downhill, and downhill is the skill this camp is about, so this is where the coaching gets loud.' },
+  { km: '18.7', name: 'Corral de Malea', icon: 'mountain', word: 'corral · stone pen',
+    note: 'Another ruined pen, halfway down. Legs will be talking. This descent is where you practise everything from day two at real fatigue: line choice, braking late, eyes ahead.' },
+  { km: '19.7', name: 'Aljub del Frare', icon: 'drop', word: 'aljub · stone cistern (not for drinking)',
+    note: 'The friar’s cistern. It’s a water tank, historic and beautiful and absolutely not drinkable. Two kilometres left, mostly down.' },
+  { km: '22', name: 'Benigembla', alt: '313 m', icon: 'flag', kind: 'key',
+    note: 'Back in the village. Sandals, dry top, something salty. Then the van, then the sea.' },
+];
+
+const plan = [
+  { t: 'Wake, eat, drive', p: 'Breakfast at the villa, then 40 minutes in the van to Benigembla. The car ride is the briefing: pace groups, fuel timing, where we regroup.' },
+  { t: 'Fill up at the fountains', p: 'Two fountains before kilometre 3.1 and none after. Whatever you drank on the first climb, leave Font de Dalt with 1.5 litres. It’s the one place on the route where the coaches will be annoying about it.' },
+  { t: 'Fuel every 30 to 40 minutes', p: 'The fuelling from your box, on a timer, from the first climb. Not when you feel like it. The last two hours of your goal race are decided by what you ate in the first two hours of this one.' },
+  { t: 'Hike the steep stuff', p: 'From Els Corrals to the Cocoll the grade tips up. Anything you can’t hold a sentence on, you hike, poles or not. Some climbs here are meant to be hiked. That’s racecraft, and it’s why you’ll still have legs at kilometre 16.' },
+  { t: 'Twenty minutes of silence', p: 'Somewhere above the Cova de Dalt, no talking, no music. Your ultra gets exactly this quiet in its last hours. Better to meet it here, with a coach ten metres away.' },
+  { t: 'Lunch on the Cocoll', p: 'Shell on the moment you stop. Real food, ten minutes, a look at where you came from. Then downhill.' },
+  { t: 'Descend like it counts', p: 'Seven kilometres and 700 metres of down to finish. This is the day-two skills at full fatigue, with a coach on the technical sections calling lines. Braking late is the whole game.' },
+  { t: 'The sea', p: 'Van to the coast, into the Mediterranean, seventeen degrees. You’ll swear a little. Massage tonight, and the printed race notes tomorrow.' },
+];
+
+const kit = [
+  { icon: 'vest', href: '/checklist#back', name: 'Vest with 1.5 L', sub: 'two flasks, plus a third if you run hot' },
+  { icon: 'poles', href: '/checklist#back', name: 'Poles', sub: 'recommended for this climb' },
+  { icon: 'shell', href: '/checklist#layers', name: 'Wind shell', sub: 'on at the top, whatever the weather' },
+  { icon: 'box', href: '/checklist#fuel', name: 'The fuel from your box', sub: 'five hours of it' },
+  { icon: 'headlamp', href: '/checklist#safety', name: 'Headlamp', sub: 'we don’t plan to need it' },
+  { icon: 'swim', href: '/checklist#villa', name: 'Swimsuit and towel', sub: 'in the bag for the van' },
+];
+
+const glossary = [
+  { es: 'Badall', en: 'a yawn, a gap', note: 'The Pas del Badall is the notch in the Carrascal ridge the race is named after. A gap in the rock that looks like the mountain yawning.' },
+  { es: 'Font', en: 'spring, fountain', note: 'The word that matters most on this loop. Two of them, both before kilometre 3.1.' },
+  { es: 'Corral', en: 'stone pen', note: 'Dry-stone pens where shepherds kept goats and sheep. Ruins now, and good landmarks.' },
+  { es: 'Cova', en: 'cave', note: 'Coveta is the diminutive. These hills are limestone, so caves are everywhere and most of them are named.' },
+  { es: 'Aljub', en: 'cistern', note: 'A stone water tank from the Moorish period. Historic, lovely, not drinkable.' },
+  { es: 'Cocoll', en: 'the summit', note: 'The high point at 1,039 m. Alts del Cocoll on the map. You’ll stand on it around lunchtime.' },
+];
+---
+<RunnerPage
+  title="The Long Day: Benigembla · Costa Blanca Trail Camp"
+  description="Day three route for Edition 1: a 22 km loop from Benigembla with 1,184 m of climbing over the Cocoll. Map, waypoints, water, and the plan for the day."
+  path="/routes/benigembla"
+  eyebrow="Edition 1 · Day 3 · Saturday 31 October 2026"
+  heading="The Long Day"
+  headingEs="Benigembla y el Cocoll, 22 km, 1.184 m de subida"
+  facts={facts}
+  rail
+>
+  <Fragment slot="lede">
+    <p>One loop from a village in the Vall de Pop. Fifteen kilometres of climbing, mostly gentle, sometimes not, to the top of the Cocoll. Then seven kilometres of descent back to where the van is parked. Everything from days one and two, at effort, for five hours. <strong>Two fountains before kilometre 3.1, and no water after.</strong></p>
+  </Fragment>
+  <Fragment slot="actions">
+    <div class="rp-hero-actions">
+      <a class="rp-btn rp-btn-ghost" href="#map"><svg class="ic"><use href="#i-mountain" /></svg> See the map</a>
+      <a class="rp-btn rp-btn-ghost" href={wikiloc.url} target="_blank" rel="noopener"><svg class="ic"><use href="#i-arrow" /></svg> GPX on Wikiloc</a>
+    </div>
+  </Fragment>
+
+  <Fragment slot="rail">
+    <div class="rp-rail-card">
+      <p class="rp-rail-title" style="margin:0">The route</p>
+      <p>The Badall Trail race course from 2023, recorded by {wikiloc.author}. We run it as a training day, not a race, which changes everything except the map.</p>
+      <a class="rp-btn rp-btn-solid" href={wikiloc.url} target="_blank" rel="noopener"><svg class="ic"><use href="#i-arrow" /></svg> Open in Wikiloc</a>
+      <a class="rp-btn rp-btn-line" href="/checklist"><svg class="ic"><use href="#i-vest" /></svg> The kit list</a>
+    </div>
+    <nav aria-label="Sections">
+      <p class="rp-rail-title">On this page</p>
+      <div class="rp-toc">
+        <a href="#map" data-toc="map">The map</a>
+        <a href="#line" data-toc="line">The line, km by km</a>
+        <a href="#plan" data-toc="plan">The plan</a>
+        <a href="#kit" data-toc="kit">Kit for this day</a>
+        <a href="#words" data-toc="words">Words on the map</a>
+      </div>
+    </nav>
+  </Fragment>
+
+  <div class="rp-stats">
+    {stats.map((s) => (
+      <div class="rp-stat">
+        <svg class="ic"><use href={`#i-${s.icon}`} /></svg>
+        <b>{s.value}<small>{s.unit}</small></b>
+        <span>{s.label}</span>
+      </div>
+    ))}
+  </div>
+
+  <section class="rp-section" id="map" data-section="map">
+    <div class="rp-section-head">
+      <p class="rp-eyebrow">Wikiloc track</p>
+      <h2 class="rp-h2">The map<span class="es es-line">El mapa y el perfil</span></h2>
+      <p>Satellite view with the elevation profile underneath. Drag it around. The profile is the honest bit: one long climb, one steep descent, no flat.</p>
+    </div>
+    <div class="rp-embed">
+      <iframe src={wikiloc.embed} title="Badall Trail Benigembla route map on Wikiloc" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      <div class="rp-embed-foot">
+        <span>Track: Badall Trail Benigembla CTM 2023, by {wikiloc.author} on Wikiloc. Download the GPX there, free account needed.</span>
+        <div class="rp-actions">
+          <a class="rp-btn rp-btn-line" href={wikiloc.url} target="_blank" rel="noopener">Open on Wikiloc</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rp-section" id="line" data-section="line">
+    <div class="rp-section-head">
+      <p class="rp-eyebrow">Ten points</p>
+      <h2 class="rp-h2">The line, km by km<span class="es es-line">El recorrido, punto por punto</span></h2>
+      <p>The named places on the track, in order, with what they mean and what we do there. Clay markers are water. Dark markers are the start, the top, and the finish.</p>
+    </div>
+    <ol class="rp-way">
+      {waypoints.map((w) => (
+        <li class:list={[w.kind && `is-${w.kind}`]}>
+          <span class="rp-way-km">{w.km} km</span>
+          <div class="rp-way-body">
+            <div class="rp-way-head">
+              <svg class="ic"><use href={`#i-${w.icon}`} /></svg>
+              <span class="rp-way-name">{w.name}</span>
+              {w.alt && <span class="rp-way-alt">{w.alt}</span>}
+              {w.word && <span class="es kit-es">{w.word}</span>}
+            </div>
+            <p>{w.note}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="rp-section" id="plan" data-section="plan">
+    <div class="rp-section-head">
+      <p class="rp-eyebrow">Eight steps</p>
+      <h2 class="rp-h2">The plan for the day<span class="es es-line">El plan del día</span></h2>
+      <p>A training day with a script. The script is the point: this is the dress rehearsal for your goal race, with coaches watching.</p>
+    </div>
+    <ol class="rp-plan">
+      {plan.map((s) => (
+        <li><div><strong>{s.t}</strong><p>{s.p}</p></div></li>
+      ))}
+    </ol>
+    <div class="rp-callout" style="margin-top:18px">
+      <svg class="ic"><use href="#i-rain" /></svg>
+      <div>
+        <p><strong>If the weather turns.</strong> Late October can dump a month of rain in an afternoon. If the forecast says so, we swap to a lower loop with more escape roads and tell you the night before. The plan above stays the same, the map changes.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="rp-section" id="kit" data-section="kit">
+    <div class="rp-section-head">
+      <p class="rp-eyebrow">From the kit list</p>
+      <h2 class="rp-h2">Kit for this day<span class="es es-line">Material para el día largo</span></h2>
+      <p>The Long Day items from your <a href="/checklist" style="font-weight:700;border-bottom:1px solid currentColor">kit list</a>, so you can lay them out on the bed the night before.</p>
+    </div>
+    <div class="rp-kitlinks">
+      {kit.map((k) => (
+        <a href={k.href}><svg class="ic"><use href={`#i-${k.icon}`} /></svg><span>{k.name}<small>{k.sub}</small></span></a>
+      ))}
+    </div>
+  </section>
+
+  <section class="rp-section" id="words" data-section="words">
+    <div class="rp-section-head">
+      <p class="rp-eyebrow">Six words</p>
+      <h2 class="rp-h2">Words on the map<span class="es es-line">Un poco de valenciano de montaña</span></h2>
+      <p>The names out here are Valencian, not Spanish. Six of them explain the whole route.</p>
+    </div>
+    <ul class="rp-phrases">
+      {glossary.map((g) => (
+        <li class="rp-phrase"><b>{g.es}</b><i>{g.en}</i><p>{g.note}</p></li>
+      ))}
+    </ul>
+  </section>
+
+  <script slot="scripts" is:inline>
+    (function () {
+      var links = document.querySelectorAll('[data-toc]');
+      if (!('IntersectionObserver' in window) || !links.length) return;
+      var current = null;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) current = e.target.id; });
+        links.forEach(function (a) { a.classList.toggle('is-active', a.getAttribute('data-toc') === current); });
+      }, { rootMargin: '-20% 0px -65% 0px' });
+      document.querySelectorAll('[data-section]').forEach(function (s) { io.observe(s); });
+    })();
+  </script>
+</RunnerPage>
