@@ -39,7 +39,7 @@ guilt.**
 Here's November in the Marina Alta: 19 degrees, dry rocky ridges, a sea you can
 actually swim in, and a training block that sets up your whole spring season.
 
-Fly to Alicante. We handle literally everything after the arrivals door.
+Fly to Alicante or Valencia. We handle literally everything after the arrivals door.
 
 Eight spots. Applications close **30 September**, the eight are confirmed by
 1 October. Right now: **8 of 8 open.**
@@ -187,7 +187,7 @@ for that bet. Founding runners agree to:
 your call. Not accepted? You pay nothing, obviously.
 
 **The Day One guarantee.** Run Day 1. If by dinner this isn't for you, say the
-word: full refund, and we drive you back to Alicante ourselves. No forms, no
+word: full refund, and we drive you back to Alicante or Valencia ourselves. No forms, no
 awkwardness. We can afford this promise because we pick the eight of you
 carefully.
 
