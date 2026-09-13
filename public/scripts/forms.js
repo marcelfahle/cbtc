@@ -50,8 +50,14 @@
             if (window.plausible) plausible(formName === 'apply' ? 'Apply Submitted' : 'Routes Submitted');
           } catch (analyticsError) {}
           try {
-            if (formName === 'apply' && !fields.website && window.cbtcTrackMetaEvent) {
-              window.cbtcTrackMetaEvent('CompleteRegistration');
+            if (
+              formName === 'apply' &&
+              !fields.website &&
+              form.getAttribute('data-meta-lead-tracked') !== 'true' &&
+              window.cbtcTrackMetaEvent
+            ) {
+              form.setAttribute('data-meta-lead-tracked', 'true');
+              window.cbtcTrackMetaEvent('Lead');
             }
           } catch (analyticsError) {}
         })
