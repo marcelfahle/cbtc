@@ -1,4 +1,6 @@
 // Meta Pixel, gated behind explicit marketing consent.
+// Uses Meta's browser base-snippet semantics after opt-in only.
+// The official noscript image is intentionally omitted because it cannot be consent-gated.
 // No pixel script, cookies, or PageView are loaded until the visitor accepts.
 (function () {
   var PIXEL_ID = '1606630404144793';
@@ -22,7 +24,6 @@
 
   function injectPixel() {
     if (window[INIT_FLAG]) return;
-    window[INIT_FLAG] = true;
 
     !(function (f, b, e, v, n, t, s) {
       if (f.fbq) return;
@@ -31,17 +32,20 @@
       };
       if (!f._fbq) f._fbq = n;
       n.push = n;
-      n.loaded = true;
+      n.loaded = !0;
       n.version = '2.0';
       n.queue = [];
       t = b.createElement(e);
-      t.async = true;
+      t.async = !0;
       t.src = v;
       s = b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t, s);
     })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
 
-    window.fbq('init', PIXEL_ID);
+    if (window.fbq) {
+      window.fbq('init', PIXEL_ID);
+      window[INIT_FLAG] = true;
+    }
   }
 
   function trackPageView() {
