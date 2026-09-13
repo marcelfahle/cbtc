@@ -9,6 +9,8 @@
   document.querySelectorAll('form[data-form]').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      if (form.getAttribute('data-submitting') === 'true') return;
+      form.setAttribute('data-submitting', 'true');
       var formName = form.getAttribute('data-form');
       var button = form.querySelector('button, [type="submit"]');
       var fields = {};
@@ -44,9 +46,17 @@
           msg.textContent = SUCCESS[formName] || 'Sent.';
           var grid = form.querySelector('div') || form;
           grid.replaceChildren(msg);
-          if (window.plausible) plausible(formName === 'apply' ? 'Apply Submitted' : 'Routes Submitted');
+          try {
+            if (window.plausible) plausible(formName === 'apply' ? 'Apply Submitted' : 'Routes Submitted');
+          } catch (analyticsError) {}
+          try {
+            if (formName === 'apply' && !fields.website && window.cbtcTrackMetaEvent) {
+              window.cbtcTrackMetaEvent('CompleteRegistration');
+            }
+          } catch (analyticsError) {}
         })
         .catch(function (err) {
+          form.removeAttribute('data-submitting');
           if (button) {
             button.disabled = false;
             button.removeAttribute('aria-busy');
