@@ -6,6 +6,8 @@ import vm from 'node:vm';
 const metaSource = fs.readFileSync(new URL('../public/scripts/meta-pixel-consent.js', import.meta.url), 'utf8');
 const formsSource = fs.readFileSync(new URL('../public/scripts/forms.js', import.meta.url), 'utf8');
 const fitCallSource = fs.readFileSync(new URL('../public/scripts/fit-call.js', import.meta.url), 'utf8');
+const homeHtml = fs.readFileSync(new URL('../public/index.html', import.meta.url), 'utf8');
+const runnerLayoutSource = fs.readFileSync(new URL('../src/layouts/RunnerPage.astro', import.meta.url), 'utf8');
 
 function makeElement(tagName, ownerDocument) {
   const listeners = new Map();
@@ -409,4 +411,20 @@ test('fit-call CTA reveals only with a configured HTTPS booking URL', async () =
 
   assert.equal(context.cta.hidden, false);
   assert.equal(context.link.href, bookingUrl);
+});
+
+test('all rendered page shells have exactly one Plausible pageview loader', () => {
+  const plausibleSrc = 'https://plausible.io/js/pa-Ph375L-pQZDyOfoQSaRdy.js';
+  assert.equal((homeHtml.match(new RegExp(plausibleSrc, 'g')) || []).length, 1);
+  assert.equal((runnerLayoutSource.match(new RegExp(plausibleSrc, 'g')) || []).length, 1);
+  assert.ok(runnerLayoutSource.includes('plausible.init()'));
+});
+
+test('homepage and runner footers link the current Instagram handle accessibly', () => {
+  const instagramUrl = 'https://www.instagram.com/costablancatrailcamp/';
+  for (const source of [homeHtml, runnerLayoutSource]) {
+    assert.ok(source.includes(instagramUrl));
+    assert.ok(source.includes('@costablancatrailcamp'));
+    assert.ok(source.includes('aria-label="Instagram @costablancatrailcamp"'));
+  }
 });

@@ -328,3 +328,32 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   .rp-stats { grid-template-columns: repeat(4, 1fr); }
   .rp-stat { padding: 8px 10px; border-color: #bbb; }
 }
+
+
+/* Footer Instagram link */
+.rp-instagram {
+  align-items: center;
+  border: 1px solid var(--rp-line-strong) !important;
+  border-radius: 999px;
+  color: var(--rp-ink) !important;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 13px 8px 11px;
+  transition: background .16s cubic-bezier(.25,1,.5,1), border-color .16s cubic-bezier(.25,1,.5,1), transform .16s cubic-bezier(.25,1,.5,1);
+}
+.rp-instagram svg {
+  color: var(--rp-clay-deep);
+  flex: none;
+  height: 18px;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  width: 18px;
+}
+.rp-instagram span { font-size: .86rem; font-weight: 900; letter-spacing: .01em; }
+.rp-instagram:hover { background: var(--rp-cream-2); border-color: var(--rp-ink) !important; transform: translateY(-1px); }
+.rp-instagram:focus-visible { outline: 2px solid var(--rp-clay); outline-offset: 3px; }
+@media (max-width: 620px) {
+  .rp-instagram { width: 100%; justify-content: center; }
+}
