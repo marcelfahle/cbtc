@@ -2,9 +2,54 @@
 // All inputs carry name="" attributes (see scripts/form-v2.mjs).
 (function () {
   var SUCCESS = {
-    apply: 'Application received. A real reply from Monika or Anna within 48 hours.',
+    apply: {
+      heading: 'Application received',
+      body: 'A real reply from Monika or Anna will reach you within 48 hours.',
+      steps: [
+        'We read your running notes and check whether the camp fits in both directions.',
+        'If it is a yes, we will explain why and how to hold the spot.',
+        'For now, there is nothing to pay and nothing else to fill in.',
+      ],
+    },
     routes: 'Sent. The routes are on their way to your inbox.',
   };
+
+  function buildApplySuccess() {
+    var region = document.createElement('section');
+    region.setAttribute('role', 'status');
+    region.setAttribute('aria-live', 'polite');
+    region.setAttribute('aria-labelledby', 'apply-success-heading');
+    region.setAttribute('tabindex', '-1');
+    region.className = 'cbtc-success';
+
+    var heading = document.createElement('h3');
+    heading.id = 'apply-success-heading';
+    heading.textContent = SUCCESS.apply.heading;
+
+    var body = document.createElement('p');
+    body.textContent = SUCCESS.apply.body;
+
+    var list = document.createElement('ol');
+    SUCCESS.apply.steps.forEach(function (step) {
+      var item = document.createElement('li');
+      item.textContent = step;
+      list.appendChild(item);
+    });
+
+    region.appendChild(heading);
+    region.appendChild(body);
+    region.appendChild(list);
+    return region;
+  }
+
+  function buildInlineSuccess(formName) {
+    var msg = document.createElement('p');
+    msg.setAttribute('role', 'status');
+    msg.setAttribute('aria-live', 'polite');
+    msg.className = 'cbtc-inline-success';
+    msg.textContent = SUCCESS[formName] || 'Sent.';
+    return msg;
+  }
 
   document.querySelectorAll('form[data-form]').forEach(function (form) {
     form.addEventListener('submit', function (e) {
@@ -40,12 +85,17 @@
         })
         .then(function (r) {
           if (!r.ok) throw new Error((r.data && r.data.error) || 'failed');
-          var msg = document.createElement('p');
-          msg.setAttribute('role', 'status');
-          msg.className = 'flex min-h-[3rem] items-center justify-center rounded-lg bg-black/30 px-4 text-center text-base font-extrabold text-ploy-text-inverse shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)]';
-          msg.textContent = SUCCESS[formName] || 'Sent.';
+          var success = formName === 'apply' ? buildApplySuccess() : buildInlineSuccess(formName);
           var grid = form.querySelector('div') || form;
-          grid.replaceChildren(msg);
+          grid.replaceChildren(success);
+          if (formName === 'apply') {
+            form.className += ' cbtc-form--success';
+            try {
+              success.focus({ preventScroll: true });
+            } catch (_) {
+              try { success.focus(); } catch (focusError) {}
+            }
+          }
           try {
             if (window.plausible) plausible(formName === 'apply' ? 'Apply Submitted' : 'Routes Submitted');
           } catch (analyticsError) {}

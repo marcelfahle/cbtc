@@ -5,6 +5,7 @@ import vm from 'node:vm';
 
 const metaSource = fs.readFileSync(new URL('../public/scripts/meta-pixel-consent.js', import.meta.url), 'utf8');
 const formsSource = fs.readFileSync(new URL('../public/scripts/forms.js', import.meta.url), 'utf8');
+const fitCallSource = fs.readFileSync(new URL('../public/scripts/fit-call.js', import.meta.url), 'utf8');
 
 function makeElement(tagName, ownerDocument) {
   const listeners = new Map();
@@ -252,6 +253,36 @@ function runForms(context) {
   vm.runInContext(formsSource, context, { filename: 'forms.js' });
 }
 
+function createFitCallContext(fetchImpl) {
+  const document = {
+    _elements: [],
+    createElement(tagName) {
+      const element = makeElement(tagName, document);
+      document._elements.push(element);
+      return element;
+    },
+    querySelector(selector) {
+      return findElement(document._elements, selector);
+    },
+  };
+  const cta = makeElement('p', document);
+  cta.setAttribute('data-fit-call-cta', '');
+  cta.hidden = true;
+  const link = makeElement('a', document);
+  link.setAttribute('data-fit-call-link', '');
+  cta.appendChild(link);
+  document._elements.push(cta, link);
+
+  const context = vm.createContext({ document, fetch: fetchImpl, URL, console });
+  context.cta = cta;
+  context.link = link;
+  return context;
+}
+
+function runFitCall(context) {
+  vm.runInContext(fitCallSource, context, { filename: 'fit-call.js' });
+}
+
 function submit(form) {
   let prevented = false;
   form.dispatch('submit', { preventDefault: () => { prevented = true; } });
@@ -357,4 +388,25 @@ test('analytics exceptions do not break successful apply UI', async () => {
   assert.equal(apply.grid.children.length, 1);
   assert.equal(apply.grid.children[0].getAttribute('role'), 'status');
   assert.equal(apply.form.querySelector('[data-form-error]'), null);
+});
+
+test('fit-call CTA stays hidden without a configured HTTPS booking URL', async () => {
+  const context = createFitCallContext(async () => jsonResponse(true, { fitCallUrl: '' }));
+  runFitCall(context);
+  await settle();
+  await settle();
+
+  assert.equal(context.cta.hidden, true);
+  assert.equal(context.link.href, undefined);
+});
+
+test('fit-call CTA reveals only with a configured HTTPS booking URL', async () => {
+  const bookingUrl = 'https://calendar.google.com/calendar/appointments/schedules/example';
+  const context = createFitCallContext(async () => jsonResponse(true, { fitCallUrl: bookingUrl }));
+  runFitCall(context);
+  await settle();
+  await settle();
+
+  assert.equal(context.cta.hidden, false);
+  assert.equal(context.link.href, bookingUrl);
 });
