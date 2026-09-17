@@ -92,9 +92,6 @@ a difference, and good coaches know it.
   your normal training: vertical strength, downhill work, time on feet. Three
   group calls. A short voice note from your coaches every week — think less
   "webinar," more "your friend who happens to have raced Worlds."
-- **Around week 4** — a box shows up at your door: the exact fueling you'll
-  use on the Long Day, so your gut starts training now. There's other stuff in
-  the box. We're not saying what.
 - **26–29 November** — camp. A coach meets you at arrivals; the trail talk
   starts in the car.
 - **December → your race** — a call once your legs are back, the group chat
