@@ -1,3 +1,5 @@
+> Current host wording (20 September 2026, confirmed by Monika): Monika and Anna are experienced trail runners and camp hosts, not coaches. Describe running together and sharing their experience. This overrides coach/coaching language in the historical copy and changelog below. Current public copy lives in `public/index.html` and `src/pages/`.
+
 # Costa Blanca Trail Camp — site copy v3 (Shaan/Sam voice, women-first)
 
 <!--

@@ -41,7 +41,7 @@ const waypoints: Way[] = [
   { km: '12.6', name: 'Cova de Dalt', icon: 'mountain', word: 'cova de dalt · the upper cave',
     note: 'The upper cave, with the ridge in sight. Poles out if you brought them. The twenty minutes of silence happen somewhere between here and the top.' },
   { km: '15.4', name: 'El Cocoll', alt: '1,039 m', icon: 'mountain', kind: 'key',
-    note: 'The high point of the day and the highest ground of the week. Lunch, wind shell on, photo. From here it’s downhill, and downhill is the skill this camp is about, so this is where the coaching gets loud.' },
+    note: 'The high point of the day and the highest ground of the week. Lunch, wind shell on, photo. From here it’s downhill, and downhill is the skill this camp is about, so this is where we share our tips on the way down.' },
   { km: '18.7', name: 'Corral de Malea', icon: 'mountain', word: 'corral · stone pen',
     note: 'Another ruined pen, halfway down. Legs will be talking. This descent is where you practise everything from day two at real fatigue: line choice, braking late, eyes ahead.' },
   { km: '19.7', name: 'Aljub del Frare', icon: 'drop', word: 'aljub · stone cistern (not for drinking)',
@@ -52,12 +52,12 @@ const waypoints: Way[] = [
 
 const plan = [
   { t: 'Wake, eat, drive', p: 'Breakfast at the villa, then 40 minutes in the van to Benigembla. The car ride is the briefing: pace groups, fuel timing, where we regroup.' },
-  { t: 'Fill up at the fountains', p: 'Two fountains before kilometre 3.1 and none after. Whatever you drank on the first climb, leave Font de Dalt with 1.5 litres. It’s the one place on the route where the coaches will be annoying about it.' },
+  { t: 'Fill up at the fountains', p: 'Two fountains before kilometre 3.1 and none after. Whatever you drank on the first climb, leave Font de Dalt with 1.5 litres. It’s the one place on the route where your hosts will be annoying about it.' },
   { t: 'Fuel every 30 to 40 minutes', p: 'Your trail fuel, on a timer, from the first climb. Not when you feel like it. The last two hours of your goal race are decided by what you ate in the first two hours of this one.' },
   { t: 'Hike the steep stuff', p: 'From Els Corrals to the Cocoll the grade tips up. Anything you can’t hold a sentence on, you hike, poles or not. Some climbs here are meant to be hiked. That’s racecraft, and it’s why you’ll still have legs at kilometre 16.' },
-  { t: 'Twenty minutes of silence', p: 'Somewhere above the Cova de Dalt, no talking, no music. Your ultra gets exactly this quiet in its last hours. Better to meet it here, with a coach ten metres away.' },
+  { t: 'Twenty minutes of silence', p: 'Somewhere above the Cova de Dalt, no talking, no music. Your ultra gets exactly this quiet in its last hours. Better to meet it here, with one of your hosts ten metres away.' },
   { t: 'Lunch on the Cocoll', p: 'Shell on the moment you stop. Real food, ten minutes, a look at where you came from. Then downhill.' },
-  { t: 'Descend like it counts', p: 'Seven kilometres and 700 metres of down to finish. This is the day-two skills at full fatigue, with a coach on the technical sections calling lines. Braking late is the whole game.' },
+  { t: 'Descend like it counts', p: 'Seven kilometres and 700 metres of down to finish. This is the day-two skills at full fatigue, with one of your hosts on the technical sections pointing out lines. Braking late is the whole game.' },
   { t: 'The sea', p: 'Van to the coast, into the Mediterranean, seventeen degrees. You’ll swear a little. Massage tonight, and the printed race notes tomorrow.' },
 ];
 
@@ -173,7 +173,7 @@ const glossary = [
     <div class="rp-section-head">
       <p class="rp-eyebrow">Eight steps</p>
       <h2 class="rp-h2">The plan for the day<span class="es es-line">El plan del día</span></h2>
-      <p>A training day with a script. The script is the point: this is the dress rehearsal for your goal race, with coaches watching.</p>
+      <p>A training day with a script. The script is the point: this is the dress rehearsal for your goal race, with your hosts running alongside you.</p>
     </div>
     <ol class="rp-plan">
       {plan.map((s) => (
