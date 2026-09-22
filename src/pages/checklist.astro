@@ -42,7 +42,7 @@ const sections: Section[] = [
       { id: 'shell', icon: 'shell', name: 'Wind shell', es: 'cortavientos', level: 'must', days: ['Every day'],
         note: 'Packable, hooded if possible. It lives in the vest every day, worn or not. This is the one a Spanish race marshal checks at the start line, so consider us the marshal.' },
       { id: 'sun', icon: 'sun', name: 'Sun protection: cap, SPF 50, lip balm', es: 'gorra, crema solar, protector labial', level: 'must', days: ['Every day'],
-        note: 'The autumn sun sits lower than in summer and hits you square in the face on every west-facing descent. Cream on before you leave the villa, again at lunch. Runners from the north get caught out every single edition, and this is the first one.' },
+        note: 'The autumn sun sits lower than in summer and hits you square in the face on every west-facing descent. Cream on before you leave our base, again at lunch. Runners from the north get caught out every single edition, and this is the first one.' },
       { id: 'rain', icon: 'rain', name: 'Waterproof jacket', es: 'chubasquero', level: 'should',
         note: 'If the forecast says rain, this is the day-three jacket and the shell stays home. Taped seams beat “water-resistant”, whatever the label promises. Check the forecast with us on the logistics call the week you fly.' },
       { id: 'midlayer', icon: 'tee', name: 'Long sleeve or light mid-layer', es: 'manga larga o capa intermedia', level: 'should',
@@ -59,7 +59,7 @@ const sections: Section[] = [
   },
   {
     id: 'safety', title: 'Safety kit', es: 'Material de seguridad',
-    intro: 'Spanish races call this the material obligatorio and check it at the start line. We’re gentler: we check it at the villa on day one, then trust you.',
+    intro: 'Spanish races call this the material obligatorio and check it at the start line. We’re gentler: we check it at our base on day one, then trust you.',
     items: [
       { id: 'blanket', icon: 'blanket', name: 'Emergency blanket', es: 'manta térmica', level: 'must', days: ['Every day'],
         note: 'The foil one. Fifty grams, lives at the bottom of your vest all week. If you’ve never used one, good. Keep it that way.' },
@@ -103,20 +103,20 @@ const sections: Section[] = [
   },
   {
     id: 'villa', title: 'Off the trail', es: 'Fuera del sendero',
-    intro: 'Evenings on the terrace, one massage table, your own room most likely, and one cold sea.',
+    intro: 'Evenings on the terrace, one massage table, your own private room, and one cold sea.',
     items: [
       { id: 'swim', icon: 'swim', name: 'Swimsuit', es: 'bañador', level: 'must', days: ['Long Day'],
         note: 'For the sea after Benigembla. On the drive home, seventeen degrees, and the website did say non-negotiable. You’ll swear a little and then talk about it at dinner.' },
       { id: 'towel', icon: 'towel', name: 'Quick-dry towel', es: 'toalla de secado rápido', level: 'should', days: ['Long Day'],
-        note: 'For the swim. The villa towels aren’t coming to the beach.' },
+        note: 'For the swim. Your room towels aren’t coming to the beach.' },
       { id: 'sandals', icon: 'sandal', name: 'Sandals or recovery shoes', es: 'chanclas', level: 'should',
-        note: 'Your feet file a complaint on day three. Sandals for the villa, the van, the beach and the massage table.' },
+        note: 'Your feet file a complaint on day three. Sandals for our base, the van, the beach and the massage table.' },
       { id: 'evening', icon: 'warm', name: 'A warm layer for evenings', es: 'algo de abrigo para la noche', level: 'should',
         note: 'The terrace drops to twelve degrees after dark and dinner is outside whenever we can manage it. A hoodie or a light down jacket.' },
       { id: 'massage', icon: 'massage', name: 'Loose shorts for massage day', es: 'ropa cómoda para el masaje', level: 'nice',
         note: 'Day-three evening you’re on the table. Loose shorts make the therapist’s life easier and yours shorter.' },
       { id: 'earplugs', icon: 'moon', name: 'Ear plugs', es: 'tapones para dormir', level: 'nice',
-        note: 'You’ll most likely have your own room. If you do end up sharing, somebody snores, and statistically it’s not you.' },
+        note: 'Your room is yours alone. Pack these if you sleep better with them, especially for the flight.' },
       { id: 'plug', icon: 'plug', name: 'Plug adapter', es: 'adaptador de enchufe', level: 'nice',
         note: 'Spanish sockets are the round two-pin European kind, 230 V. Most of Europe plugs straight in. UK, Irish, US and Swiss plugs need an adapter.' },
       { id: 'notebook', icon: 'notebook', name: 'Notebook and pen', es: 'libreta y boli', level: 'nice',
@@ -147,7 +147,7 @@ const total = sections.reduce((n, s) => n + s.items.length, 0);
 const mustCount = sections.reduce((n, s) => n + s.items.filter((i) => i.level === 'must').length, 0);
 
 const facts = [
-  { icon: 'calendar', label: 'Kit check', value: 'Day 1, at the villa, before dinner' },
+  { icon: 'calendar', label: 'Kit check', value: 'Day 1, at our base, before dinner' },
   { icon: 'mountain', label: 'Long Day', value: 'Benigembla loop · 22 km · 1,200 m up' },
   { icon: 'thermo', label: 'Late October here', value: '12 to 21 °C, dry, windy on the ridge' },
   { icon: 'wave', label: 'The sea', value: '17 °C. Yes, you’re going in' },
@@ -164,7 +164,7 @@ const facts = [
   rail
 >
   <Fragment slot="lede">
-    <p>The full list we promised, with our honest shoe opinions in it. {total} things, {mustCount} of them marked <strong>obligatorio</strong>: those get checked at the villa on day one, so nobody discovers a missing wind shell on a ridge at a thousand metres. <span class="rp-screen-only">Tick things off as you pack. Your ticks stay on this phone.</span></p>
+    <p>The full list we promised, with our honest shoe opinions in it. {total} things, {mustCount} of them marked <strong>obligatorio</strong>: those get checked at our base on day one, so nobody discovers a missing wind shell on a ridge at a thousand metres. <span class="rp-screen-only">Tick things off as you pack. Your ticks stay on this phone.</span></p>
   </Fragment>
   <Fragment slot="actions">
     <div class="rp-hero-actions">

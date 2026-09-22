@@ -1,3 +1,5 @@
+> Current accommodation wording (22 September 2026, confirmed by Marcel): every participant has her own private room included in the camp price, a private space to rest and unwind. No shared rooms or single-room supplement. Do not name the venue or promise a standalone bungalow. This overrides historical accommodation copy below. Public copy lives in `public/index.html` and `src/pages/`.
+
 > Current host wording (20 September 2026, confirmed by Monika): Monika and Anna are experienced trail runners and camp hosts, not coaches. Describe running together and sharing their experience. This overrides coach/coaching language in the historical copy and changelog below. Current public copy lives in `public/index.html` and `src/pages/`.
 
 # Costa Blanca Trail Camp — site copy v3 (Shaan/Sam voice, women-first)
