@@ -1,3 +1,5 @@
+> Current availability wording (3 October 2026, confirmed by Marcel): use “Last spots available” and “Apply for one of the last spots”. Do not publish registration/application deadlines, registration periods, cohort-confirmation dates, or an exact remaining-place count. Actual camp dates stay unchanged. Current public copy lives in `public/index.html` and `src/pages/`.
+
 > Current accommodation wording (22 September 2026, confirmed by Marcel): every participant has her own private room included in the camp price, a private space to rest and unwind. No shared rooms or single-room supplement. Do not name the venue or promise a standalone bungalow. This overrides historical accommodation copy below. Public copy lives in `public/index.html` and `src/pages/`.
 
 > Current host wording (20 September 2026, confirmed by Monika): Monika and Anna are experienced trail runners and camp hosts, not coaches. Describe running together and sharing their experience. This overrides coach/coaching language in the historical copy and changelog below. Current public copy lives in `public/index.html` and `src/pages/`.
@@ -29,7 +31,7 @@ Nobody taught you the technical stuff — you've been surviving it. Four days in
 the Spanish mountains with two national-team coaches and seven other women
 fixes that. You'll come home knowing exactly what your legs can do.
 
-[ Apply for one of 8 spots ] · takes 2 minutes, costs nothing
+[ Apply for one of the last spots ] · takes 2 minutes, costs nothing
 
 *H1 alternates:*
 - *"Get good at mountains."* (bluntest)
@@ -45,8 +47,7 @@ actually swim in, and a training block that sets up your whole spring season.
 
 Fly to Alicante or Valencia. We handle literally everything after the arrivals door.
 
-Eight spots. Applications close **30 September**, the eight are confirmed by
-1 October. Right now: **8 of 8 open.**
+Last spots available. Join us for four days on the trails with a small group of women.
 
 ## 2 · What this actually is
 
@@ -312,4 +313,4 @@ trails + Mediterranean lifestyle, not just the downhill hook.
 Title: Costa Blanca Trail Camp — women-only trail running camp, Spain
 Description: Eight women, two national-team coaches, four days in the Marina
 Alta. Technical trail skills, warm November terrain, and a race plan you'll
-actually use. Applications open.
+actually use. Last spots available.
