@@ -20,3 +20,10 @@ test('simple deposit copy and existing camp price and dates remain', () => {
   assert.match(html, /one group dinner/);
   assert.doesNotMatch(html, /balance by 9 October|deposit within/);
 });
+
+test('women-centred benefits replace filming and guide comparisons', () => {
+  for (const phrase of ['Run with Monika and Anna', 'Mountain days with other women', 'A few days for yourself', 'Come on your own, feel part of the group']) {
+    assert.ok(html.includes(phrase), phrase);
+  }
+  assert.doesNotMatch(html, /assistant guides|guest-athlete cameos|trail footage|film you|watch your tape|Filmed on day two|video review|video analysis/i);
+});

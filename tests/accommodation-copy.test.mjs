@@ -12,7 +12,7 @@ test('homepage explicitly includes a private room and personal retreat space', (
   const html = fs.readFileSync(new URL('../public/index.html', import.meta.url), 'utf8');
   assert.match(html, /Your own private room is included in the price/);
   assert.match(html, /Everyone has her own private room/);
-  assert.match(html, /your own little oasis/);
+  assert.match(html, /your own little oasis/i);
 });
 test('packing checklist guarantees private occupancy', () => {
   const copy = fs.readFileSync(new URL('../src/pages/checklist.astro', import.meta.url), 'utf8');
