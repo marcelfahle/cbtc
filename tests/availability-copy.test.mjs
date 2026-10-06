@@ -10,9 +10,9 @@ test('availability replaces application deadlines throughout the homepage', () =
   assert.doesNotMatch(html, /Apply for one of 8 spots/);
   assert.equal(html.split('Last spots available.').length - 1, 4);
 });
-test('camp dates, group capacity and payment terms stay unchanged', () => {
+test('camp dates and group capacity stay unchanged with simplified deposit copy', () => {
   assert.match(html, /28 Oct – 2 Nov 2026/);
   assert.match(html, /28 October – 2 November 2026/);
   assert.match(html, /8 women max/);
-  assert.match(html, /A €350 deposit within a week of your yes holds the spot; the balance by 9 October/);
+  assert.match(html, /Once you&#x27;ve decided and feel comfortable joining us, the deposit secures your place/);
 });
