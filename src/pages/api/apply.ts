@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro';
 
 export const prerender = false;
 
-// Receives both site forms (data-form="apply" | "routes") as JSON:
+// Receives both site forms (data-form="waitlist" | "apply" | "routes") as JSON:
 // { formName, pageUrl, fields: { name?, email } }
 // Delivers by email via Resend. Required env: RESEND_API_KEY, APPLY_TO_EMAIL.
 // Optional: APPLY_FROM_EMAIL (must be a Resend-verified sender).
@@ -56,7 +56,9 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   const subject =
-    formName === 'apply'
+    formName === 'waitlist'
+      ? `[CBTC] Winter 2027 waitlist: ${name || email}`
+      : formName === 'apply'
       ? `[CBTC] Application: ${name || email}`
       : `[CBTC] Routes request: ${email}`;
 
@@ -64,7 +66,7 @@ export const POST: APIRoute = async ({ request }) => {
     `Form: ${formName}`,
     name && `Name: ${name}`,
     `Email: ${email}`,
-    from_ && `Flying from: ${from_}`,
+    from_ && `Coming from: ${from_}`,
     link && `Link: ${link}`,
     running && `Their running:\n${running}`,
     `Page: ${data?.pageUrl ?? ''}`,

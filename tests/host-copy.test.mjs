@@ -12,5 +12,5 @@ for (const path of ['public/index.html', 'src/pages/checklist.astro', 'src/pages
 }
 test('host introduction explicitly describes experienced trail runners', () => {
   const html = fs.readFileSync(new URL('../public/index.html', import.meta.url), 'utf8');
-  assert.match(html, /Hosted by two experienced trail runners who race internationally and know these mountains/);
+  assert.match(html, /Two women who love mountain running, race internationally and spend a lot of time on these trails/);
 });

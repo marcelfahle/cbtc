@@ -1,3 +1,19 @@
+# Current edition: Winter 2027
+
+Published copy source: `public/index.html`. Monika’s 7 October 2026 brief replaces the older directions below. Keep existing photographs, colour palette and typography; ignore the brief’s image recommendations. Supplied wording retained, with paragraphs combined for web readability.
+
+- Four mountain days for women who already run and have trail experience; around 2–4 hours outside per day. No age framing, certified-coach claims, formal training modules, filming analysis or performance prescriptions.
+- Late January / February 2027; exact dates, hotel and routes pending.
+- Shared room from €1,800; private room from €2,200. Final pricing and exact inclusions announced with dates. Do not carry forward old private-only rooms, included massage/transfers/meals, founding discounts, lifetime rates or old October deadlines into this new offer. Existing participant agreements are not modified by this website change.
+- Main action: Join the waitlist. The form submits `formName: waitlist` to the existing Resend endpoint and sends the existing notification recipients a clearly labelled Winter 2027 waitlist email, with name, email and optional origin. This is an email-notification intake, not an automated mailing-list campaign. Hosts will send the dates to these contacts when ready.
+- Q&A CTA uses a separate `QA_BOOKING_URL` public HTTPS setting, never the old individual `FIT_CALL_URL`. Until configured, show a disabled “Book a live Q&A” button and explain that booking opens when applications open. Do not invent slots or booking URLs.
+- Apply → meet hosts → group fit → offer → deposit → pre-camp group session is explained as the future process. No payment is collected by the site. Spanish registration/insurance and existing payment safeguards remain in force.
+- Packing notes are provisional for winter. The old Benigembla URL explains routes are pending; the original track remains available for reference, not as a promised itinerary.
+
+---
+
+## Historical copy (superseded; do not republish)
+
 > Follow-up, 6 October 2026 (Monika): remove running footage, filming and technique-analysis promises entirely, including the schedule. Benefits should speak to women coming for mountain days together, personal downtime, privacy and belonging. State plainly that Monika and Anna run with the group; no guest-athlete/assistant-guide comparison. Existing photo/interview participation terms are separate and unchanged.
 
 > Current direction (6 October 2026, Monika): experience, community, confidence on mountain trails and space to recover. Hosts share their international racing and technical-terrain experience; no certified-coach claims, individual training programmes, exact fuelling prescriptions or months of coaching support. Welcome nearby women as well as visitors; ask “Where are you coming from?”. ONE group dinner is included. Payment marketing: “Once you've decided and feel comfortable joining us, the deposit secures your place.” Prices, camp dates and underlying payment/legal safeguards are unchanged. The requested concept heading retains Monika's em dash. Public/index.html and src/pages/ are current; the drafts below are historical, not copy to republish.

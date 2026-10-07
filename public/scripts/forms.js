@@ -1,4 +1,4 @@
-// Intercepts both forms (data-form="apply" | "routes"), POSTs JSON to /api/apply.
+// Intercepts site forms (data-form="waitlist" | "apply" | "routes"), POSTs JSON to /api/apply.
 // All inputs carry name="" attributes (see scripts/form-v2.mjs).
 (function () {
   var SUCCESS = {
@@ -11,7 +11,8 @@
         'For now, there is nothing to pay and nothing else to fill in.',
       ],
     },
-    routes: 'Sent. The routes are on their way to your inbox.',
+    waitlist: 'You’re on the winter waitlist. We’ll email you the dates before applications open. There’s nothing to pay or book yet.',
+    routes: 'Request received. We’ll email you the route information.',
   };
 
   function buildApplySuccess() {
@@ -97,11 +98,11 @@
             }
           }
           try {
-            if (window.plausible) plausible(formName === 'apply' ? 'Apply Submitted' : 'Routes Submitted');
+            if (window.plausible) plausible(formName === 'apply' ? 'Apply Submitted' : formName === 'waitlist' ? 'Waitlist Submitted' : 'Routes Submitted');
           } catch (analyticsError) {}
           try {
             if (
-              formName === 'apply' &&
+              (formName === 'apply' || formName === 'waitlist') &&
               !fields.website &&
               form.getAttribute('data-meta-lead-tracked') !== 'true' &&
               window.cbtcTrackMetaEvent

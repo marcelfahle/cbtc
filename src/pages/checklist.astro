@@ -13,7 +13,7 @@ const LEVEL: Record<Level, string> = { must: 'Obligatorio', should: 'Recomendado
 const sections: Section[] = [
   {
     id: 'feet', title: 'Feet', es: 'Los pies',
-    intro: 'Marina Alta rock is limestone: sharp, dry, and polished to glass where a few thousand feet have gone before you. Everything in this section is about not sliding on it.',
+    intro: 'Marina Alta trails include rocky limestone, loose stones and uneven ground. Winter rain can make the rock slippery. Bring trail shoes you trust.',
     items: [
       { id: 'shoes', icon: 'shoe', name: 'Trail shoes', es: 'zapatillas de trail', level: 'must', days: ['Every day'],
         note: 'Our honest opinion, as promised: anything on a <strong>Vibram Megagrip</strong> outsole. Hoka, NNormal, La Sportiva, Scarpa, Merrell and Saucony all make one, and the yellow octagon on the sole is the tell. Grip beats cushion here. Worn in, with at least 100 km on them, and nothing bought the week before. Unsure? Photo of the sole in the group chat and we’ll tell you straight.' },
@@ -25,34 +25,34 @@ const sections: Section[] = [
   },
   {
     id: 'back', title: 'Back and hands', es: 'La espalda y las manos',
-    intro: 'Days one, two and four are short enough to run light. The Long Day isn’t. Pack for Benigembla and the rest takes care of itself. The route has its own page: <a href="/routes/benigembla">the Long Day</a>.',
+    intro: 'Plan for around 2–4 hours on the trails. The winter routes are still being finalised; we will confirm the kit and water needed for each day.',
     items: [
-      { id: 'vest', icon: 'vest', name: 'Running vest with two soft flasks', es: 'chaleco de hidratación con dos frascos blandos', level: 'must', days: ['Every day', 'Long Day'],
-        note: '5 to 12 litres, the kind you’ve actually run in. On the Long Day it carries 1.5 litres of water, your food, the shell and the blanket, and after the two fountains at km 3 there is no water on the Benigembla loop. Two 500 ml flasks beat a bladder here: quicker to refill at a village fountain, and you can see what’s left. A hip belt won’t cut it on day three.' },
-      { id: 'poles', icon: 'poles', name: 'Poles', es: 'bastones', level: 'should', days: ['Long Day'],
-        note: 'If you own them, bring them. The climb to the Cocoll is where you learn what they’re for. If you don’t own any, don’t buy them yet: ask on your call and we’ll say which. Foldable ones ride in the vest. Fixed-length ones ride in your hand all day, which you’ll regret on the descents.' },
+      { id: 'vest', icon: 'vest', name: 'Running vest with two soft flasks', es: 'chaleco de hidratación con dos frascos blandos', level: 'must', days: ['Every day'],
+        note: 'Bring a vest you have already run in, with room for water, food, warm layers and safety kit. We will confirm water requirements for each route and the weather.' },
+      { id: 'poles', icon: 'poles', name: 'Poles', es: 'bastones', level: 'should', days: ['Trail days'],
+        note: 'If you use poles, bring them. If you are unsure, ask us during the pre-camp group session before buying anything.' },
       { id: 'daybag', icon: 'backpack', name: 'A small bag for the car', es: 'una mochila pequeña', level: 'nice',
         note: 'Dry top, sandals, towel, the post-run snack. It waits in the van at the trailhead while you’re up on the ridge.' },
     ],
   },
   {
     id: 'layers', title: 'Layers', es: 'Las capas',
-    intro: 'Twenty degrees in the valley, twelve with wind on the ridge, and the ridge is where we eat lunch. Late October also has one more mood, which is rain, in bulk, for an afternoon.',
+    intro: 'Winter can bring mild sunshine, cold wind, cloud and rain. Pack layers for exposed ridges and for stopping, not just for running.',
     items: [
       { id: 'shell', icon: 'shell', name: 'Wind shell', es: 'cortavientos', level: 'must', days: ['Every day'],
         note: 'Packable, hooded if possible. It lives in the vest every day, worn or not. This is the one a Spanish race marshal checks at the start line, so consider us the marshal.' },
       { id: 'sun', icon: 'sun', name: 'Sun protection: cap, SPF 50, lip balm', es: 'gorra, crema solar, protector labial', level: 'must', days: ['Every day'],
-        note: 'The autumn sun sits lower than in summer and hits you square in the face on every west-facing descent. Cream on before you leave our base, again at lunch. Runners from the north get caught out every single edition, and this is the first one.' },
+        note: 'Winter sunshine still calls for sun protection. Pack a cap, sunscreen and lip balm.' },
       { id: 'rain', icon: 'rain', name: 'Waterproof jacket', es: 'chubasquero', level: 'should',
-        note: 'If the forecast says rain, this is the day-three jacket and the shell stays home. Taped seams beat “water-resistant”, whatever the label promises. Check the forecast with us on the logistics call the week you fly.' },
+        note: 'Bring a waterproof jacket with taped seams. We will check the weather together and confirm what to carry each day.' },
       { id: 'midlayer', icon: 'tee', name: 'Long sleeve or light mid-layer', es: 'manga larga o capa intermedia', level: 'should',
-        note: 'A thin merino or a light fleece. For the first hour on shaded north faces, and for the twenty minutes of silence above Benigembla when nobody’s moving fast.' },
+        note: 'A warm layer for shaded trails, exposed ridges and stops. Bring layers you can carry comfortably in your vest.' },
       { id: 'sunglasses', icon: 'sunglasses', name: 'Sunglasses', es: 'gafas de sol', level: 'should',
         note: 'Limestone glare is real. Ones that stay on your face when you look down at your feet, which you’ll be doing a lot.' },
       { id: 'buff', icon: 'buff', name: 'Neck tube', es: 'braga de cuello', level: 'nice',
         note: 'Neck warmer at eight, sweat rag at noon, hat under the hood if it turns, pillow on the flight home. Weighs nothing.' },
       { id: 'gloves', icon: 'gloves', name: 'Light gloves', es: 'guantes finos', level: 'nice',
-        note: 'For the two cold ridge mornings a year. October usually isn’t one of them. If your hands run cold, pack them anyway.' },
+        note: 'Bring gloves for cold or windy winter mornings, especially if your hands get cold easily.' },
       { id: 'runkit', icon: 'warm', name: 'Run kit for four days', es: 'ropa de correr', level: 'obvio',
         note: 'Whatever you train in: shorts or tights, tops, sports bras, the socks from above. Four sets covers the week. Pack for warm afternoons and cool starts, and nothing cotton on the trail.' },
     ],
@@ -64,25 +64,25 @@ const sections: Section[] = [
       { id: 'blanket', icon: 'blanket', name: 'Emergency blanket', es: 'manta térmica', level: 'must', days: ['Every day'],
         note: 'The foil one. Fifty grams, lives at the bottom of your vest all week. If you’ve never used one, good. Keep it that way.' },
       { id: 'phone', icon: 'phone', name: 'Phone, charged', es: 'móvil cargado', level: 'must', days: ['Every day'],
-        note: 'Full battery every morning, with the group chat, our numbers and 112 saved. Airplane mode kills the reception and keeps the GPS, which is what you want on the Long Day.' },
+        note: 'Full battery every morning, with the group chat, our numbers and 112 saved. Keep your phone available for emergency calls.' },
       { id: 'meds', icon: 'pill', name: 'Personal meds', es: 'medicación personal', level: 'must', days: ['Every day'],
         note: 'Anything you take, plus whatever you’d want at 2pm on a ridge: your inhaler, an antihistamine, an anti-diarrhoeal, the painkiller you trust. Tell us on the call what’s in there. Nobody else needs to know.' },
       { id: 'whistle', icon: 'whistle', name: 'Whistle', es: 'silbato', level: 'should',
         note: 'Most vests have one sewn into the chest strap. Check yours. If not, any two-euro whistle from a sports shop is fine.' },
-      { id: 'headlamp', icon: 'headlamp', name: 'Headlamp', es: 'frontal', level: 'should', days: ['Long Day'],
-        note: 'The clocks go back the weekend before camp, so it’s dark by six. We don’t plan to be out then. Plans and mountains have a relationship.' },
-      { id: 'battery', icon: 'battery', name: 'Small power bank', es: 'batería externa', level: 'nice', days: ['Long Day'],
-        note: 'If you’re recording the Long Day for Strava, your phone won’t last the day on its own. A small one with a short cable.' },
+      { id: 'headlamp', icon: 'headlamp', name: 'Headlamp', es: 'frontal', level: 'should', days: ['Trail days'],
+        note: 'Winter days are short. Pack a charged headlamp as a precaution, even though we plan to run in daylight.' },
+      { id: 'battery', icon: 'battery', name: 'Small power bank', es: 'batería externa', level: 'nice', days: ['Trail days'],
+        note: 'Bring a small power bank and cable for longer days.' },
     ],
   },
   {
     id: 'fuel', title: 'Fuel', es: 'La comida',
-    intro: 'Fuel is on us. We run on 226ERS or Tailwind and we bring enough for all four days, so the only thing to pack here is whatever your stomach insists on.',
+    intro: 'Bring food you already know works for you on longer runs. Final food inclusions will be confirmed with the winter dates.',
     items: [
-      { id: 'snacks', icon: 'gel', name: 'Your own fuel, only if your gut has opinions', es: 'tus geles de siempre, solo si tu estómago manda', level: 'nice',
-        note: 'If you’re loyal to a brand, or there’s exactly one gel your stomach trusts at hour four, pack it. Nobody will be offended. Everyone else runs on what we bring, electrolytes included.' },
-      { id: 'treat', icon: 'bar', name: 'One real-food treat', es: 'algo de comida de verdad', level: 'nice', days: ['Long Day'],
-        note: 'Something salty or something you actually look forward to, for the top of the Cocoll. Gels get boring around hour four, and morale is a fuelling strategy.' },
+      { id: 'snacks', icon: 'gel', name: 'Familiar trail food', es: 'tus geles de siempre, solo si tu estómago manda', level: 'nice',
+        note: 'If you prefer a particular brand or food, bring it. We will confirm what is provided before you travel.' },
+      { id: 'treat', icon: 'bar', name: 'One real-food treat', es: 'algo de comida de verdad', level: 'nice', days: ['Trail days'],
+        note: 'Something you enjoy eating during a few hours outside. We make time for food stops.' },
     ],
   },
   {
@@ -90,7 +90,7 @@ const sections: Section[] = [
     intro: 'Spain is an ID culture. The pharmacy wants it, the clinic wants it, the car-hire desk wants it, the race marshal wants it.',
     items: [
       { id: 'id', icon: 'id', name: 'ID card or passport', es: 'DNI o pasaporte', level: 'must',
-        note: 'The real one for the flight, obviously. A photo of it on your phone for the trail, and a paper copy in the vest on the Long Day.' },
+        note: 'The real one for the flight, obviously. A photo of it on your phone for the trail, and a paper copy in your vest.' },
       { id: 'insurance', icon: 'shield', name: 'Travel insurance that covers trail running', es: 'seguro de viaje', level: 'must',
         note: 'Insurance is mandatory for camp and it needs to cover trail running, which some cheap policies file under “mountaineering” and exclude. Read the small print, or send it to us and we will. Policy number and the emergency line saved in your phone.' },
       { id: 'ehic', icon: 'health', name: 'EHIC or GHIC card', es: 'tarjeta sanitaria europea', level: 'should',
@@ -98,29 +98,29 @@ const sections: Section[] = [
       { id: 'cash', icon: 'cash', name: 'A little cash', es: 'algo de efectivo', level: 'nice',
         note: 'Twenty euros in small notes. The village bar on day two takes cards in theory.' },
       { id: 'flight', icon: 'plane', name: 'Arrival details, sent to us', es: 'los datos de llegada', level: 'obvio',
-        note: 'Let us know how and when you are arriving. Flying in? Send your flight number and landing time for the airport pickup. Coming from nearby? We will arrange where to meet. Arrivals are Wednesday, departures Monday.' },
+        note: 'Let us know where you are coming from. We will confirm arrival dates, meeting points and transport details once the winter plans are final.' },
     ],
   },
   {
     id: 'villa', title: 'Off the trail', es: 'Fuera del sendero',
-    intro: 'Evenings on the terrace, one massage table, your own private room, and one cold sea.',
+    intro: 'Warm clothes, comfortable shoes and time to rest at the hotel. Shared and private room options are planned; final details will follow with the dates.',
     items: [
-      { id: 'swim', icon: 'swim', name: 'Swimsuit', es: 'bañador', level: 'must', days: ['Long Day'],
-        note: 'For the sea after Benigembla. On the drive home, seventeen degrees, and the website did say non-negotiable. You’ll swear a little and then talk about it at dinner.' },
-      { id: 'towel', icon: 'towel', name: 'Quick-dry towel', es: 'toalla de secado rápido', level: 'should', days: ['Long Day'],
-        note: 'For the swim. Your room towels aren’t coming to the beach.' },
+      { id: 'swim', icon: 'swim', name: 'Swimsuit', es: 'bañador', level: 'must', days: ['Trail days'],
+        note: 'For the hotel spa. We will confirm the facilities and what to bring before camp.' },
+      { id: 'towel', icon: 'towel', name: 'Quick-dry towel', es: 'toalla de secado rápido', level: 'should', days: ['Trail days'],
+        note: 'Useful after wet trails or a spa visit. We will confirm what the hotel provides.' },
       { id: 'sandals', icon: 'sandal', name: 'Sandals or recovery shoes', es: 'chanclas', level: 'should',
         note: 'Your feet file a complaint on day three. Sandals for our base, the van, the beach and the massage table.' },
       { id: 'evening', icon: 'warm', name: 'A warm layer for evenings', es: 'algo de abrigo para la noche', level: 'should',
-        note: 'The terrace drops to twelve degrees after dark and dinner is outside whenever we can manage it. A hoodie or a light down jacket.' },
+        note: 'Winter evenings can be cool. Bring a warm layer for time outside and relaxed evenings.' },
       { id: 'massage', icon: 'massage', name: 'Loose shorts for massage day', es: 'ropa cómoda para el masaje', level: 'nice',
-        note: 'Day-three evening you’re on the table. Loose shorts make the therapist’s life easier and yours shorter.' },
+        note: 'If you choose to book a massage, comfortable loose clothing is useful. Final inclusions are still to be confirmed.' },
       { id: 'earplugs', icon: 'moon', name: 'Ear plugs', es: 'tapones para dormir', level: 'nice',
-        note: 'Your room is yours alone. Pack these if you sleep better with them, especially for the flight.' },
+        note: 'Choose a shared or private room when booking opens. Pack ear plugs if they help you sleep, in either room type or while travelling.' },
       { id: 'plug', icon: 'plug', name: 'Plug adapter', es: 'adaptador de enchufe', level: 'nice',
         note: 'Spanish sockets are the round two-pin European kind, 230 V. Most of Europe plugs straight in. UK, Irish, US and Swiss plugs need an adapter.' },
       { id: 'notebook', icon: 'notebook', name: 'Notebook and pen', es: 'libreta y boli', level: 'nice',
-        note: 'Your race notes come printed on day four. The goals circle and your video review produce sentences before that which you’ll want to keep. Phone notes work too.' },
+        note: 'For ideas from conversations on the trail, or a few quiet notes about your days. Phone notes work too.' },
     ],
   },
 ];
@@ -128,9 +128,9 @@ const sections: Section[] = [
 const leaveAtHome = [
   { name: 'Brand-new shoes', note: 'The wrong pair at 180 euros is a real risk. The right pair with zero kilometres on it is a blister risk. Buy early, run them in, or run in what you have.' },
   { name: 'Hiking boots', note: 'Ankles get stronger by moving, not by being strapped. Boots also weigh a kilo you will feel on every step of 1,200 m of climbing.' },
-  { name: 'A hydration bladder', note: 'Fine on flat trails. On the Long Day you can’t see how much is left, and refilling one at a village fountain is a wrestling match.' },
+  { name: 'A hydration bladder', note: 'Fine on flat trails. Choose a system you can refill easily and use comfortably on the trail.' },
   { name: 'Cotton, anywhere near the trail', note: 'It holds sweat, it chafes, and it’s freezing the moment you stop on the ridge. Save it for dinner.' },
-  { name: 'A race-week taper mindset', note: 'This is a training block. Eat, sleep, recover, repeat. The freshness comes later, at your goal race.' },
+  { name: 'A packed schedule', note: 'There is time between mountain days to rest. You do not need to fill every hour.' },
   { name: 'The idea that you’re the slowest', note: 'Someone will be. She gets one of us beside her on every climb and the same paella at dinner.' },
 ];
 
@@ -139,32 +139,32 @@ const phrases = [
   { es: 'Senda', en: 'the path, the trail', note: '“La senda va por ahí”: the path goes that way. Said with confidence, sometimes correctly.' },
   { es: 'Cuidado', en: 'careful', note: 'Usually shouted about two seconds after it would have been useful. Slow down when you hear it anyway.' },
   { es: 'Fuente', en: 'spring, water point', note: 'The one word on this list that changes your day. Village fountains are drinkable unless a sign says no potable.' },
-  { es: 'Cumbre', en: 'summit', note: 'The Cocoll, 1,039 m, at km 15 of the Long Day. You’ll be standing on it around lunchtime.' },
-  { es: 'Bajada', en: 'descent', note: 'The word you came here for. Also the moment your video gets filmed on day two.' },
+  { es: 'Cumbre', en: 'summit', note: 'The top of a mountain. Our winter routes will be confirmed closer to camp.' },
+  { es: 'Bajada', en: 'descent', note: 'Downhill trail sections. We share what helps us move with more confidence.' },
 ];
 
 const total = sections.reduce((n, s) => n + s.items.length, 0);
 const mustCount = sections.reduce((n, s) => n + s.items.filter((i) => i.level === 'must').length, 0);
 
 const facts = [
-  { icon: 'calendar', label: 'Kit check', value: 'Day 1, at our base, before dinner' },
-  { icon: 'mountain', label: 'Long Day', value: 'Benigembla loop · 22 km · 1,200 m up' },
-  { icon: 'thermo', label: 'Late October here', value: '12 to 21 °C, dry, windy on the ridge' },
-  { icon: 'wave', label: 'The sea', value: '17 °C. Yes, you’re going in' },
+  { icon: 'calendar', label: 'Winter dates', value: 'Late January / February 2027 · to be confirmed' },
+  { icon: 'mountain', label: 'Trail time', value: 'Around 2–4 hours, depending on the day' },
+  { icon: 'thermo', label: 'Winter weather', value: 'Sun, wind, cloud or rain · bring layers' },
+  { icon: 'moon', label: 'Rooms', value: 'Shared or private · final details coming soon' },
 ];
 ---
 <RunnerPage
   title="What to pack · Costa Blanca Trail Camp"
-  description="The kit list for Edition 1: what is mandatory, what we recommend, what to leave at home, and our honest shoe opinions. For accepted runners."
+  description="Provisional winter packing notes for Costa Blanca Trail Camp. Final equipment and logistics will be confirmed before travel."
   path="/checklist"
-  eyebrow="Edition 1 · 28 Oct – 2 Nov 2026"
+  eyebrow="Winter 2027 · Provisional packing notes"
   heading="What to pack"
   headingEs="Material obligatorio, y el resto"
   facts={facts}
   rail
 >
   <Fragment slot="lede">
-    <p>The full list we promised, with our honest shoe opinions in it. {total} things, {mustCount} of them marked <strong>obligatorio</strong>: those get checked at our base on day one, so nobody discovers a missing wind shell on a ridge at a thousand metres. <span class="rp-screen-only">Tick things off as you pack. Your ticks stay on this phone.</span></p>
+    <p>These are provisional packing notes for winter, not a final equipment list. We will confirm routes, equipment and logistics during the pre-camp group session. There are {total} items here, including {mustCount} safety and practical essentials. <span class="rp-screen-only">Tick things off as you pack. Your ticks stay on this phone.</span></p>
   </Fragment>
   <Fragment slot="actions">
     <div class="rp-hero-actions">
@@ -269,7 +269,7 @@ const facts = [
 
   <script slot="scripts" is:inline>
     (function () {
-      var KEY = 'cbtc:checklist:v1';
+      var KEY = 'cbtc:checklist:winter2027';
       var boxes = Array.prototype.slice.call(document.querySelectorAll('input[data-kit]'));
       var total = boxes.length;
       var countEl = document.querySelector('[data-count]');
@@ -284,7 +284,7 @@ const facts = [
       }
       function message(n) {
         if (n === 0) return 'Nothing packed yet. Deep breath.';
-        if (n === total) return 'All packed. See you at arrivals.';
+        if (n === total) return 'Packed for now. Check the final list before travelling.';
         if (n / total > 0.75) return 'Nearly there. Check the obligatorio ones twice.';
         if (n / total > 0.4) return 'Halfway. The vest is the heavy bit.';
         return 'Getting there.';

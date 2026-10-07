@@ -26,4 +26,5 @@ function publicHttpsUrl(value: unknown) {
 export const GET: APIRoute = async () =>
   json(200, {
     fitCallUrl: publicHttpsUrl(env('FIT_CALL_URL')),
+    qaBookingUrl: publicHttpsUrl(env('QA_BOOKING_URL')),
   });

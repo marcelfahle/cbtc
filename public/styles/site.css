@@ -102,3 +102,13 @@
 @media (max-width: 767px) {
   .cbtc-footer-instagram { width: 100%; justify-content: center; }
 }
+
+/* Winter copy: retain existing palette, typography and photographs. */
+.winter-copy { max-width: 68ch; }
+.winter-edition { font-family: 'Archivo', sans-serif; font-size: clamp(1.25rem,3vw,2rem); font-weight: 800; margin-top: 1rem; color: rgb(214,166,64); }
+.winter-list { list-style: disc; margin: 1.5rem 0 0; padding-left: 1.5rem; font-size: 1.125rem; }
+.winter-list li + li { margin-top: .6rem; }
+.winter-qa-note { display: block; margin-top: 1rem; max-width: 60ch; }
+[data-qa-pending] button:disabled { opacity: .55; cursor: not-allowed; transform: none; box-shadow: none; }
+#waitlist .cbtc-inline-success { color: inherit; font-size: 1.15rem; }
+section[id], #price, #apply { scroll-margin-top: 6rem; }

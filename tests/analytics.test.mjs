@@ -428,3 +428,51 @@ test('homepage and runner footers link the current Instagram handle accessibly',
     assert.ok(source.includes('aria-label="Instagram @costablancatrailcamp"'));
   }
 });
+
+test('waitlist submits once, confirms dates by email and tracks only after success', async () => {
+  let payload;
+  const waitlist = makeForm('waitlist', { website: '', name: 'Runner', email: 'runner@example.com', from: 'Denia' });
+  const context = createFormsContext([waitlist], async (url, options) => {
+    assert.equal(url, '/api/apply');
+    payload = JSON.parse(options.body);
+    return jsonResponse(true, { ok: true });
+  });
+  runForms(context);
+  submit(waitlist.form);
+  await settle(); await settle();
+  assert.equal(payload.formName, 'waitlist');
+  assert.equal(payload.fields.from, 'Denia');
+  assert.deepEqual(context.window.plausible.calls, [['Waitlist Submitted']]);
+  assert.deepEqual(context.window.cbtcTrackMetaEvent.calls, [['Lead']]);
+  assert.match(waitlist.grid.children[0].textContent, /winter waitlist/);
+  assert.match(waitlist.grid.children[0].textContent, /dates before applications open/);
+});
+
+test('waitlist delivery error remains retryable and sends no conversion', async () => {
+  const waitlist = makeForm('waitlist', { website: '', email: 'runner@example.com' });
+  const context = createFormsContext([waitlist], async () => jsonResponse(false, { error: 'Please try again.' }));
+  runForms(context); submit(waitlist.form);
+  await settle(); await settle();
+  assert.equal(waitlist.button.disabled, false);
+  assert.equal(waitlist.form.getAttribute('data-submitting'), null);
+  assert.deepEqual(context.window.cbtcTrackMetaEvent.calls, []);
+  assert.equal(waitlist.form.querySelector('[data-form-error]').textContent, 'Please try again.');
+});
+
+for (const [url, expected] of [['', false], ['http://example.com', false], ['https://example.com/qa', true]]) {
+  test(`winter Q&A booking only enables a configured HTTPS URL: ${url || 'absent'}`, async () => {
+    const context = createFitCallContext(async () => jsonResponse(true, { qaBookingUrl: url, fitCallUrl: 'https://example.com/old-fit-call' }));
+    context.cta.attributes.delete('data-fit-call-cta');
+    context.cta.setAttribute('data-qa-cta', '');
+    context.link.attributes.delete('data-fit-call-link');
+    context.link.setAttribute('data-qa-link', '');
+    const pending = makeElement('p', context.document);
+    pending.setAttribute('data-qa-pending', '');
+    pending.hidden = false;
+    context.document._elements.push(pending);
+    runFitCall(context); await settle(); await settle();
+    assert.equal(context.cta.hidden, !expected);
+    assert.equal(pending.hidden, expected);
+    assert.equal(context.link.href, expected ? url : undefined);
+  });
+}

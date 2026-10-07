@@ -1,21 +1,21 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-
 for (const path of ['public/index.html', 'src/pages/checklist.astro', 'src/pages/routes/benigembla.astro']) {
-  test(`${path} has no outdated accommodation promises or venue disclosure`, () => {
+  test(`${path} does not promise old private-only accommodation or disclose venue`, () => {
     const copy = fs.readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
-    assert.doesNotMatch(copy, /shared\s+(twin|rooms?)|end up sharing|own room most likely|most likely have your own room|\+€120|\bthe villa\b|boho|bungalow/iu);
+    assert.doesNotMatch(copy, /Everyone has her own private room|Your room is yours alone|Your own private room is included|\+€120|\bthe villa\b|boho|bungalow/iu);
   });
 }
-test('homepage explicitly includes a private room and personal retreat space', () => {
+test('homepage offers both winter room types with indicative prices', () => {
   const html = fs.readFileSync(new URL('../public/index.html', import.meta.url), 'utf8');
-  assert.match(html, /Your own private room is included in the price/);
-  assert.match(html, /Everyone has her own private room/);
-  assert.match(html, /your own little oasis/i);
+  assert.match(html, /Shared room/);
+  assert.match(html, /Private room/);
+  assert.match(html, /from €1,800/);
+  assert.match(html, /from €2,200/);
 });
-test('packing checklist guarantees private occupancy', () => {
+test('packing checklist is provisional and accommodates both room types', () => {
   const copy = fs.readFileSync(new URL('../src/pages/checklist.astro', import.meta.url), 'utf8');
-  assert.match(copy, /your own private room/);
-  assert.match(copy, /Your room is yours alone/);
+  assert.match(copy, /Choose a shared or private room/);
+  assert.match(copy, /provisional packing notes for winter/);
 });
