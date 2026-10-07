@@ -2,6 +2,7 @@
 
 Published copy source: `public/index.html`. Monika’s 7 October 2026 brief replaces the older directions below. Keep existing photographs, colour palette and typography; ignore the brief’s image recommendations. Supplied wording retained, with paragraphs combined for web readability.
 
+- Hero headline approved by Monika: “The mountains first. The sauna afterwards.” Small label above: “Winter Edition · Costa Blanca · 2027”. Keep the camp name in the logo, not repeated as the headline; remove the duplicate tagline.
 - Four mountain days for women who already run and have trail experience; around 2–4 hours outside per day. No age framing, certified-coach claims, formal training modules, filming analysis or performance prescriptions.
 - Late January / February 2027; exact dates, hotel and routes pending.
 - Shared room from €1,800; private room from €2,200. Final pricing and exact inclusions announced with dates. Do not carry forward old private-only rooms, included massage/transfers/meals, founding discounts, lifetime rates or old October deadlines into this new offer. Existing participant agreements are not modified by this website change.

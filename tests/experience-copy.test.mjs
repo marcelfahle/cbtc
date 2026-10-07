@@ -27,3 +27,9 @@ test('companion pages contain no old edition dates or video analysis', () => {
     assert.doesNotMatch(copy, /October|November|2026|video review|video gets filmed|Edition 1/);
   }
 });
+
+test("hero leads with the experience without repeating the brand or tagline", () => {
+  assert.match(html, /<h1[^>]*>The mountains first\.<br>The sauna afterwards\.<\/h1>/);
+  assert.equal((html.match(/The mountains first\./g) || []).length, 1);
+  assert.match(html, /Winter Edition · Costa Blanca · 2027/);
+});
