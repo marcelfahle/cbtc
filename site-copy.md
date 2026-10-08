@@ -1,5 +1,7 @@
 # Current edition: Winter 2027
 
+**Editorial refresh, 8 October 2026:** Monika requested publication of a mobile-first layout using the existing dark green/cream palette and three-photo library. Facts strip, trail-photo break, four-part day flow, photo-led weather, warmer recovery/pricing, larger host portraits and compact application timeline replace repeated prose. Group and learning copy are integrated, not separate repetitive sections. No hotel photos exist in the current library: do not invent or relabel a trail photo as accommodation. Boutique stay/spa, venue, dates and inclusions remain provisional. Backend, waitlist form, Q&A configuration and existing legal/payment safeguards unchanged. Explicit registration/insurance-before-payment reminder retained in the process. The historical exact-section-copy assertions were updated to cover the new approved editorial structure.
+
 Published copy source: `public/index.html`. Monika’s 7 October 2026 brief replaces the older directions below. Keep existing photographs, colour palette and typography; ignore the brief’s image recommendations. Supplied wording retained, with paragraphs combined for web readability.
 
 - Hero headline approved by Monika: “The mountains first. The sauna afterwards.” Small label above: “Winter Edition · Costa Blanca · 2027”. Keep the camp name in the logo, not repeated as the headline; remove the duplicate tagline.

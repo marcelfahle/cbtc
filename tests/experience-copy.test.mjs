@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const html = fs.readFileSync(new URL('../public/index.html', import.meta.url), 'utf8');
 test('winter copy includes all requested sections and experience level', () => {
-  for (const phrase of ['Winter Edition', 'What is it?', 'Who is it for?', 'What your days look like', 'What do we learn?', 'What if it rains?', 'Run outside. Recover properly.', 'A small group — on purpose.', 'Monika &amp; Anna', 'How it works', 'Meet us before you decide', 'Winter 2027 — coming soon', 'Four mountain days. A small group of women. Somewhere beautiful to come back to.', 'You already have some experience on trails.', '2–4 hours on the trails']) assert.ok(html.includes(phrase), phrase);
+  for (const phrase of ['Winter Edition', '4 mountain days', 'Small women’s group', 'Boutique stay + spa recovery', 'You already run.', 'Morning', 'Trail', 'Recover', 'Evening', 'Tired legs. Quiet head.', 'Nowhere else you need to be.', 'Some days are blue sky.', 'Some days are wet shoes.', 'Safety comes before any itinerary.', 'Run outside.<br>Recover properly.', 'A small group.<br>Time to know each other.', 'Monika &amp; Anna', 'How it works', 'Meet us before you decide', 'Make room for the mountains.', 'You already have some experience on trails.', '2–4 hours on the trails']) assert.ok(html.includes(phrase), phrase);
 });
 test('travel question welcomes all arrivals, no old performance or age copy remains', () => {
   assert.match(html, /name="from" placeholder="Where are you coming from\?" aria-label="Where are you coming from\?"/);
@@ -19,7 +19,9 @@ test('waitlist and Q&A are truthful about future openings', () => {
 });
 test('existing photographs are retained', () => {
   const imgs = [...html.matchAll(/<img[^>]*src="([^"]+)"/g)].map(m=>m[1]);
-  assert.deepEqual(imgs, ['/images/hero.webp','/images/anna.webp','/images/monika.webp','/images/anna.webp']);
+  assert.deepEqual([...new Set(imgs)], ['/images/hero.webp','/images/anna.webp','/images/monika.webp']);
+  assert.equal(imgs.length, 6); // Existing trail image reused for the photo break and weather.
+  assert.doesNotMatch(html.match(/<section id="hotel"[\s\S]*?<\/section>/)[0], /<img/); // No confirmed venue photographs exist.
 });
 test('companion pages contain no old edition dates or video analysis', () => {
   for (const path of ['src/pages/checklist.astro','src/pages/routes/benigembla.astro','src/layouts/RunnerPage.astro']) {
