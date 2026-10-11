@@ -17,10 +17,23 @@ test('waitlist and Q&A are truthful about future openings', () => {
   assert.match(html, /relaxed online group session before the camp/);
   assert.match(html, /no payment or commitment/);
 });
-test('existing photographs are retained', () => {
+test('runner hero and hosts are retained alongside the three landscape photographs', () => {
   const imgs = [...html.matchAll(/<img[^>]*src="([^"]+)"/g)].map(m=>m[1]);
-  assert.deepEqual([...new Set(imgs)], ['/images/hero.webp','/images/anna.webp','/images/monika.webp']);
-  assert.equal(imgs.length, 6); // Existing trail image reused for the photo break and weather.
+  assert.equal(imgs.length, 7); // Hero, three landscapes, two hosts and the existing Anna Q&A portrait.
+  assert.deepEqual([...new Set(imgs)], ['/images/hero.webp', '/images/coastal-golden-hour-1200.webp', '/images/sunlit-rocky-trail-1200.webp', '/images/cliff-and-valley-800.webp', '/images/anna.webp', '/images/monika.webp']);
+  const landscapes = [...html.matchAll(/<img[^>]*src="[/]images[/](?:coastal-golden-hour|sunlit-rocky-trail|cliff-and-valley)[^>]+>/g)].map(m => m[0]);
+  assert.equal(landscapes.length, 3);
+  for (const image of landscapes) {
+    assert.match(image, /alt="[^"]+"/);
+    assert.match(image, /loading="lazy"/);
+    assert.match(image, /decoding="async"/);
+    assert.match(image, /width="\d+" height="\d+"/);
+    assert.match(image, /srcset="[^"]+\d+w, [^"]+\d+w"/);
+    assert.match(image, /sizes="[^"]+"/);
+    for (const [, asset] of image.matchAll(/([/]images[/][^" ,]+\.webp)/g)) {
+      assert.ok(fs.existsSync(new URL(`../public${asset}`, import.meta.url)), asset);
+    }
+  }
   assert.doesNotMatch(html.match(/<section id="hotel"[\s\S]*?<\/section>/)[0], /<img/); // No confirmed venue photographs exist.
 });
 test('companion pages contain no old edition dates or video analysis', () => {

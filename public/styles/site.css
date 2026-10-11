@@ -144,10 +144,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid rgb(214,166,64); outl
 .day-flow li > span { color: rgb(214,166,64); font-size: .8rem; }
 .day-flow h3 { margin-block: .75rem; }
 .day-flow p { color: #d4d9d5; font-size: 1.0625rem; }
-.camp-mantra { font-family: 'Archivo',sans-serif; font-weight: 600; font-size: clamp(1.7rem,3.5vw,3rem); line-height: 1.25; letter-spacing: -.03em; margin-top: clamp(3rem,6vw,5rem); max-width: 29ch; }
-.weather-story { position: relative; isolation: isolate; background: #09130f; color: #fff; padding-block: clamp(70px,10vw,150px); overflow: hidden; }
-.weather-story > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 70% 35%; z-index: -2; }
-.weather-story::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg,rgba(9,19,15,.94),rgba(9,19,15,.65)); }
+.day-outro { display: grid; grid-template-columns: 1.3fr 1fr; align-items: center; gap: clamp(28px, 5vw, 72px); margin-top: clamp(3rem,6vw,5rem); }
+.day-outro > img { display: block; width: 100%; height: auto; }
+.camp-mantra { font-family: 'Archivo',sans-serif; font-weight: 600; font-size: clamp(1.7rem,3.5vw,3rem); line-height: 1.25; letter-spacing: -.03em; max-width: 29ch; }
+.weather-story { background: #09130f; color: #fff; padding-block: clamp(70px,10vw,150px); }
+.weather-layout { display: grid; grid-template-columns: 1.4fr 1fr; align-items: center; gap: clamp(28px,6vw,88px); }
+.weather-layout > div { min-width: 0; }
+.weather-photo { display: block; width: 100%; height: auto; }
 .weather-story h2 { max-width: 23ch; }
 .weather-copy { max-width: 53ch; margin-top: 2rem; font-size: 1.125rem; color: #f0f1eb; }
 .weather-copy p + p { margin-top: 1rem; }
@@ -186,7 +189,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid rgb(214,166,64); outl
   .intro-note { padding-block: 2rem; }
   .intro-note .editorial-label { margin-bottom: 0; }
   .day-flow { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.75rem 1.25rem; margin-top: 2rem; }
-  .weather-story::before { background: rgba(9,19,15,.8); }
+  .day-outro, .weather-layout { grid-template-columns: 1fr; gap: 2rem; }
   .room-options { border-left: 0; padding-left: 0; margin-top: .5rem; }
   #hosts article > img { height: 32rem; }
   .camp-timeline { grid-template-columns: 1fr; gap: 0; margin-left: .75rem; border-left: 1px solid var(--ploy-border-primary); }
