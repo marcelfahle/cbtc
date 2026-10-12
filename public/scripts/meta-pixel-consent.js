@@ -65,9 +65,12 @@
     window.fbq('track', eventName, data || {});
   };
 
+  var consentObserver;
   function removeBanner() {
+    if (consentObserver) consentObserver.disconnect();
     var banner = document.querySelector('[data-marketing-consent-banner]');
     if (banner) banner.remove();
+    document.documentElement.style.removeProperty('--consent-height');
   }
 
   function openPanel() {
@@ -89,7 +92,13 @@
       '<button type="button" data-marketing-accept>Accept marketing</button>' +
       '<button type="button" data-marketing-reject>Reject</button>' +
       '</div></div>';
-    document.body.appendChild(banner);
+    var hero = document.querySelector('.hero');
+    if (hero) hero.before(banner);
+    else document.body.appendChild(banner);
+    if (typeof ResizeObserver !== 'undefined') {
+      consentObserver = new ResizeObserver(() => document.documentElement.style.setProperty('--consent-height', banner.getBoundingClientRect().height + 'px'));
+      consentObserver.observe(banner);
+    }
     banner.querySelector('[data-marketing-accept]').addEventListener('click', function () {
       setConsent('granted');
       enablePixel();
@@ -101,7 +110,7 @@
       removeBanner();
       ensurePrivacyButton();
     });
-    banner.querySelector('[data-marketing-accept]').focus();
+    banner.querySelector('[data-marketing-accept]').focus({ preventScroll: !current });
   }
 
   function ensurePrivacyButton() {

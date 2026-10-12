@@ -1,21 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-const html = fs.readFileSync(new URL('../public/index.html', import.meta.url), 'utf8');
-test('winter waitlist replaces old dates, scarcity and founding price', () => {
-  assert.match(html, /Winter 2027/);
-  assert.match(html, /late January \/ February 2027/);
-  assert.match(html, /Exact dates coming soon/);
-  assert.match(html, /data-form="waitlist"/);
-  assert.doesNotMatch(html, /Last spots|Edition 1|October|November|2026|€1,350|founding runner|founding eight|48 hours|applications? close/i);
-  assert.doesNotMatch(html, /data-form="apply"|name="running"/);
-});
-test('waitlist anchors, prices and provisional inclusions are consistent', () => {
-  assert.match(html, /Shared room from €1,800/);
-  assert.match(html, /Private room from €2,200/);
-  assert.match(html, /Final pricing and exact inclusions will be announced together with the winter dates/);
-  const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]);
-  assert.equal(new Set(ids).size, ids.length);
-  for (const [, id] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.includes(id), `Missing anchor ${id}`);
-  assert.match(html, /Once you decide and feel comfortable joining us, your deposit secures your place/);
-});
+import {camps,statuses,queryPreferences,validatePreferences,preferenceSummary} from '../public/scripts/camps.js';
+const html=fs.readFileSync(new URL('../public/index.html',import.meta.url),'utf8');
+test('three distinct interest-only departures come from one status model',()=>{assert.equal(camps.length,3);for(const c of camps){assert.ok(html.includes(statuses[c.status].label));assert.ok(html.includes('/?camp='+c.id+'#interest'));}assert.match(html,/data-form="interest"/);assert.doesNotMatch(html,/data-form="apply"|Last spots|€1,350|email.*first|last winter camp before spring/i)});
+test('January specs do not leak into later departure rows',()=>{for(const c of camps.slice(1)){const row=html.split('id="'+c.id+'"')[1].split('</article>')[0];assert.ok(row);assert.doesNotMatch(row,/€|2–4|Four mountain|Monika|Anna|sauna/i);assert.match(row,/Details soon/);}assert.match(html,/For women who already run trails/);assert.match(html,/Boutique hotel, sauna and spa planned, not confirmed/)});
+test('stable query links accept only known month IDs',()=>{assert.deepEqual(queryPreferences('?camp=january,march,garbage'),['january','march']);assert.deepEqual(queryPreferences('?camp=%22%5Dscript,later'),[]);for(const c of camps)assert.deepEqual(queryPreferences('?camp='+c.id),[c.id]);});
+test('unspecified is not any date and later is exclusive',()=>{assert.equal(preferenceSummary(validatePreferences()),'Month preference not specified');assert.throws(()=>validatePreferences(['later','march']));assert.deepEqual(validatePreferences(['march','march']),['march']);});
+test('anchors and safeguards are retained',()=>{const ids=[...html.matchAll(/id="([^"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length);for(const [,id] of html.matchAll(/href="#([^"]+)"/g))assert.ok(ids.includes(id),id);assert.match(html,/No payments before the required registration and insurance/);assert.match(html,/don't book travel/);});

@@ -1,0 +1,27 @@
+:root{--ember:#9b482e;--ember-deep:#77351f}
+.hero .kicker,.board .kicker,.interest .kicker{color:var(--gold)}
+.camp .media::after{background:linear-gradient(90deg,rgba(9,19,15,.85),rgba(9,19,15,.6) 60%,rgba(9,19,15,.35)),linear-gradient(180deg,transparent,rgba(9,19,15,.85))}
+.camp .facts .note,.camp .fine{color:#e1e3d8}.camp .top .fine{font-size:14px}
+.motion-toggle{justify-self:start;font-size:14px;min-height:44px}
+.coastal-film{max-width:360px;justify-self:center;width:100%}.film-frame{position:relative;aspect-ratio:9/16;overflow:hidden}.film-frame img,.film-frame video{width:100%;height:100%;object-fit:cover}.film-frame video{position:absolute;inset:0}.coastal-film figcaption{font-size:14px;color:#c9cbbe;margin-top:12px}
+.honeypot{position:absolute;left:-9999px;width:0;height:0;opacity:0}
+.cbtc-inline-success{padding:24px 0;font-size:22px;line-height:1.6}[data-form-error]{color:#f0aa96}
+section{scroll-margin-top:90px}.steps li{border-color:rgba(240,241,235,.25)}.steps li::before{color:var(--gold)}
+button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}.ledger .fine{color:#56594c}
+@media(max-width:600px){.nav{gap:8px;padding:12px 16px}.brand{font-size:12px;gap:8px}.brand img{width:32px;height:32px}.nav .btn{font-size:12px;padding:10px 12px;max-width:132px}.hero .inner{padding-top:36vh}.camp .month{font-size:clamp(48px,12vw,72px)}.camp .body{gap:16px}.camp .act .btn{width:100%}.hero h1{font-size:clamp(42px,10.8vw,64px)}}
+@media(min-width:1024px) and (max-width:1200px){.camp .body{grid-template-columns:auto 1fr;gap:24px}.camp .act{grid-column:2;justify-self:start;align-items:start}.camp .month{font-size:64px}}
+body.motion-paused .camp .media img,body.motion-paused .camp .light{animation:none!important}
+
+.camp .media{z-index:0}.camp .light,.camp .grain{z-index:1}.camp .body{z-index:2}.camp .media img{position:absolute;inset:0}
+.hero .kicker{text-shadow:0 2px 10px #09130f}.hero::after{background:linear-gradient(180deg,rgba(9,19,15,.2),rgba(9,19,15,.32) 30%,rgba(9,19,15,.8) 68%,rgba(9,19,15,.94))}
+.coastal-film .motion-toggle{margin-top:12px}
+
+body:has([data-marketing-consent-banner]) .hero .inner{padding-bottom:calc(var(--consent-height,250px) + 40px)}
+
+/* Reserve actual space on first visit instead of obscuring camp actions. */
+body:has(.hero) [data-marketing-consent-banner]{position:relative;inset:auto;display:block;padding:16px;background:var(--night)}
+body:has(.hero) .cbtc-consent-card{margin:auto}
+body:has([data-marketing-consent-banner]) .hero .inner{padding-bottom:clamp(28px,5vw,56px)}
+
+body:has([data-marketing-consent-banner]) .nav{position:absolute;top:var(--consent-height,0px)}
+body:has([data-marketing-consent-banner]) [data-marketing-privacy]{display:none}

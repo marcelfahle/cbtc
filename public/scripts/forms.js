@@ -61,7 +61,8 @@
       var button = form.querySelector('button, [type="submit"]');
       var fields = {};
       form.querySelectorAll('input, textarea').forEach(function (el) {
-        if (el.name) fields[el.name] = el.value;
+        if (el.name === 'camps') { if (!fields.camps) fields.camps = []; if (el.checked) fields.camps.push(el.value); }
+        else if (el.name && (el.type !== 'checkbox' || el.checked)) fields[el.name] = el.value;
       });
 
       var errorEl = form.querySelector('[data-form-error]');
@@ -85,11 +86,15 @@
           });
         })
         .then(function (r) {
-          if (!r.ok) throw new Error((r.data && r.data.error) || 'failed');
+          if (!r.ok || !r.data || r.data.ok !== true || (formName === 'interest' && typeof r.data.preferenceSummary !== 'string')) throw new Error((r.data && r.data.error) || 'failed');
           var success = formName === 'apply' ? buildApplySuccess() : buildInlineSuccess(formName);
-          var grid = form.querySelector('div') || form;
+          if (formName === 'interest') {
+            success.textContent = 'Recorded: ' + r.data.preferenceSummary + '. We’ll email you when details are ready. There’s nothing to pay or book yet. Please don’t book travel until your place and dates are confirmed.';
+            success.setAttribute('tabindex', '-1');
+          }
+          var grid = formName === 'interest' ? form : form.querySelector('div') || form;
           grid.replaceChildren(success);
-          if (formName === 'apply') {
+          if (formName === 'apply' || formName === 'interest') {
             form.className += ' cbtc-form--success';
             try {
               success.focus({ preventScroll: true });
@@ -98,11 +103,11 @@
             }
           }
           try {
-            if (window.plausible) plausible(formName === 'apply' ? 'Apply Submitted' : formName === 'waitlist' ? 'Waitlist Submitted' : 'Routes Submitted');
+            if (window.plausible) plausible(formName === 'apply' ? 'Apply Submitted' : formName === 'interest' ? 'Interest Submitted' : formName === 'waitlist' ? 'Waitlist Submitted' : 'Routes Submitted');
           } catch (analyticsError) {}
           try {
             if (
-              (formName === 'apply' || formName === 'waitlist') &&
+              (formName === 'apply' || formName === 'waitlist' || formName === 'interest') &&
               !fields.website &&
               form.getAttribute('data-meta-lead-tracked') !== 'true' &&
               window.cbtcTrackMetaEvent

@@ -122,6 +122,7 @@ function findElements(elements, selector) {
 function createMetaContext(consent) {
   const storage = new Map(consent ? [['cbtc_marketing_consent', consent]] : []);
   const document = {
+    documentElement: { style: { removeProperty() {}, setProperty() {} } },
     readyState: 'complete',
     _elements: [],
     createElement(tagName) {

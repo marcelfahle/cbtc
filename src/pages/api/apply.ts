@@ -1,3 +1,4 @@
+import { validatePreferences, preferenceSummary } from '../../../public/scripts/camps.js';
 import type { APIRoute } from 'astro';
 
 export const prerender = false;
@@ -22,7 +23,7 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   // Honeypot: bots fill the hidden "website" field; pretend success.
-  if (data?.fields?.website) return json(200, { ok: true });
+  if (data?.fields?.website) return json(200, { ok: true, ...(data.formName === 'interest' ? { preferenceSummary: 'Month preference not specified', camps: [] } : {}) });
 
   const formName = String(data?.formName ?? 'form').slice(0, 40);
   const email = String(data?.fields?.email ?? '').trim().slice(0, 200);
@@ -36,6 +37,13 @@ export const POST: APIRoute = async ({ request }) => {
   }
   if (formName === 'apply' && running.length < 5) {
     return json(400, { error: 'Tell us a line or two about your running.' });
+  }
+
+  let preferences: string[] = [];
+  if (formName === 'interest') {
+    if (!name) return json(400, { error: 'Please enter your name.' });
+    try { preferences = validatePreferences(data?.fields?.camps); }
+    catch (error) { return json(400, { error: (error as Error).message }); }
   }
 
   // process.env, not import.meta.env: Vite inlines the latter at build time,
@@ -56,7 +64,9 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   const subject =
-    formName === 'waitlist'
+    formName === 'interest'
+      ? `[CBTC] 2027 camp interest: ${name || email}`
+      : formName === 'waitlist'
       ? `[CBTC] Winter 2027 waitlist: ${name || email}`
       : formName === 'apply'
       ? `[CBTC] Application: ${name || email}`
@@ -66,6 +76,7 @@ export const POST: APIRoute = async ({ request }) => {
     `Form: ${formName}`,
     name && `Name: ${name}`,
     `Email: ${email}`,
+    formName === 'interest' && `Camp preferences: ${preferenceSummary(preferences)}`,
     from_ && `Coming from: ${from_}`,
     link && `Link: ${link}`,
     running && `Their running:\n${running}`,
@@ -75,7 +86,9 @@ export const POST: APIRoute = async ({ request }) => {
     .filter(Boolean)
     .join('\n');
 
-  const res = await fetch('https://api.resend.com/emails', {
+  let res: Response;
+  try {
+  res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${apiKey}`,
@@ -84,10 +97,12 @@ export const POST: APIRoute = async ({ request }) => {
     body: JSON.stringify({ from, to, reply_to: email, subject, text }),
   });
 
+  } catch { return json(502, { error: 'Could not deliver your message. Please try again.' }); }
+
   if (!res.ok) {
     console.error('resend error', res.status, await res.text());
     return json(502, { error: 'Could not deliver your message. Please try again.' });
   }
 
-  return json(200, { ok: true });
+  return json(200, { ok: true, ...(formName === 'interest' ? { camps: preferences, preferenceSummary: preferenceSummary(preferences) } : {}) });
 };
