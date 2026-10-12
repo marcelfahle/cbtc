@@ -14,6 +14,8 @@ for(const width of [320,375,390,768,1024,1201,1440]) {
  await page.locator('[data-marketing-reject]').click();
  check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'overflow '+width);
  check((await page.locator('h1').textContent()).replace(/\s+/g,' ').trim()==='Tired legs Quiet head','headline words unchanged');
+ await page.locator('.partner-logo').evaluate(i=>{i.loading='eager';i.scrollIntoView({behavior:'instant',block:'center'})});
+ await page.waitForFunction(()=>{const i=document.querySelector('.partner-logo');return i.complete&&i.naturalWidth>0});
  check(await page.locator('.partner-logo').evaluate(async i=>{await i.decode();const r=i.getBoundingClientRect();return i.naturalWidth>0&&r.height>=84&&r.left>=0&&r.right<=innerWidth}),'partner logo decoded and fits');
  check(await page.locator('.partner').evaluate(e=>e.scrollWidth<=e.clientWidth),'partner text fits');
  if(width>1200)check(await page.locator('.camp .facts').evaluateAll(xs=>new Set(xs.map(x=>Math.round(x.getBoundingClientRect().left))).size===1),'aligned fact columns');

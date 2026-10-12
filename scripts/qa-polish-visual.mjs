@@ -7,7 +7,7 @@ for(const width of [320,390,768,1024,1201,1440]) {
  await p.addInitScript(()=>localStorage.setItem('cbtc_marketing_consent','denied'));
  await p.goto(process.env.QA_URL || 'http://localhost:4323');await p.evaluate(()=>document.fonts.ready);
  await p.addStyleTag({content:'html{scroll-behavior:auto!important}'});
- await p.locator('.camp img').evaluateAll(xs=>Promise.all(xs.map(x=>x.decode())));
+ await p.locator('img').evaluateAll(xs=>Promise.all(xs.map(x=>{x.loading='eager';return x.decode()})));
  await p.screenshot({path:out+'/build-hero-'+width+'.png'});
  const hideChrome=await p.addStyleTag({content:'.nav,[data-marketing-privacy]{visibility:hidden!important}'});
  await p.locator('#camps').screenshot({path:out+'/build-board-'+width+'.png'});
