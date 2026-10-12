@@ -73,7 +73,7 @@ body:has([data-marketing-consent-banner]) [data-marketing-privacy]{display:none}
 .film-frame .motion-toggle{position:absolute;right:4px;bottom:4px;z-index:2}
 .coastal-film .motion-toggle{margin-top:0}
 
-/* Approved shorter headline; fixed two-line composition at every width. */
-.hero h1{max-width:none;text-wrap:initial;font-size:clamp(46px,13vw,132px)}
+/* Keep each approved phrase together, including on narrow phones. */
+.hero h1{max-width:none;text-wrap:initial;font-size:clamp(28px,6.9vw,100px)}
 .host-note{margin-top:16px;font-size:16px;max-width:48em;color:#56594c}
 .month-help{margin-top:18px;color:#e1e3d8}

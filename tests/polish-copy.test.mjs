@@ -3,8 +3,12 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const html=fs.readFileSync(new URL('../public/index.html',import.meta.url),'utf8');
 const hero=html.split('<header id="top"')[1].split('</header>')[0];
-test('approved short headline and dates CTA replace interest-list sales copy',()=>{
- assert.ok(hero.includes('<h1>Tired legs<br> Quiet head</h1>'));
+test('approved clear winter headline and dates CTA replace interest-list sales copy',()=>{
+ assert.ok(hero.includes('<h1>Make room for<br> the mountains</h1>'));
+ assert.ok(hero.includes("Women's trail running · Costa Blanca · Winter 2027"));
+ assert.ok(hero.includes('Mountain trails, time for yourself and a women’s group to share it with. Three camps planned for January, February and March 2027.'));
+ assert.match(html,/<title>Costa Blanca Trail Camp · Make room for the mountains · Winter 2027<\/title>/);
+ assert.doesNotMatch(html,/Tired legs|Quiet head/);
  assert.match(html,/Send me the dates/);
  assert.doesNotMatch(html,/Join the interest list|Interest list open|proto-bar|h1-switcher/);
  assert.doesNotMatch(hero,/sauna|spa|four days/i);
@@ -24,9 +28,9 @@ test('small shared motion controls have honest labels and graceful no-JS default
  assert.ok(html.includes('</video><button type="button" class="motion-toggle"'));
 });
 
-test('partner credit is distinct, January-specific and makes no legal claims',()=>{
+test('partner credit is distinct, general and makes no legal claims',()=>{
  const partner=html.split('<div class="partner">')[1].split('</section>')[0];
- assert.match(partner,/In association with/);assert.match(partner,/Sergio, our local guiding partner/);
- assert.match(partner,/January camp/);assert.match(partner,/alt="SERPAclimbing"/);
+ assert.match(partner,/In association with/);assert.match(partner,/Sergio, our partner/);
+ assert.doesNotMatch(partner,/January|local guiding|all camps|every camp/i);assert.match(partner,/alt="SERPAclimbing"/);
  assert.doesNotMatch(partner,/href=|licensed|insured|certified|registered/i);
 });
