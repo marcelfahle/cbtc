@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Costa Blanca Trail Camp · Winter 2027 · three women’s trail camps, January to March</title>
-<meta name="description" content="Women’s trail camps on the Costa Blanca. January 2027 interest list open; February and March details soon. No payment or commitment.">
-<meta name="robots" content="index, follow"><link rel="canonical" href="https://www.costablancatrailcamp.com/"><meta property="og:title" content="Costa Blanca Trail Camp · January to March 2027"><meta property="og:image" content="https://www.costablancatrailcamp.com/images/hero.webp"><meta property="og:description" content="January interest list open; February and March details soon"><meta name="twitter:card" content="summary_large_image">
+<title>Costa Blanca Trail Camp · Tired legs. Quiet head. · 2027</title>
+<meta name="description" content="Women’s trail camps on the Costa Blanca, January to March 2027. Mountain days and sauna in January; February and March details soon. Get dates by email.">
+<meta name="robots" content="index, follow"><link rel="canonical" href="https://www.costablancatrailcamp.com/"><meta property="og:title" content="Costa Blanca Trail Camp · January to March 2027"><meta property="og:image" content="https://www.costablancatrailcamp.com/images/hero.webp"><meta property="og:description" content="Women’s trail camps, January to March 2027. Get dates and details by email. No payment or commitment."><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/images/mark.svg">
 <style>
 /* ---------- Fonts (same families as the live site) ---------- */
@@ -197,6 +197,19 @@ footer{padding:36px var(--wrap) 48px;font-size:15px;color:var(--moss);display:gr
 footer .brand{color:var(--night);font-size:14px}
 footer a{color:var(--night)}
 footer .proto{font-family:"Archivo";font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:11px;color:var(--gold-deep)}
+/* ---------- Partner credit (SERPAclimbing), sits inside #hosts after .hosts ---------- */
+.partner{display:grid;grid-template-columns:auto 1fr;align-items:center;column-gap:clamp(20px,3vw,36px);row-gap:18px;margin-top:clamp(40px,5vw,64px);padding-top:clamp(22px,2.6vw,30px);border-top:1px solid rgba(9,19,15,.18)}
+.partner .kicker{grid-column:1/-1}
+.partner-logo{display:block;height:clamp(84px,8vw,108px);width:auto}
+.partner-text{padding-left:clamp(20px,3vw,36px);border-left:1px solid rgba(9,19,15,.18);max-width:24rem}
+.partner-text h3{font-size:clamp(20px,1.6vw,24px);line-height:1.08}
+.partner-text .where{margin-top:6px;color:var(--moss);font-weight:600}
+.dark .partner{border-top-color:rgba(240,241,235,.18)}
+.dark .partner-text{border-left-color:rgba(240,241,235,.18)}
+.dark .partner-text .where{color:#B9BCAE}
+.partner-text .where span{white-space:nowrap}
+@media(max-width:30rem){.partner-text .where span{display:block}.partner-text .where .sep{display:none}}
+
 </style><link rel="stylesheet" href="/styles/three-camps.css">
 <script async src="https://plausible.io/js/pa-Ph375L-pQZDyOfoQSaRdy.js"></script><script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)};plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script></head>
 <body>
@@ -206,121 +219,128 @@ footer .proto{font-family:"Archivo";font-weight:800;letter-spacing:.14em;text-tr
   <div class="links">
     <a href="#camps">The camps</a><a href="#days">Your days</a><a href="#hosts">Hosts</a><a href="#how">How it works</a>
   </div>
-  <a class="btn" href="#interest">Join the interest list</a>
+  <a class="btn" href="#interest">Send me the dates</a>
 </nav>
 
 <header id="top" class="hero">
   <img src="/images/hero.webp" alt="A runner on a Costa Blanca coastal mountain trail" width="2560" height="1429" fetchpriority="high">
   <div class="inner">
-    <p class="kicker">Women's trail running · Costa Blanca · Winter 2027</p>
-    <h1>Make room for<br>the mountains</h1>
-    <p class="lede">Mountain trails, time for yourself and a women’s group to share it with. Three camps planned for January, February and March 2027.</p>
+    <p class="kicker">Women’s trail camps · Costa Blanca · 2027</p>
+    <h1>Tired legs<br> Quiet head</h1>
+    <p class="lede">Mountain trails. Women who get why you run. A few days with room for yourself.</p>
     <p class="season" aria-label="Winter 2027 camps">
-<span class="m ">January · interest list open</span><span class="m soon">February · details soon</span><span class="m soon">March · details soon</span>    </p>
+January, February and March 2027. Exact dates coming soon.    </p>
     <div class="acts">
-      <a class="btn" href="#camps">See the three camps</a>
-      <a class="btn ghost" href="#interest">Join the interest list</a>
+      <a class="btn" href="#camps">See the camps</a>
+      <a class="btn ghost" href="#interest">Send me the dates</a>
     </div>
   </div>
 </header>
 
 <main><section class="board" id="camps" aria-labelledby="camps-h">
   <div class="head">
-    <p class="kicker">Winter 2027 · three camps</p>
-    <h2 id="camps-h">Pick the month that fits your life</h2>
-    <button type="button" class="motion-toggle btn ghost" aria-pressed="false">Pause motion</button><p>Tell us which months could work. You can tick more than one. No payment, no commitment, and nothing to book until we confirm your place</p>
+    <div class="head-top"><p class="kicker">Three months to choose from</p><button type="button" class="motion-toggle" hidden aria-label="Pause animations" title="Pause animations"><span class="disc"><svg viewBox="0 0 10 10" aria-hidden="true" focusable="false"><path class="i-pause" d="M1.5 1h2.6v8H1.5zM5.9 1h2.6v8H5.9z"/><path class="i-play" d="M2 .8 9 5 2 9.2z"/></svg></span></button></div>
+    <div class="head-main"><h2 id="camps-h">Make room for your next mountain day</h2><p class="intro">January, February or March? Tell us what could work. We’ll send the dates and details. You decide from there.</p></div>
   </div>
 
-<div class="rows"><article class="camp a" id="january" aria-labelledby="january-h"><div class="media"><img src="/images/coastal-golden-hour-1200.webp" alt="" width="1200" height="802" loading="lazy" decoding="async" style="object-position:50% 42%"></div><div class="light"></div><div class="grain"></div><div class="body"><div class="top"><span class="status ">Interest list open</span><span class="fine">Exact dates to be announced</span></div><h3 class="month" id="january-h">January<small>2027</small></h3><div class="facts"><p><b>Four mountain days.</b> Around 2–4 hours on the trails each day</p><p><b>For women who already run trails.</b> Climbs, rocky descents, hiking the steep bits</p><p><b>Shared room from €1,800 · Private room from €2,200</b></p><p class="note">Provisional. Boutique hotel, sauna and spa planned, not confirmed. Final prices and inclusions to come.</p></div><div class="act"><a class="btn " href="/?camp=january#interest" data-camp="january">I'm interested in January</a><span class="fine">Interest only · nothing to book yet</span></div></div></article><article class="camp b" id="february" aria-labelledby="february-h"><div class="media"><img src="/images/sunlit-rocky-trail-1200.webp" alt="" width="1200" height="802" loading="lazy" decoding="async" style="object-position:50% 62%"></div><div class="light"></div><div class="grain"></div><div class="body"><div class="top"><span class="status soon">Details soon</span></div><h3 class="month" id="february-h">February<small>2027</small></h3><div class="facts"><p><b>A February camp is in the plans.</b> Exact dates and camp details will follow.</p><p class="note">Duration, hosts, rooms and prices are still to be announced.</p></div><div class="act"><a class="btn ghost" href="/?camp=february#interest" data-camp="february">Tell me about February</a><span class="fine">Interest only · nothing to book yet</span></div></div></article><article class="camp c" id="march" aria-labelledby="march-h"><div class="media"><img src="/images/cliff-and-valley-800.webp" alt="" width="800" height="1198" loading="lazy" decoding="async" style="object-position:50% 38%"></div><div class="light"></div><div class="grain"></div><div class="body"><div class="top"><span class="status soon">Details soon</span></div><h3 class="month" id="march-h">March<small>2027</small></h3><div class="facts"><p><b>Looking ahead to March.</b> Exact dates and camp details will follow.</p><p class="note">Duration, hosts, rooms and prices are still to be announced.</p></div><div class="act"><a class="btn ghost" href="/?camp=march#interest" data-camp="march">Tell me about March</a><span class="fine">Interest only · nothing to book yet</span></div></div></article></div>  <div class="shared">
-    <p><b>One place to look forward to:</b> the mountains behind Dénia and women who love being out on the trails. Each camp will have its own details, including its hosts.</p>
+<div class="rows"><article class="camp a" id="january" aria-labelledby="january-h"><div class="media"><img src="/images/coastal-golden-hour-1200.webp" alt="" width="1200" height="802" loading="lazy" decoding="async" style="object-position:50% 42%"></div><div class="light"></div><div class="grain"></div><div class="body"><div class="top"><span class="status ">Dates coming soon</span></div><h3 class="month" id="january-h">January<small>2027</small></h3><div class="facts"><p><b>Four days on the trails. Sauna afterwards.</b> Around 2–4 hours on the trails each day</p><p><b>For women who already run trails.</b> Climbs, rocky descents, hiking the steep bits</p><p><b>Shared room from €1,800 · Private room from €2,200</b></p><p class="note">Prices provisional. Sauna confirmed. Hotel, final prices and full inclusions to follow.</p></div><div class="act"><a class="btn " href="/?camp=january#interest" data-camp="january">Send me January dates</a><span class="fine">No payment or commitment</span></div></div></article><article class="camp b" id="february" aria-labelledby="february-h"><div class="media"><img src="/images/sunlit-rocky-trail-1200.webp" alt="" width="1200" height="802" loading="lazy" decoding="async" style="object-position:50% 62%"></div><div class="light"></div><div class="grain"></div><div class="body"><div class="top"><span class="status soon">Details soon</span></div><h3 class="month" id="february-h">February<small>2027</small></h3><div class="facts"><p><b>More mountain days to look forward to.</b> Dates and details are on their way.</p><p class="note">Duration, hosts, rooms and prices are still to be announced.</p></div><div class="act"><a class="btn ghost" href="/?camp=february#interest" data-camp="february">Tell me about February</a><span class="fine">No payment or commitment</span></div></div></article><article class="camp c" id="march" aria-labelledby="march-h"><div class="media"><img src="/images/cliff-and-valley-800.webp" alt="" width="800" height="1198" loading="lazy" decoding="async" style="object-position:50% 38%"></div><div class="light"></div><div class="grain"></div><div class="body"><div class="top"><span class="status soon">Details soon</span></div><h3 class="month" id="march-h">March<small>2027</small></h3><div class="facts"><p><b>More mountain days to look forward to.</b> Dates and details are on their way.</p><p class="note">Duration, hosts, rooms and prices are still to be announced.</p></div><div class="act"><a class="btn ghost" href="/?camp=march#interest" data-camp="march">Tell me about March</a><span class="fine">No payment or commitment</span></div></div></article></div>  <div class="shared">
+    <p>The mountains behind Dénia. A women’s group to share them with. Each camp’s dates and details will be announced here.</p>
     <p>Group size, nights and the hotel are confirmed camp by camp. We don't take payments before the required registration and insurance are in place.</p>
   </div>
 </section>
 
 <section class="ledger" aria-labelledby="ledger-h">
   <div>
-    <p class="kicker">January 2027 · where things stand</p>
-    <h2 id="ledger-h">What's planned, and what we still have to confirm</h2>
+    <p class="kicker">A closer look at January</p>
+    <h2 id="ledger-h">The good part, and the practical part</h2>
   </div>
   <div class="cols">
     <div class="col">
-      <h3>Planned</h3>
+      <h3>The January plan</h3>
       <ul>
         <li>Four mountain days, around 2–4 hours outside each day</li>
         <li>For women who already run trails</li>
-        <li>A small women-only group</li>
+        <li>A small women-only group</li><li>Sauna after the trails (confirmed)</li>
         <li>Monika and Anna are the planned January hosts</li>
         <li>Shared room from €1,800 · private room from €2,200 (provisional)</li>
       </ul>
     </div>
     <div class="col open">
-      <h3>Still to confirm</h3>
+      <h3>Details still to come</h3>
       <ul>
         <li>Exact dates, arrival and departure days, number of nights</li>
-        <li>The boutique hotel, and whether sauna and spa are included</li>
+        <li>The boutique hotel and any wider spa facilities</li>
         <li>What's included in the price, and final prices</li>
         <li>Exact routes, which depend on the winter weather</li>
         <li>Group size for this camp</li>
       </ul>
     </div>
   </div>
-  <p class="fine">February and March get their own list when we announce them. Please don't book travel for any camp until we have confirmed your place and the dates</p>
+  <p class="fine">February and March details will follow. Please wait for us to confirm your place and dates before booking travel.</p>
 </section>
 
 <section class="section dark" id="days" aria-labelledby="days-h">
   <div class="two">
     <div>
-      <p class="kicker">A day in the mountains</p>
-      <h2 id="days-h">Out together. Back to yourself</h2>
-      <p class="lead">The rhythm we love: time outside, good company and room to unwind. The January plan below is illustrative, not a fixed itinerary. February and March details will follow.</p>
+      <p class="kicker">A January day</p>
+      <h2 id="days-h">A climb. A view. No rush to be anywhere else</h2>
+      <p class="lead">Four mountain days, with time to enjoy the hours between them. A taste of January, not a fixed timetable.</p>
       <ul class="days">
-        <li><b>01</b><div><h3>Morning</h3><p>Breakfast and coffee together. Check the weather, pack for the day and head out.</p></div></li>
-        <li><b>02</b><div><h3>Trail</h3><p>A few hours on the trails. Climbs, rocky descents, hiking the steep bits and stops for the view.</p></div></li>
-        <li><b>03</b><div><h3>Recover</h3><p>A warm shower, food and time to rest. Sauna and spa are part of the plan for January; final inclusions to come.</p></div></li>
-        <li><b>04</b><div><h3>Evening</h3><p>Dinner and conversation. Or a little quiet before we head out again tomorrow.</p></div></li>
+        <li><b>01</b><div><h3>Morning</h3><p>Coffee first. Check the weather, pack your bag and head for the trails.</p></div></li>
+        <li><b>02</b><div><h3>Trail</h3><p>Climb, run, hike the steep bits. Stop for the view without apologising for it. Expect around 2–4 hours outside.</p></div></li>
+        <li><b>03</b><div><h3>Recover</h3><p>Shoes off. Sauna on. Time to let your legs catch up with you.</p></div></li>
+        <li><b>04</b><div><h3>Evening</h3><p>Stay for the conversation or take some quiet time. Both count as a good evening.</p></div></li>
       </ul>
     </div>
-    <figure class="coastal-film"><div class="film-frame"><img src="/media/coast-poster.webp" alt="A quiet view of the coast from the trail" width="720" height="1280" loading="lazy"><video muted loop playsinline preload="none" poster="/media/coast-poster.webp" data-src="/media/coast-loop.mp4" aria-hidden="true"></video></div><button type="button" class="motion-toggle btn ghost" aria-pressed="false">Pause motion</button><figcaption>A moment by the coast — a feeling for the place, not a promised route</figcaption></figure>
+    <figure class="coastal-film"><div class="film-frame"><img src="/media/coast-poster.webp" alt="A quiet view of the coast from the trail" width="720" height="1280" loading="lazy"><video muted loop playsinline preload="none" poster="/media/coast-poster.webp" data-src="/media/coast-loop.mp4" aria-hidden="true"></video><button type="button" class="motion-toggle" hidden aria-label="Pause animations" title="Pause animations"><span class="disc"><svg viewBox="0 0 10 10" aria-hidden="true" focusable="false"><path class="i-pause" d="M1.5 1h2.6v8H1.5zM5.9 1h2.6v8H5.9z"/><path class="i-play" d="M2 .8 9 5 2 9.2z"/></svg></span></button></div><figcaption>A little of the coast to look forward to</figcaption></figure>
   </div>
   <div class="two" style="margin-top:clamp(56px,8vw,112px)">
     <div class="photo" style="aspect-ratio:4/5;max-height:640px"><img src="/images/cliff-and-valley-800.webp" alt="A sheer rock face above a green valley and mountain ridges beneath a cloud-filled sky" width="800" height="1198" loading="lazy" decoding="async"></div>
     <div>
-      <p class="kicker">Winter has its own plans</p>
-      <h2>Some days are blue sky. Some days are wet shoes</h2>
-      <p class="lead">Clouds, wind and rain are part of winter in the mountains. We change the route, shorten the day or run in the rain when it's safe.</p>
-      <p style="margin-top:14px;color:#C9CBBE">Safety comes before any itinerary.</p>
+      <p class="kicker">January, whatever the weather</p>
+      <h2>Rain makes the sauna better</h2>
+      <p class="lead">We don’t make the rules. Some days bring blue skies. Others bring wind, wet shoes and an even better reason to warm up afterwards.</p>
+      <p style="margin-top:14px;color:#C9CBBE">We adapt the route to the weather, shorten the day when needed and only head out when it’s safe. The mountains get the final say.</p>
     </div>
   </div>
 </section>
 
 <section class="section" id="hosts" aria-labelledby="hosts-h">
-  <p class="kicker">The people behind the camp</p>
-  <h2 id="hosts-h">Monika &amp; Anna</h2>
-  <p class="lead measure">Two women who love mountain running, race internationally and spend a lot of time on these trails. Monika and Anna are the planned January hosts. Hosts for February and March are still to be confirmed. They are experienced runners, not certified coaches.</p>
+  <p class="kicker">Your January hosts</p>
+  <h2 id="hosts-h">Run with Monika &amp; Anna</h2>
+  <p class="lead measure">Two women who race internationally and love being out on the trails. Monika knows these Costa Blanca trails. Anna brings years of mountain running. In January, they’re out there with you.</p><p class="host-note">They are experienced runners, not certified coaches. Hosts for February and March are still to be confirmed.</p>
   <div class="hosts">
     <div class="host">
       <div class="photo"><img src="/images/anna.webp" alt="Anna Berglind Pálmadóttir racing" width="912" height="914" loading="lazy" decoding="async"></div>
       <h3>Anna Berglind Pálmadóttir</h3><p class="where">Iceland</p>
-      <p>Icelandic national-team trail runner. Shares her experience from years of training and racing in the mountains.</p>
+      <p>Icelandic national-team trail runner. Years of training and racing in the mountains, shared along the way.</p>
     </div>
     <div class="host">
       <div class="photo"><img src="/images/monika.webp" alt="Monika Fahle running on a coastal road" width="800" height="1000" loading="lazy" decoding="async"></div>
       <h3>Monika Fahle</h3><p class="where">Lithuania</p>
-      <p>Lithuanian national-team trail runner. Lives on the Costa Blanca and shares the trails she knows and loves.</p>
+      <p>Lithuanian national-team trail runner. Based on the Costa Blanca, sharing the trails she knows and loves.</p>
+    </div>
+  </div>
+<div class="partner">
+    <p class="kicker">In association with</p>
+    <img class="partner-logo" src="/images/serpaclimbing-black.svg" alt="SERPAclimbing" width="176" height="155" loading="lazy" decoding="async">
+    <div class="partner-text">
+      <h3>Sergio, our local guiding partner</h3>
+      <p class="where"><span>SERPAclimbing</span><span class="sep"> · </span><span>January camp</span></p>
     </div>
   </div>
 </section>
 
 <section class="section dark" id="how" aria-labelledby="how-h" style="padding-top:clamp(48px,6vw,80px)">
-  <p class="kicker">From first hello to the trail</p>
-  <h2 id="how-h">How joining works</h2>
-  <p class="lead">Interest only for now. Applications, meetings and deposits are later steps, not open today.</p><ol class="steps">
-    <li><div><h3>Join the interest list</h3><p>Tick the months that could work. We’ll email you when details are ready.</p></div></li>
-    <li><div><h3>Apply</h3><p>When applications open for a camp, tell us about your running and trail experience.</p></div></li>
-    <li><div><h3>Meet us</h3><p>Meet the hosts online and ask your questions. Q&amp;A booking is not open yet.</p></div></li>
-    <li><div><h3>We build the group</h3><p>We look at fitness, trail experience, expectations and how the group fits. If it feels right on both sides, we offer you a place.</p></div></li>
-    <li><div><h3>Secure your place</h3><p>Once you decide and feel comfortable joining us, your deposit secures your place. No payments before the required registration and insurance are in place.</p></div></li>
-    <li><div><h3>Meet your group</h3><p>A relaxed online session before the camp: meet the other women, talk gear and travel.</p></div></li>
+  <p class="kicker">Before you pack your trail shoes</p>
+  <h2 id="how-h">Get the details. Meet us. Then decide</h2>
+  <p class="lead">For now, just tell us which months could work. No payment. No commitment.</p><ol class="steps">
+    <li><div><h3>Get the dates</h3><p>We’ll email the dates and details for the months you choose.</p></div></li>
+    <li><div><h3>Tell us about your running</h3><p>When applications open, share your trail experience and what you want from the camp.</p></div></li>
+    <li><div><h3>Meet the hosts</h3><p>Ask the questions that matter to you before deciding. Meetings open with applications.</p></div></li>
+    <li><div><h3>Find your group</h3><p>We consider trail experience, fitness and expectations before offering a place.</p></div></li>
+    <li><div><h3>Make it yours</h3><p>Once you’ve been offered a place and want to join, a deposit secures it. No payments before the required registration and insurance are in place.</p></div></li>
+    <li><div><h3>Meet the women you’ll run with</h3><p>An online catch-up before camp to talk travel, gear and the days ahead.</p></div></li>
   </ol>
 </section>
 
@@ -328,22 +348,22 @@ footer .proto{font-family:"Archivo";font-weight:800;letter-spacing:.14em;text-tr
   <img src="/images/coastal-golden-hour-1200.webp" alt="" width="1200" height="802" loading="lazy" decoding="async">
   <div class="inner">
     <div>
-      <p class="kicker">Interest list · Winter 2027</p>
-      <h2 id="int-h">Which months could you make?</h2>
-      <p class="lead">Choose any months that might work, or ask about later camps. Leaving them unticked means no month preference specified. We’ll email you when details are ready.</p>
+      <p class="kicker">Your next few days away</p>
+      <h2 id="int-h">Which month has your name on it?</h2>
+      <p class="lead">Tick any months that could work. We’ll email the dates and details so you can decide.</p><p class="month-help" id="month-help">Not sure yet? Leave the months blank and we’ll keep you updated.</p>
     </div>
     <div>
       <form data-form="interest">
-        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="honeypot"><fieldset>
-          <legend>Months that could work</legend>
-<label class="check"><input type="checkbox" name="camps" value="january"><span><b>January 2027</b><span>Interest list open · exact dates to be announced</span></span></label><label class="check"><input type="checkbox" name="camps" value="february"><span><b>February 2027</b><span>Details soon</span></span></label><label class="check"><input type="checkbox" name="camps" value="march"><span><b>March 2027</b><span>Details soon</span></span></label>          <label class="check"><input type="checkbox" name="camps" value="later"><div><b>None of these, tell me about later camps</b></div></label>
+        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="honeypot"><fieldset aria-describedby="month-help">
+          <legend>I’m thinking about</legend>
+<label class="check"><input type="checkbox" name="camps" value="january"><span><b>January 2027</b><span>Dates coming soon</span></span></label><label class="check"><input type="checkbox" name="camps" value="february"><span><b>February 2027</b><span>Details soon</span></span></label><label class="check"><input type="checkbox" name="camps" value="march"><span><b>March 2027</b><span>Details soon</span></span></label>          <label class="check"><input type="checkbox" name="camps" value="later"><div><b>None of these. Tell me about later camps</b></div></label>
         </fieldset>
         <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required></div>
         <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" inputmode="email" autocomplete="email" required></div>
         <div class="field"><label for="origin">Where are you coming from? <span style="font-weight:400;color:#B9BCAE">(optional)</span></label><input id="origin" name="from" autocomplete="off" placeholder="City or country"></div>
         <div class="form-foot">
-          <button class="btn" type="submit">Join the interest list</button>
-          <p class="fine">Dates by email · no payment or commitment</p>
+          <button class="btn" type="submit">Send me the dates</button>
+          <p class="fine">Dates and details by email. No payment or commitment.</p>
         </div>
       </form>
 

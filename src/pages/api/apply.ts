@@ -60,7 +60,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   if (!apiKey || to.length === 0) {
     console.error('apply endpoint not configured: missing RESEND_API_KEY / APPLY_TO_EMAIL');
-    return json(500, { error: 'Form backend not configured yet.' });
+    return json(500, { error: 'Signups are temporarily unavailable. Please try again later.' });
   }
 
   const subject =

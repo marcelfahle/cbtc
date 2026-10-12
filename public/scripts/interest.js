@@ -26,7 +26,13 @@ function updateMotion() {
   const stop = paused || blocked || document.hidden;
   document.body.classList.toggle('motion-paused', stop);
   rows.forEach(row => row.classList.toggle('live', !stop && visible.has(row)));
-  controls.forEach(button => { button.textContent = blocked ? 'Motion off — device preference' : paused ? 'Play motion' : 'Pause motion'; button.disabled = !!blocked; button.setAttribute('aria-pressed', String(paused || blocked)); });
+  controls.forEach(button => {
+    button.hidden = !!blocked;
+    button.dataset.state = paused ? 'paused' : 'playing';
+    const label = paused ? 'Resume animations' : 'Pause animations';
+    button.setAttribute('aria-label', label);
+    button.title = label;
+  });
   if (!video) return;
   if (!stop && visible.has(video)) {
     if (!video.getAttribute('src')) video.src = video.dataset.src;

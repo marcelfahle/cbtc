@@ -89,7 +89,13 @@
           if (!r.ok || !r.data || r.data.ok !== true || (formName === 'interest' && typeof r.data.preferenceSummary !== 'string')) throw new Error((r.data && r.data.error) || 'failed');
           var success = formName === 'apply' ? buildApplySuccess() : buildInlineSuccess(formName);
           if (formName === 'interest') {
-            success.textContent = 'Recorded: ' + r.data.preferenceSummary + '. We’ll email you when details are ready. There’s nothing to pay or book yet. Please don’t book travel until your place and dates are confirmed.';
+            var summary = r.data.preferenceSummary;
+            var message = summary === 'Month preference not specified'
+              ? 'We’ll email you general camp updates.'
+              : summary === 'Later camps only (none of the listed months)'
+                ? 'We’ll email you the dates and details for later camps.'
+                : 'We’ll email you the dates and details for ' + summary + '.';
+            success.textContent = 'You’re on the list. ' + message + ' No payment or commitment. Please wait for your place and dates to be confirmed before booking travel.';
             success.setAttribute('tabindex', '-1');
           }
           var grid = formName === 'interest' ? form : form.querySelector('div') || form;
@@ -131,7 +137,7 @@
           p.textContent =
             err && err.message && err.message !== 'failed'
               ? err.message
-              : 'Something went wrong. Please try again, or email us directly.';
+              : 'We couldn’t send your details. Please try again.';
           form.appendChild(p);
         });
     });

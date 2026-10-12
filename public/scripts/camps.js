@@ -1,12 +1,12 @@
 // Single source for homepage statuses, interest options and notification labels.
 export const statuses = {
-  interest_open: { label: 'Interest list open', action: "I'm interested in", detail: 'Interest list open · exact dates to be announced', soon: false },
+  interest_open: { label: 'Dates coming soon', action: 'Send me', actionSuffix: ' dates', detail: 'Dates coming soon', soon: false },
   details_soon: { label: 'Details soon', action: 'Tell me about', detail: 'Details soon', soon: true },
 };
 export const camps = [
-  { id: 'january', month: 'January', year: 2027, status: 'interest_open', photo: 'coastal-golden-hour-1200.webp', width: 1200, height: 802, position: '50% 42%', variant: 'a', facts: ['<b>Four mountain days.</b> Around 2–4 hours on the trails each day', '<b>For women who already run trails.</b> Climbs, rocky descents, hiking the steep bits', '<b>Shared room from €1,800 · Private room from €2,200</b>'], note: "Provisional. Boutique hotel, sauna and spa planned, not confirmed. Final prices and inclusions to come." },
-  { id: 'february', month: 'February', year: 2027, status: 'details_soon', photo: 'sunlit-rocky-trail-1200.webp', width: 1200, height: 802, position: '50% 62%', variant: 'b', facts: ['<b>A February camp is in the plans.</b> Exact dates and camp details will follow.'], note: 'Duration, hosts, rooms and prices are still to be announced.' },
-  { id: 'march', month: 'March', year: 2027, status: 'details_soon', photo: 'cliff-and-valley-800.webp', width: 800, height: 1198, position: '50% 38%', variant: 'c', facts: ['<b>Looking ahead to March.</b> Exact dates and camp details will follow.'], note: 'Duration, hosts, rooms and prices are still to be announced.' },
+  { id: 'january', month: 'January', year: 2027, status: 'interest_open', photo: 'coastal-golden-hour-1200.webp', width: 1200, height: 802, position: '50% 42%', variant: 'a', facts: ['<b>Four days on the trails. Sauna afterwards.</b> Around 2–4 hours on the trails each day', '<b>For women who already run trails.</b> Climbs, rocky descents, hiking the steep bits', '<b>Shared room from €1,800 · Private room from €2,200</b>'], note: "Prices provisional. Sauna confirmed. Hotel, final prices and full inclusions to follow." },
+  { id: 'february', month: 'February', year: 2027, status: 'details_soon', photo: 'sunlit-rocky-trail-1200.webp', width: 1200, height: 802, position: '50% 62%', variant: 'b', facts: ['<b>More mountain days to look forward to.</b> Dates and details are on their way.'], note: 'Duration, hosts, rooms and prices are still to be announced.' },
+  { id: 'march', month: 'March', year: 2027, status: 'details_soon', photo: 'cliff-and-valley-800.webp', width: 800, height: 1198, position: '50% 38%', variant: 'c', facts: ['<b>More mountain days to look forward to.</b> Dates and details are on their way.'], note: 'Duration, hosts, rooms and prices are still to be announced.' },
 ];
 export function validatePreferences(value) {
   if (value === undefined) return [];

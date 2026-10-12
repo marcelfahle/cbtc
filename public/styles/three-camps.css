@@ -2,7 +2,6 @@
 .hero .kicker,.board .kicker,.interest .kicker{color:var(--gold)}
 .camp .media::after{background:linear-gradient(90deg,rgba(9,19,15,.85),rgba(9,19,15,.6) 60%,rgba(9,19,15,.35)),linear-gradient(180deg,transparent,rgba(9,19,15,.85))}
 .camp .facts .note,.camp .fine{color:#e1e3d8}.camp .top .fine{font-size:14px}
-.motion-toggle{justify-self:start;font-size:14px;min-height:44px}
 .coastal-film{max-width:360px;justify-self:center;width:100%}.film-frame{position:relative;aspect-ratio:9/16;overflow:hidden}.film-frame img,.film-frame video{width:100%;height:100%;object-fit:cover}.film-frame video{position:absolute;inset:0}.coastal-film figcaption{font-size:14px;color:#c9cbbe;margin-top:12px}
 .honeypot{position:absolute;left:-9999px;width:0;height:0;opacity:0}
 .cbtc-inline-success{padding:24px 0;font-size:22px;line-height:1.6}[data-form-error]{color:#f0aa96}
@@ -14,7 +13,6 @@ body.motion-paused .camp .media img,body.motion-paused .camp .light{animation:no
 
 .camp .media{z-index:0}.camp .light,.camp .grain{z-index:1}.camp .body{z-index:2}.camp .media img{position:absolute;inset:0}
 .hero .kicker{text-shadow:0 2px 10px #09130f}.hero::after{background:linear-gradient(180deg,rgba(9,19,15,.2),rgba(9,19,15,.32) 30%,rgba(9,19,15,.8) 68%,rgba(9,19,15,.94))}
-.coastal-film .motion-toggle{margin-top:12px}
 
 body:has([data-marketing-consent-banner]) .hero .inner{padding-bottom:calc(var(--consent-height,250px) + 40px)}
 
@@ -25,3 +23,57 @@ body:has([data-marketing-consent-banner]) .hero .inner{padding-bottom:clamp(28px
 
 body:has([data-marketing-consent-banner]) .nav{position:absolute;top:var(--consent-height,0px)}
 body:has([data-marketing-consent-banner]) [data-marketing-privacy]{display:none}
+
+/* Opus polish pass, 12 Oct 2026. Compact board and accessible motion controls.
+   Sections: 1 board heading  2 rows  3 motion controls  4 hero H1 line breaks */
+
+/* ---------- 1. Board heading: one compact strip that sits on the rows ---------- */
+.hero .inner{padding-bottom:clamp(24px,3vw,40px)}
+.board .head{padding:clamp(22px,3vw,40px) var(--wrap) clamp(14px,1.6vw,22px);gap:10px}
+.board .head-top{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:44px;margin-right:-7px}
+.board .head-main{display:grid;gap:10px}
+.board .head h2{font-size:clamp(28px,3.5vw,46px);max-width:none}
+.board .head p.intro{max-width:31em;font-size:clamp(16px,1.15vw,18px);line-height:1.45}
+@media(min-width:64rem){
+  .board .head-main{grid-template-columns:auto minmax(0,30rem);justify-content:space-between;align-items:end;gap:48px}
+  .board .head p.intro{max-width:none;padding-bottom:4px}
+}
+/* months share one column width, so the facts line up down the board like a timetable */
+@media(min-width:1201px){
+  .camp .body{grid-template-columns:calc(clamp(56px,6.6vw,96px) * 5.85) minmax(0,1fr) auto;gap:32px}
+}
+
+/* ---------- 2. Rows: height comes from the content plus a set amount of open photo ---------- */
+.camp{min-height:0}
+.camp .body{padding-top:clamp(72px,9vw,132px);padding-bottom:clamp(20px,2.6vw,32px);gap:14px}
+.camp:has(.status.soon) .body{padding-top:clamp(52px,5.5vw,80px)}
+.camp .top{gap:8px 12px}
+.camp .media::after{background:
+  linear-gradient(90deg,rgba(9,19,15,.86) 0%,rgba(9,19,15,.78) 50%,rgba(9,19,15,.64) 80%,rgba(9,19,15,.36) 100%),
+  linear-gradient(180deg,rgba(9,19,15,0) 0%,rgba(9,19,15,.16) 30%,rgba(9,19,15,.84) 100%)}
+.board .shared{padding-top:clamp(18px,2.2vw,28px);padding-bottom:clamp(32px,4.5vw,56px)}
+@media(max-width:1023px){
+  .camp .body{gap:12px}
+  .camp .media::after{background:
+    linear-gradient(180deg,rgba(9,19,15,.3) 0%,rgba(9,19,15,.88) 24%,rgba(9,19,15,.9) 100%)}
+}
+
+/* ---------- 3. Motion controls: small glass icon button, 44px hit area ---------- */
+.motion-toggle{appearance:none;-webkit-appearance:none;flex:none;display:grid;place-items:center;width:44px;height:44px;min-height:0;padding:0;margin:0;border:0;border-radius:50%;background:none;color:var(--bone);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.motion-toggle[hidden]{display:none}
+.motion-toggle .disc{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;border:1px solid rgba(240,241,235,.42);background:rgba(9,19,15,.8);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:background .2s,border-color .2s}
+.motion-toggle:hover .disc{background:rgba(9,19,15,.92);border-color:var(--bone)}
+.motion-toggle:active .disc{transform:scale(.94)}
+.motion-toggle:focus-visible{outline:3px solid var(--gold);outline-offset:-4px;background:var(--night)}
+.motion-toggle svg{width:10px;height:10px;fill:currentColor;display:block}
+.motion-toggle .i-play{display:none}
+.motion-toggle[data-state="paused"] .i-pause{display:none}
+.motion-toggle[data-state="paused"] .i-play{display:block;transform:translateX(.5px)}
+/* film: the control sits in the corner of the frame, not as a button under it */
+.film-frame .motion-toggle{position:absolute;right:4px;bottom:4px;z-index:2}
+.coastal-film .motion-toggle{margin-top:0}
+
+/* Approved shorter headline; fixed two-line composition at every width. */
+.hero h1{max-width:none;text-wrap:initial;font-size:clamp(46px,13vw,132px)}
+.host-note{margin-top:16px;font-size:16px;max-width:48em;color:#56594c}
+.month-help{margin-top:18px;color:#e1e3d8}
