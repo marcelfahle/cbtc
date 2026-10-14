@@ -1,0 +1,79 @@
+---
+import RunnerPage from '../layouts/RunnerPage.astro';
+---
+<RunnerPage title="Privacy policy · Costa Blanca Trail Camp" description="How Costa Blanca Trail Camp handles your personal data and your privacy choices." path="/privacy" eyebrow="Costa Blanca Trail Camp" heading="Privacy policy" publicPage>
+  <p slot="lede">Your data, your choices.</p>
+  <article class="privacy-policy">
+    <p>Last updated: 14 October 2026</p>
+    <p>This page explains what personal data we collect on costablancatrailcamp.com, why we collect it and what you can do about it. We keep it short because we do not collect much.</p>
+    <h2>Who is responsible</h2>
+    <p>Costa Blanca Trail Camp is run by Monika Fahle, a self-employed (autónoma) trader in Spain.</p>
+    <ul>
+      <li>Name: Monika Fahle</li>
+      <li>Tax ID (NIF): [[NIF]]</li>
+      <li>Address: [[postal address]], Dénia, Alicante, Spain</li>
+      <li>Email: [[contact email]]</li>
+    </ul>
+    <p>Write to that email for anything about your data.</p>
+    <h2>What we collect and why</h2>
+    <p><strong>1. The interest form.</strong> When you tell us which months could work for you, we collect:</p>
+    <ul>
+      <li>your name</li>
+      <li>your email address</li>
+      <li>where you are coming from (optional)</li>
+      <li>the months you ticked</li>
+      <li>the page you sent the form from and the time you sent it</li>
+    </ul>
+    <p>We use this to email you the dates and details for the months you chose. We do not add you to any other list. Legal basis: you asked us to (steps before a contract, GDPR Art. 6(1)(b)).</p>
+    <p><strong>2. The application form.</strong> When applications open and you apply, we also collect a few lines about your running and, if you add one, a link (for example to Strava). We use this to decide whether the camp fits you and to put the group together. Legal basis: the same as above.</p>
+    <p><strong>3. Email replies.</strong> When you email us, we keep the conversation so we can answer you.</p>
+    <p><strong>4. Analytics.</strong> We use Plausible Analytics to count visits. It sets no cookies, does not store your IP address and does not identify you. The numbers are aggregated. Legal basis: our legitimate interest in knowing whether the site works (GDPR Art. 6(1)(f)).</p>
+    <p><strong>5. Meta Pixel, only if you say yes.</strong> When you first visit, a banner asks whether you allow marketing cookies. If you accept, we load the Meta Pixel. It tells Meta (Facebook and Instagram) that you visited the site and whether you sent the interest form, so we can see whether our ads work and show ads to people like you. Meta also uses this data for its own purposes. See Meta's privacy policy at <a href="https://www.facebook.com/privacy/policy/">https://www.facebook.com/privacy/policy/</a>.</p>
+    <p>If you reject, nothing from Meta loads. No pixel, no cookies, no events. Your choice is stored in your browser only (local storage, key <code>cbtc_marketing_consent</code>). You can change it any time with the "Privacy settings" button on the site. Legal basis: your consent (GDPR Art. 6(1)(a)). You can withdraw it at any time.</p>
+    <h2>What we do not do</h2>
+    <ul>
+      <li>We do not sell your data.</li>
+      <li>We do not create accounts or profiles.</li>
+      <li>We do not take payments through the site.</li>
+      <li>We do not send newsletters. You only hear from us about the camp you asked about.</li>
+    </ul>
+    <h2>Who else sees your data</h2>
+    <p>A few companies process data for us. They act on our instructions only.</p>
+    <ul>
+      <li><strong>Vercel Inc.</strong> (USA) hosts the site. Form data passes through its servers. Transfers to the USA are covered by the EU-US Data Privacy Framework and standard contractual clauses.</li>
+      <li><strong>Resend</strong> (USA) delivers the form as an email to us. Same safeguards.</li>
+      <li><strong>Plausible Insights OÜ</strong> (Estonia) runs the analytics. Data stays in the EU.</li>
+      <li><strong>Meta Platforms Ireland Ltd.</strong> receives pixel data, only with your consent.</li>
+    </ul>
+    <p>We share your details with the people who host the camp (Monika Fahle and Anna Berglind Pálmadóttir) and with no one else, unless the law requires it.</p>
+    <h2>How long we keep it</h2>
+    <ul>
+      <li>Interest-form and application data: until the camps you asked about have taken place, then at most 12 months, in case you ask about the next edition. You can ask us to delete it earlier.</li>
+      <li>Email conversations: as long as we need them to deal with your request, then they are deleted.</li>
+      <li>Analytics: aggregated only, kept indefinitely. It cannot be traced to you.</li>
+      <li>Your cookie choice: stays in your browser until you clear it or change it.</li>
+    </ul>
+    <p>If you book a place, the data we need for the booking, invoice and insurance is kept as long as Spanish tax and civil law require. We will tell you the details when bookings open.</p>
+    <h2>Your rights</h2>
+    <p>You can ask us to:</p>
+    <ul>
+      <li>show you the data we hold about you</li>
+      <li>correct it</li>
+      <li>delete it</li>
+      <li>limit how we use it</li>
+      <li>give it to you in a file</li>
+      <li>stop using it for a specific purpose</li>
+    </ul>
+    <p>Email [[contact email]] and we will answer within one month. If you are not happy with how we handle your data, you can complain to the Spanish data protection authority, the AEPD, at <a href="https://www.aepd.es">https://www.aepd.es</a>.</p>
+    <h2>Changes</h2>
+    <p>If we change this page, we update the date at the top. If the change matters to you, we will tell you by email.</p>
+  </article>
+</RunnerPage>
+<style>
+  .privacy-policy { max-width: 72ch; margin-inline: auto; overflow-wrap: anywhere; }
+  .privacy-policy h2 { font-family: var(--rp-heading); font-size: clamp(1.4rem, 3vw, 1.8rem); line-height: 1.2; margin: 2.5rem 0 1rem; }
+  .privacy-policy p + p { margin-top: 1rem; }
+  .privacy-policy ul { list-style: disc; padding-left: 1.4rem; margin: 1rem 0; }
+  .privacy-policy li + li { margin-top: .4rem; }
+  .privacy-policy a { text-decoration: underline; text-underline-offset: .2em; }
+</style>

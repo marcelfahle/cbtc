@@ -84,7 +84,7 @@
     banner.innerHTML =
       '<div class="cbtc-consent-card">' +
       '<div><p id="marketing-consent-title" class="cbtc-consent-title">Marketing cookies</p>' +
-      '<p class="cbtc-consent-copy">We use Meta Pixel only if you allow marketing cookies. It helps us see whether our ads are working. Plausible analytics stays privacy-friendly.</p>' +
+      '<p class="cbtc-consent-copy">We use Meta Pixel only if you allow marketing cookies. It helps us see whether our ads are working. Plausible analytics stays privacy-friendly. <a href="/privacy">Privacy policy</a>.</p>' +
       (current === 'granted' ? '<p class="cbtc-consent-state">Current choice: accepted.</p>' : '') +
       (current === 'denied' ? '<p class="cbtc-consent-state">Current choice: rejected.</p>' : '') +
       '</div>' +
@@ -132,6 +132,7 @@
       '.cbtc-consent-card{pointer-events:auto;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center;width:min(760px,100%);border-radius:10px;border:1px solid rgba(255,255,255,.16);background:rgb(9,19,15);color:rgb(246,241,229);box-shadow:0 18px 42px rgba(0,0,0,.28);padding:16px;font-family:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif}' +
       '.cbtc-consent-title{margin:0 0 4px;font-family:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:.78rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:rgb(214,166,64)}' +
       '.cbtc-consent-copy,.cbtc-consent-state{margin:0;max-width:58ch;font-size:.95rem;line-height:1.42;color:rgba(246,241,229,.82)}' +
+      '.cbtc-consent-copy a{color:inherit;text-decoration:underline;text-underline-offset:.2em}.cbtc-consent-copy a:focus-visible{outline:2px solid rgb(214,166,64);outline-offset:3px}' +
       '.cbtc-consent-state{margin-top:6px;color:rgba(246,241,229,.66);font-weight:700}' +
       '.cbtc-consent-actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}' +
       '.cbtc-consent-actions button,[data-marketing-privacy]{min-height:40px;border:0;border-radius:8px;padding:0 14px;font:800 .92rem/1 "Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;cursor:pointer}' +
