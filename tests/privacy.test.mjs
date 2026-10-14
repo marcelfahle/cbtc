@@ -2,10 +2,13 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const read = path => fs.readFileSync(new URL('../' + path, import.meta.url), 'utf8');
-test('privacy draft preserves all placeholders and excludes internal notes', () => {
+test('privacy policy includes approved controller details and excludes internal notes', () => {
  const page = read('src/pages/privacy.astro');
  assert.match(page, /<RunnerPage/);
- for (const [placeholder, count] of [['[[NIF]]', 1], ['[[postal address]]', 1], ['[[contact email]]', 2]]) assert.equal(page.split(placeholder).length - 1, count);
+ for (const [placeholder, count] of [['B72645211', 1], ['C/ Fora Mur 12', 1], ['hello@costablancatrailcamp.com', 2]]) assert.equal(page.split(placeholder).length - 1, count);
+ assert.ok(!page.includes('[['));
+ assert.ok(page.includes('No Rules Software SL'));
+ assert.ok(!page.includes('They act on our instructions only'));
  assert.doesNotMatch(page, /Draft by Jane|Notes for Al|Three blanks|Once live|proposals, not vault facts/);
  assert.equal((page.match(/<h2>/g) || []).length, 7);
 });

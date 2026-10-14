@@ -23,7 +23,10 @@ for(const width of [320,390,768,1440]) {
  assert.equal(await page.evaluate(()=>localStorage.getItem('cbtc_marketing_consent')),'denied');
  assert.equal(await page.evaluate(()=>typeof window.fbq),'undefined');
  const text=await page.locator('article').innerText();
- for(const [s,n] of [['[[NIF]]',1],['[[postal address]]',1],['[[contact email]]',2]]) assert.equal(text.split(s).length-1,n);
+ for(const [s,n] of [['B72645211',1],['C/ Fora Mur 12',1],['hello@costablancatrailcamp.com',2]]) assert.equal(text.split(s).length-1,n);
+ assert.ok(!text.includes('[['));
+ assert.ok(text.includes('No Rules Software SL'));
+ assert.ok(!text.includes('They act on our instructions only'));
  assert.doesNotMatch(text,/Draft by Jane|Notes for Al|Three blanks/);
  assert.doesNotMatch(await page.locator('footer').innerText(),/eight of you|Runner notes/);
  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
@@ -50,7 +53,7 @@ for(const width of [320,390,768,1440]) {
  await page.reload();assert.equal(await page.evaluate(()=>typeof window.fbq),'undefined');
  assert.equal(await page.locator('script[src*="connect.facebook.net"]').count(),0);
  assert.deepEqual(errors,[]);
- console.log(JSON.stringify({width,links:3,placeholders:true,noOverflow:true,consent:'fresh/reject/persist/accept/deduplicate/lead/withdraw/reload passed',pageErrors:0}));
+ console.log(JSON.stringify({width,links:3,approvedDetails:true,noOverflow:true,consent:'fresh/reject/persist/accept/deduplicate/lead/withdraw/reload passed',pageErrors:0}));
  await context.close();
 }
 await browser.close();
