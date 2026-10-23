@@ -7,12 +7,10 @@ for (const path of ['public/index.html', 'src/pages/checklist.astro', 'src/pages
     assert.doesNotMatch(copy, /Everyone has her own private room|Your room is yours alone|Your own private room is included|\+€120|\bthe villa\b|boho|bungalow/iu);
   });
 }
-test('homepage offers both winter room types with indicative prices', () => {
+test('homepage publishes no prices until each camp is confirmed', () => {
   const html = fs.readFileSync(new URL('../public/index.html', import.meta.url), 'utf8');
-  assert.match(html, /Shared room/);
-  assert.match(html, /Private room/);
-  assert.match(html, /from €1,800/);
-  assert.match(html, /from €2,200/);
+  assert.doesNotMatch(html, /€/);
+  assert.match(html, /What's included in the price, and prices/);
 });
 test('packing checklist is provisional and accommodates both room types', () => {
   const copy = fs.readFileSync(new URL('../src/pages/checklist.astro', import.meta.url), 'utf8');

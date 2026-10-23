@@ -3,24 +3,25 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const html=fs.readFileSync(new URL('../public/index.html',import.meta.url),'utf8');
 const hero=html.split('<header id="top"')[1].split('</header>')[0];
-test('approved clear winter headline and dates CTA replace interest-list sales copy',()=>{
- assert.ok(hero.includes('<h1>Make room for<br> the mountains</h1>'));
- assert.ok(hero.includes("Women's trail running · Costa Blanca · Winter 2027"));
- assert.ok(hero.includes('Mountain trails, time for yourself and a women’s group to share it with. Three camps planned for January, February and March 2027.'));
- assert.match(html,/<title>Costa Blanca Trail Camp · Make room for the mountains · Winter 2027<\/title>/);
+test('approved light hero with Winter–Spring timing and dates CTA',()=>{
+ assert.ok(hero.includes('<h1>Make room for<span class="accent"> the mountains</span></h1>'));
+ assert.ok(hero.includes("Women's trail running · Costa Blanca · Winter–Spring 2027"));
+ assert.ok(hero.includes('Mountain trails, time for yourself and a women’s group to share it with. Two camps planned: February and late March to early April 2027.'));
+ assert.ok(hero.includes('February and late March to early April 2027. Exact dates coming soon.'));
+ assert.match(hero,/sunrise-valley-2200\.webp/);
+ assert.match(html,/<title>Costa Blanca Trail Camp · Make room for the mountains · Winter–Spring 2027<\/title>/);
+ assert.match(html,/href="\/styles\/light\.css"/);
  assert.doesNotMatch(html,/Tired legs|Quiet head/);
  assert.match(html,/Send me the dates/);
  assert.doesNotMatch(html,/Join the interest list|Interest list open|proto-bar|h1-switcher/);
- assert.doesNotMatch(hero,/sauna|spa|four days/i);
+ assert.doesNotMatch(hero,/sauna|\bspa\b|four days/i);
 });
-test('confirmed January sauna does not imply confirmed spa or later-camp details',()=>{
- const january=html.split('id="january"')[1].split('</article>')[0];
- assert.match(january,/Sauna confirmed/);assert.match(january,/Prices provisional/);
- assert.match(january,/Hotel, final prices and full inclusions to follow/);
- assert.match(html,/The boutique hotel and any wider spa facilities/);
- assert.match(html,/January, whatever the weather/);assert.match(html,/Rain makes the sauna better/);
+test('unconfirmed February details (sauna, days, hours, prices) are not published',()=>{
+ const text=html.replace(/<style[\s\S]*?<\/style>/g,'').replace(/<[^>]*>/g,' ');
+ assert.doesNotMatch(text,/Sauna confirmed|Sauna on|sauna better|Four mountain days|2–4 hours|€/);
+ assert.match(text,/The hotel, rooms and any sauna or spa/);
+ assert.match(text,/Whatever the weather/);assert.match(text,/Rain makes the coffee taste better/);
  assert.match(html,/only head out when it’s safe/);
- for(const month of ['february','march'])assert.doesNotMatch(html.split('id="'+month+'"')[1].split('</article>')[0].replace(/<[^>]*>/g,''),/sauna|spa|€|Sergio|Monika|Anna/i);
 });
 test('small shared motion controls have honest labels and graceful no-JS defaults',()=>{
  assert.equal((html.match(/class="motion-toggle" hidden aria-label="Pause animations"/g)||[]).length,2);

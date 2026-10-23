@@ -19,10 +19,10 @@ for(const width of [320,375,390,768,1024,1201,1440]) {
  check(await page.locator('.partner-logo').evaluate(async i=>{await i.decode();const r=i.getBoundingClientRect();return i.naturalWidth>0&&r.height>=84&&r.left>=0&&r.right<=innerWidth}),'partner logo decoded and fits');
  check(await page.locator('.partner').evaluate(e=>e.scrollWidth<=e.clientWidth),'partner text fits');
  if(width>1200)check(await page.locator('.camp .facts').evaluateAll(xs=>new Set(xs.map(x=>Math.round(x.getBoundingClientRect().left))).size===1),'aligned fact columns');
- await page.locator('#january').scrollIntoViewIfNeeded();await page.locator('.camp .media img').evaluateAll(xs=>Promise.all(xs.map(x=>x.decode())));await page.screenshot({path:out+'/departures-'+width+'.png'});
- await page.locator('[data-camp="january"]').click();await page.locator('input[value="january"]').waitFor();
- check(await page.locator('input[value="january"]').isChecked(),'row preselect');
- await page.locator('input[value="march"]').check();await page.locator('input[value="later"]').check();
+ await page.locator('#february').scrollIntoViewIfNeeded();await page.locator('.camp .media img').evaluateAll(xs=>Promise.all(xs.map(x=>x.decode())));await page.screenshot({path:out+'/departures-'+width+'.png'});
+ await page.locator('[data-camp="february"]').click();await page.locator('input[value="february"]').waitFor();
+ check(await page.locator('input[value="february"]').isChecked(),'row preselect');
+ await page.locator('input[value="spring"]').check();await page.locator('input[value="later"]').check();
  check(await page.locator('input[name="camps"]:checked').count()===1,'later exclusive');
  await page.locator('input[value="february"]').check();check(!(await page.locator('input[value="later"]').isChecked()),'month clears later');
  await page.locator('#name').fill('Synthetic browser test');await page.locator('#email').fill('test@example.com');
@@ -45,8 +45,8 @@ for(const mode of ['reduce','saveData','2g','slow-2g','normal']) {
  check(videos.length>0,'normal loads');check(await page.locator('video').evaluate(v=>!v.paused),'video plays');await page.locator('.coastal-film .motion-toggle').click();check(await page.locator('video').evaluate(v=>v.paused),'pause control');check(await page.getByRole('button',{name:'Resume animations',exact:true}).count()===2,'both labels updated');check(await page.locator('.camp.live').count()===0,'pause stops all photos');await page.locator('.coastal-film .motion-toggle').click();await page.locator('video').scrollIntoViewIfNeeded();await page.waitForTimeout(400);await page.evaluate(()=>scrollTo(0,0));await page.waitForTimeout(400);check(await page.locator('video').evaluate(v=>v.paused),'offscreen pauses');}
  await context.close();
 }
-for(const month of ['january','february','march','january,march','invalid,%22%5D']){const page=await browser.newPage();await page.goto(base+'/?camp='+month+'#interest');const selected=await page.locator('input[name="camps"]:checked').evaluateAll(xs=>xs.map(x=>x.value));check(selected.join(',')===(month.startsWith('invalid')?'':month),'query '+month);await page.close();}
-for(const [ids, summary] of [[[], 'Month preference not specified'], [['later'],'Later camps only (none of the listed months)'], [['january','march'],'January 2027, March 2027']]) {
+for(const [month,expected] of [['february','february'],['spring','spring'],['march','spring'],['january',''],['february,spring','february,spring'],['invalid,%22%5D','']]){const page=await browser.newPage();await page.goto(base+'/?camp='+month+'#interest');const selected=await page.locator('input[name="camps"]:checked').evaluateAll(xs=>xs.map(x=>x.value));check(selected.join(',')===expected,'query '+month);await page.close();}
+for(const [ids, summary] of [[[], 'Month preference not specified'], [['later'],'Later camps only (none of the listed months)'], [['february','spring'],'February 2027, Late March to early April 2027']]) {
  const page=await browser.newPage();await page.addInitScript(()=>localStorage.setItem('cbtc_marketing_consent','denied'));let payload;
  await page.route('**/api/apply',r=>{payload=r.request().postDataJSON();return r.fulfill({status:200,contentType:'application/json',body:JSON.stringify({ok:true,preferenceSummary:summary,camps:ids})});});
  await page.goto(base);for(const id of ids)await page.locator('input[value="'+id+'"]').check();await page.locator('#name').fill('Synthetic');await page.locator('#email').fill('test@example.com');await page.locator('button[type="submit"]').click();await page.locator('form [role="status"]').waitFor();check(JSON.stringify(payload.fields.camps)===JSON.stringify(ids),'edge selection preserved');check((await page.locator('form').innerText()).includes(ids.length === 0 ? 'general camp updates' : ids[0] === 'later' ? 'dates and details for later camps' : summary),'edge success accurate');await page.close();

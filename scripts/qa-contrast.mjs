@@ -9,7 +9,7 @@ for(const width of [320,390,768,1024,1201,1440]) {
  const page=await browser.newPage({viewport:{width,height:1000},reducedMotion:'no-preference'});
  await page.addInitScript(()=>localStorage.setItem('cbtc_marketing_consent','denied'));
  await page.goto(process.env.QA_URL || 'http://localhost:4323');await page.evaluate(()=>document.fonts.ready);await page.addStyleTag({content:'html{scroll-behavior:auto!important}.nav,[data-marketing-privacy]{visibility:hidden!important}'});
- for(const id of ['january','february','march']) {
+ for(const id of ['february','spring']) {
   const row=page.locator('#'+id);await row.evaluate(r=>r.scrollIntoView({block:'center',behavior:'instant'}));await row.locator('img').evaluate(i=>i.decode());await page.waitForTimeout(100);
   for(const phase of [0,.5,1]) {
    await row.evaluate((r,p)=>{for(const a of r.getAnimations({subtree:true})){a.pause();a.currentTime=Number(a.effect.getTiming().duration)*p;}r.querySelector('.light').style.setProperty('opacity','.22','important');},phase);

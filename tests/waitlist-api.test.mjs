@@ -52,7 +52,7 @@ test('missing mail configuration is reported, not silently accepted', async () =
   assert.equal(h.deliveries.length, 0);
 });
 
-for (const [preferences, summary] of [[['january'], 'January 2027'], [['february'], 'February 2027'], [['march'], 'March 2027'], [['january','march'], 'January 2027, March 2027'], [['later'], 'Later camps only (none of the listed months)'], [[], 'Month preference not specified']]) {
+for (const [preferences, summary] of [[['february'], 'February 2027'], [['spring'], 'Late March to early April 2027'], [['february','spring'], 'February 2027, Late March to early April 2027'], [['january'], 'January 2027 (earlier option, no longer offered)'], [['march'], 'March 2027 (earlier option, now late March to early April)'], [['january','march'], 'January 2027 (earlier option, no longer offered), March 2027 (earlier option, now late March to early April)'], [['later'], 'Later camps only (none of the listed months)'], [[], 'Month preference not specified']]) {
   test('interest email and response retain ' + summary, async () => {
     const h=harness(); const res=await h.post({formName:'interest',fields:{name:'Runner',email:'test@example.com',from:'Denia',camps:preferences}});
     assert.equal(res.status,200); const body=await res.json(); assert.equal(body.preferenceSummary,summary); assert.deepEqual(body.camps,preferences);

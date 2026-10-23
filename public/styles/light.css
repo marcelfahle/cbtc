@@ -1,0 +1,78 @@
+/* Light homepage, approved by Monika 23 Oct 2026. Loaded after three-camps.css.
+   Palette from the "mountains are calling" Instagram post: pale sky, cream and gold horizon,
+   sage, forest text, ochre accents. No large black sections. */
+:root{--ivory:#F7F2E7;--sand:#EFE6D2;--sage:#E2E7DA;--forest:#14281D;--forest-2:#3A4A3F;--ochre:#7A5512}
+body{background:var(--ivory);color:var(--forest)}
+.kicker,.dark .kicker,.hero .kicker,.board .kicker,.interest .kicker,.board .head p.kicker{color:var(--ochre)}
+.btn.ghost{color:var(--forest);border-color:rgba(20,40,29,.4)}
+.btn.ghost:hover{background:rgba(20,40,29,.06);border-color:var(--forest)}
+
+/* Nav: light glass instead of a dark band */
+.nav{color:var(--forest);background:linear-gradient(rgba(247,242,231,.92),rgba(247,242,231,0))}
+.nav .links a{color:var(--forest)}
+
+/* Hero: sunrise valley. Text sits in the sky; the photo is not darkened. */
+.hero{flex-direction:column;align-items:stretch;justify-content:flex-start;min-height:0;color:var(--forest);
+  background:linear-gradient(180deg,#A9BDCB 0%,#C3CFCB 30%,#E4E0BE 62%,#F3E2A8 100%)}
+.hero::after{display:none}
+.hero .inner,body:has([data-marketing-consent-banner]) .hero .inner{order:0;position:relative;z-index:1;width:100%;padding:clamp(108px,13vw,150px) var(--wrap) 0}
+.hero img{order:1;position:relative;inset:auto;z-index:0;width:100%;height:clamp(300px,52vw,760px);object-fit:cover;object-position:50% 46%;
+  margin-top:clamp(-260px,-17vw,-60px);-webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 30%);mask-image:linear-gradient(180deg,transparent 0%,#000 30%)}
+.hero h1{color:var(--forest)}
+.hero h1 .accent{display:block;font-family:"Newsreader",serif;font-style:italic;font-weight:500;text-transform:none;letter-spacing:-.01em;color:var(--ochre);line-height:1}
+.hero .kicker{text-shadow:none;color:#5A3E0B}
+.hero .lede{color:var(--forest-2)}
+.hero .season{color:var(--forest)}
+.hero .season .m::before{background:var(--ochre)}
+.hero .season .m.soon::before{background:transparent;border-color:var(--ochre)}
+
+/* Camp board: pale sage; rows keep their photos behind a light veil */
+.board{background:var(--sage);color:var(--forest)}
+.board .head p,.board .shared,.board .shared p{color:var(--forest-2)}
+.board .shared b{color:var(--forest)}
+.camp{color:var(--forest);background:var(--sage)}
+.camp .media::after{background:linear-gradient(90deg,rgba(247,242,231,.95) 0%,rgba(247,242,231,.88) 50%,rgba(247,242,231,.8) 100%)}
+@media(max-width:47.99rem){.camp .media::after{background:linear-gradient(180deg,rgba(247,242,231,.8),rgba(247,242,231,.92))}}
+.camp .grain,.camp .light{display:none}
+.camp .month small{color:#6B4A0E}
+.camp .facts,.camp .facts b{color:var(--forest)}
+.camp .facts .note,.camp .fine,.camp .act .fine{color:var(--forest-2)}
+.status{background:rgba(247,242,231,.9);color:var(--forest);backdrop-filter:none;-webkit-backdrop-filter:none}
+.status::before{background:var(--ochre)}
+.status.soon::before{background:transparent;border-color:var(--ochre)}
+
+.ledger{background:var(--ivory)}
+
+/* Former dark sections: sand and sage */
+.dark{background:var(--sand);color:var(--forest)}
+#how.dark{background:var(--sage)}
+.dark h2,.dark h3,.dark .section h2{color:var(--forest)}
+.dark .lead,.dark p{color:var(--forest-2)}
+.days li,.dark .days li,.dark .steps li{border-color:rgba(20,40,29,.16)}
+.days b,.dark .days b,.steps li::before{color:var(--ochre)}
+.coastal-film figcaption,.dark .partner-text .where,.dark .host .where{color:var(--forest-2)}
+
+/* Interest form: warm sand, faint photo */
+.interest{background:var(--sand);color:var(--forest)}
+.interest>img{opacity:.14}
+.interest::after{background:linear-gradient(180deg,rgba(239,230,210,.7),rgba(239,230,210,.92))}
+.interest .lead,.month-help,.form-foot .fine{color:var(--forest-2)}
+.check{border-color:rgba(20,40,29,.22);background:rgba(255,255,255,.6)}
+.check:has(input:checked){border-color:var(--ochre);background:rgba(192,138,42,.12)}
+.check input{accent-color:var(--ochre)}
+.check span{color:#4A5548}
+.field input{border-color:rgba(20,40,29,.3);background:#fff;color:var(--forest)}
+.field input::placeholder{color:#6F7264}
+.field .hint{color:#5E6156}
+.ok{border-color:var(--ochre)}
+.btn:focus-visible,a:focus-visible,input:focus-visible{outline-color:var(--ochre)}
+
+footer{background:var(--ivory)}
+
+/* Cookie notice on the homepage: light card (styles are injected by meta-pixel-consent.js) */
+html body:has(.hero) [data-marketing-consent-banner]{background:var(--sand)}
+html body:has(.hero) .cbtc-consent-card{background:var(--ivory);color:var(--forest);border-color:rgba(20,40,29,.18)}
+html body:has(.hero) .cbtc-consent-title{color:var(--ochre)}
+html body:has(.hero) .cbtc-consent-copy,html body:has(.hero) .cbtc-consent-state{color:var(--forest-2)}
+html body:has(.hero) .cbtc-consent-actions [data-marketing-reject]{background:transparent;color:var(--forest);box-shadow:inset 0 0 0 1px rgba(20,40,29,.35)}
+html body:has(.hero) [data-marketing-privacy]{background:rgba(247,242,231,.92);color:var(--forest);box-shadow:inset 0 0 0 1px rgba(20,40,29,.25)}
