@@ -151,8 +151,10 @@ p{text-wrap:pretty}
 .days h3{font-size:clamp(20px,1.6vw,24px);margin-bottom:6px}
 .hosts{display:grid;gap:28px;margin-top:36px}
 @media(min-width:48rem){.hosts{grid-template-columns:1fr 1fr;gap:40px}}
-.host .photo{aspect-ratio:1/1;border-radius:4px}
-.host .photo img{object-position:50% 30%}
+.hosts-photo{aspect-ratio:4/3;border-radius:4px;margin-top:36px}
+.hosts-photo img{object-position:52% 40%}
+@media(min-width:48rem){.hosts-photo{aspect-ratio:3/2}}
+.hosts-photo+.hosts{margin-top:8px}
 .host h3{font-size:clamp(22px,1.8vw,26px);margin-top:16px}
 .host .where{color:var(--moss);font-weight:600}
 .dark .host .where{color:#B9BCAE}
@@ -309,14 +311,13 @@ January, February and March 2027. Exact dates coming soon.    </p>
   <p class="kicker">Your January hosts</p>
   <h2 id="hosts-h">Run with Monika &amp; Anna</h2>
   <p class="lead measure">Two women who race internationally and love being out on the trails. Monika knows these Costa Blanca trails. Anna brings years of mountain running. In January, they’re out there with you.</p><p class="host-note">They are experienced runners, not certified coaches. Hosts for February and March are still to be confirmed.</p>
+  <div class="photo hosts-photo"><img src="/images/hosts-together-1600.webp" srcset="/images/hosts-together-800.webp 800w, /images/hosts-together-1600.webp 1600w" sizes="(min-width:80rem) 1200px, 100vw" alt="Anna Berglind Pálmadóttir, left, and Monika Fahle, right, smiling on a coastal trail above the sea" width="1600" height="1067" loading="lazy" decoding="async"></div>
   <div class="hosts">
     <div class="host">
-      <div class="photo"><img src="/images/anna.webp" alt="Anna Berglind Pálmadóttir racing" width="912" height="914" loading="lazy" decoding="async"></div>
       <h3>Anna Berglind Pálmadóttir</h3><p class="where">Iceland</p>
       <p>Icelandic national-team trail runner. Years of training and racing in the mountains, shared along the way.</p>
     </div>
     <div class="host">
-      <div class="photo"><img src="/images/monika.webp" alt="Monika Fahle running on a coastal road" width="800" height="1000" loading="lazy" decoding="async"></div>
       <h3>Monika Fahle</h3><p class="where">Lithuania</p>
       <p>Lithuanian national-team trail runner. Based on the Costa Blanca, sharing the trails she knows and loves.</p>
     </div>
