@@ -4,320 +4,508 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Costa Blanca Trail Camp · Make room for the mountains · Winter–Spring 2027</title>
-<meta name="description" content="Women’s trail camps on the Costa Blanca, February to early April 2027. Get dates and details by email.">
-<meta name="robots" content="index, follow"><link rel="canonical" href="https://www.costablancatrailcamp.com/"><meta property="og:title" content="Costa Blanca Trail Camp · February to early April 2027"><meta property="og:image" content="https://www.costablancatrailcamp.com/images/og-sunrise.jpg"><meta property="og:description" content="Women’s trail camps, February to early April 2027. Get dates and details by email. No payment or commitment."><meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="Women’s trail camps on the Costa Blanca. Next camp 3–8 February 2027, then late March to early April. Get the details by email.">
+<meta name="robots" content="index, follow"><link rel="canonical" href="https://www.costablancatrailcamp.com/"><meta property="og:title" content="Costa Blanca Trail Camp · February to early April 2027"><meta property="og:image" content="https://www.costablancatrailcamp.com/images/og-sunrise.jpg"><meta property="og:description" content="Women’s trail camps on the Costa Blanca. Next camp 3–8 February 2027. Get the details by email. No payment or commitment."><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#C9D6DC">
 <link rel="icon" href="/images/mark.svg">
+<link rel="preload" href="/fonts/Archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<script>document.documentElement.classList.add('js')</script>
 <style>
-/* ---------- Fonts (same families as the live site) ---------- */
+/* Costa Blanca Trail Camp homepage, design v2 (Oct 2026).
+   Concept: the page is one February day in Dénia. Sunrise hero, daylight sections,
+   a sunset sign-up and a night footer; the day rail tracks the sun as you scroll.
+   Light palette from Monika's direction (23 Oct). Trail blazes are the white-over-yellow
+   PR waymarks painted on the local footpaths. */
+
+/* ---------- Fonts ---------- */
 @font-face{font-family:"Archivo";src:url("/fonts/Archivo-var.woff2") format("woff2");font-weight:100 900;font-display:swap}
 @font-face{font-family:"Source Sans 3";src:url("/fonts/SourceSans3-var.woff2") format("woff2");font-weight:200 900;font-display:swap}
 @font-face{font-family:"Newsreader";src:url("/fonts/Newsreader-italic-var.woff2") format("woff2");font-weight:200 800;font-style:italic;font-display:swap}
 
-/* ---------- Tokens (from public/styles/site.css on the live site) ---------- */
+/* ---------- Tokens ---------- */
 :root{
-  --night:#09130F; --night-2:#18211C; --night-3:#272B23;
-  --bone:#F0F1EB; --bone-2:#F3EDDF; --bone-3:#D9D5C9;
-  --gold:#D6A640; --gold-deep:#806019; --moss:#686A59; --blush:#F0AA96;
-  --ember:oklch(57.2% .128 37.49); --ember-deep:oklch(42.8% .128 37.49); /* the live site's button colour */
-  --wrap:clamp(16px,5vw,64px);
+  --ivory:#F8F3E8; --paper:#FFFCF4; --sand:#F1E5CB; --sage:#DDE5D2; --sage-2:#C7D3BA;
+  --sky:#D5E1E4; --sky-2:#B3C7D0;
+  --forest:#14281D; --forest-2:#3A4A3F; --forest-3:#5A6A5C;
+  --ochre:#7A5512; --sun:#F2C14E; --apricot:#F2A878; --dusk:#D9775A;
+  --terra:#9B482E; --terra-deep:#77351F;
+  --line:rgba(20,40,29,.16);
+  --wrap:clamp(16px,5vw,72px);
+  --ease:cubic-bezier(.22,1,.36,1);
   --drift:28s;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{font-family:"Source Sans 3",system-ui,sans-serif;font-size:clamp(17px,1.05vw + 12px,19px);line-height:1.5;color:var(--night);background:var(--bone)}
-img{display:block;max-width:100%}
+body{font-family:"Source Sans 3",system-ui,sans-serif;font-size:clamp(17px,1.05vw + 12px,19px);line-height:1.5;color:var(--forest);background:var(--ivory);overflow-x:clip}
+img,svg,video{display:block;max-width:100%}
 a{color:inherit}
-h1,h2,h3,.display{font-family:"Archivo",sans-serif;letter-spacing:-.025em;line-height:1;font-weight:800;text-wrap:balance}
+h1,h2,h3{font-family:"Archivo",sans-serif;letter-spacing:-.025em;line-height:1;font-weight:800;text-wrap:balance}
+h2{font-size:clamp(34px,4.6vw,66px);letter-spacing:-.035em;line-height:.98}
+h2 em,h3 em,.serif{font-family:"Newsreader",serif;font-style:italic;font-weight:500;letter-spacing:-.015em}
+h2 em{color:var(--ochre)}
 p{text-wrap:pretty}
-.kicker{font-family:"Archivo";font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep)}
-.dark .kicker{color:var(--gold)}
-.serif{font-family:"Newsreader",serif;font-style:italic;font-weight:500;letter-spacing:-.01em}
 .wrap{padding-inline:var(--wrap)}
-.measure{max-width:38rem}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:52px;padding:.8em 1.5em;border-radius:999px;border:0;font:inherit;font-weight:700;font-size:1rem;text-decoration:none;cursor:pointer;background:var(--ember);color:#fff;transition:background .2s,transform .2s}
-.btn:hover{background:var(--ember-deep)}
-.btn:active{transform:translateY(1px)}
-.btn:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
-.btn.ghost{background:transparent;color:var(--bone);border:1.5px solid rgba(240,241,235,.55)}
-.btn.ghost:hover{background:rgba(240,241,235,.12);border-color:var(--bone)}
-.btn.ghost.on-light{color:var(--night);border-color:rgba(9,19,15,.35)}
-.btn.ghost.on-light:hover{background:rgba(9,19,15,.06);border-color:var(--night)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
+/* Kicker with a PR trail blaze: white bar over yellow bar */
+.kicker{display:inline-flex;align-items:center;gap:12px;font-family:"Archivo";font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--ochre)}
+.kicker::before{content:"";flex:none;width:18px;height:12px;border-radius:2px;background:linear-gradient(#fff 0 50%,var(--sun) 50% 100%);box-shadow:0 0 0 1px rgba(20,40,29,.22)}
+.lead{font-size:clamp(18px,1.4vw,21px);color:var(--forest-2);margin-top:20px;max-width:32em}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:52px;padding:.8em 1.5em;border-radius:999px;border:0;font:inherit;font-weight:700;font-size:1rem;line-height:1.1;text-decoration:none;cursor:pointer;background:var(--terra);color:#FFF8F0;transition:background .2s,transform .3s var(--ease),box-shadow .3s var(--ease);box-shadow:0 1px 0 rgba(255,255,255,.25) inset,0 6px 18px -8px rgba(119,53,31,.7)}
+.btn:hover{background:var(--terra-deep);transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn.ghost{background:transparent;color:var(--forest);box-shadow:inset 0 0 0 1.5px rgba(20,40,29,.4)}
+.btn.ghost:hover{background:rgba(20,40,29,.06);box-shadow:inset 0 0 0 1.5px var(--forest)}
+.btn:focus-visible,a:focus-visible,input:focus-visible,button:focus-visible{outline:3px solid var(--ochre);outline-offset:3px}
+
+/* Reveal on scroll (only when JS runs) */
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+.js .rv.d1{transition-delay:.08s}.js .rv.d2{transition-delay:.16s}.js .rv.d3{transition-delay:.24s}
+
+/* Mountain ridge dividers: filled with the colour of the next section */
+.ridge{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:clamp(36px,6vw,90px);pointer-events:none;z-index:3}
+
 /* ---------- Nav ---------- */
-.nav{position:fixed;inset-inline:0;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px var(--wrap);color:var(--bone);background:linear-gradient(rgba(9,19,15,.86),rgba(9,19,15,0))}
-.brand{display:flex;align-items:center;gap:12px;font-family:"Archivo";font-weight:800;font-size:16px;line-height:1.05;letter-spacing:.02em;text-transform:uppercase;text-decoration:none;max-width:12em}
-.brand img{width:44px;height:44px;flex:none}
-.nav .links{display:none;gap:28px;font-weight:600;font-size:15px}
-.nav .links a{text-decoration:none;opacity:.9}
-.nav .links a:hover{opacity:1;text-decoration:underline;text-underline-offset:4px}
+.nav{position:fixed;inset-inline:0;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px var(--wrap);color:var(--forest);transition:background .35s,box-shadow .35s,padding .35s var(--ease)}
+.nav.scrolled{background:rgba(248,243,232,.86);-webkit-backdrop-filter:blur(14px) saturate(1.3);backdrop-filter:blur(14px) saturate(1.3);box-shadow:0 1px 0 var(--line);padding-block:10px}
+.brand{display:flex;align-items:center;gap:12px;font-family:"Archivo";font-weight:800;font-size:15px;line-height:1.05;letter-spacing:.03em;text-transform:uppercase;text-decoration:none;max-width:12em}
+.brand img{width:42px;height:42px;flex:none}
+.nav .links{display:none;gap:30px;font-weight:600;font-size:15px}
+.nav .links a{text-decoration:none;position:relative}
+.nav .links a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;background:var(--terra);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.nav .links a:hover::after{transform:scaleX(1)}
 @media(min-width:64rem){.nav .links{display:flex}}
-.nav .btn{min-height:46px;padding:.6em 1.2em;font-size:15px}
+.nav .btn{min-height:44px;padding:.55em 1.15em;font-size:15px}
+@media(max-width:600px){.nav{gap:8px;padding:12px 16px}.brand{font-size:12px;gap:8px}.brand img{width:34px;height:34px}.nav .btn{font-size:13px;padding:10px 14px}}
 
-/* ---------- Hero (retained from the live site; date line changes) ---------- */
-.hero{position:relative;isolation:isolate;min-height:92svh;display:flex;align-items:end;overflow:hidden;background:var(--night);color:var(--bone)}
-.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:74% 45%;z-index:-2}
-@media(min-width:48rem){.hero img{object-position:62% 40%}}
-.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(9,19,15,.25) 0%,rgba(9,19,15,.05) 30%,rgba(9,19,15,.72) 68%,rgba(9,19,15,.94) 100%)}
-.hero .inner{padding:38vh var(--wrap) clamp(28px,5vw,56px);width:100%}
-.hero h1{font-size:clamp(44px,8.2vw,112px);font-weight:900;text-transform:uppercase;letter-spacing:-.035em;line-height:.92;max-width:11em;margin-top:14px}
-.hero .lede{font-size:clamp(18px,1.6vw,23px);max-width:30em;margin-top:22px;color:#E4E6DC}
-.hero .season{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-weight:600;font-size:clamp(15px,1.2vw,18px)}
-.hero .season .m{display:inline-flex;align-items:center;gap:8px}
-.hero .season .m::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold)}
-.hero .season .m.soon::before{background:transparent;border:1.5px solid var(--gold)}
-.hero .acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+/* ---------- Hero: sunrise ---------- */
+.hero{position:relative;isolation:isolate;display:flex;flex-direction:column;overflow:hidden;
+  background:linear-gradient(180deg,#A7BCCA 0%,#C2CFCD 26%,#E3DFC0 56%,#F4E2A6 78%,#F7D891 100%)}
+.hero .inner{position:relative;z-index:2;padding:clamp(116px,13vw,164px) var(--wrap) 0}
+.hero h1{font-size:clamp(40px,7.4vw,112px);font-weight:900;text-transform:uppercase;letter-spacing:-.04em;line-height:.9;color:var(--forest);margin-top:18px;text-wrap:initial}
+.hero h1 .accent{display:block;font-family:"Newsreader",serif;font-style:italic;font-weight:500;text-transform:none;letter-spacing:-.02em;line-height:1;color:var(--ochre);padding-left:.04em}
+.hero .kicker{color:#5A3E0B}
+.hero .lede{font-size:clamp(18px,1.6vw,23px);max-width:29em;margin-top:24px;color:var(--forest-2)}
+.hero .acts{display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px;margin-top:28px}
+.hero .then{font-size:15px;color:var(--forest-2);margin-top:12px}
+.hero .photo{position:relative;z-index:1;margin-top:clamp(-250px,-16vw,-56px);height:clamp(320px,50vw,780px)}
+.hero .photo img{width:100%;height:100%;object-fit:cover;object-position:50% 46%;-webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 32%);mask-image:linear-gradient(180deg,transparent 0%,#000 32%);transform-origin:50% 80%;animation:rise 2.4s var(--ease) both}
+@keyframes rise{from{transform:scale(1.07) translateY(18px);opacity:.4}to{transform:none;opacity:1}}
+.js .hero .inner>*{animation:up 1s var(--ease) both}
+.js .hero .inner>:nth-child(2){animation-delay:.08s}.js .hero .inner>:nth-child(3){animation-delay:.18s}.js .hero .inner>:nth-child(4){animation-delay:.28s}.js .hero .inner>:nth-child(5){animation-delay:.36s}
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 
-/* ---------- The board: three cinematic rows ---------- */
-.board{background:var(--night);color:var(--bone)}
-.board .head{padding:clamp(40px,6vw,80px) var(--wrap) clamp(18px,3vw,32px);display:grid;gap:14px}
-.board .head h2{font-size:clamp(32px,4.4vw,60px);max-width:14em}
-.board .head p{max-width:34em;color:#C9CBBE}
-.rows{display:grid;gap:3px;padding:0 3px 3px}
-.camp{position:relative;isolation:isolate;overflow:hidden;min-height:clamp(440px,52svh,560px);display:grid;align-content:end;color:var(--bone);text-decoration:none;background:var(--night-2)}
-.camp .media{position:absolute;inset:0;z-index:-2;overflow:hidden}
-.camp .media img{width:100%;height:100%;object-fit:cover;transform-origin:50% 50%;will-change:transform}
-.camp .media::after{content:"";position:absolute;inset:0;background:
-  linear-gradient(90deg,rgba(9,19,15,.78) 0%,rgba(9,19,15,.42) 48%,rgba(9,19,15,.18) 100%),
-  linear-gradient(180deg,rgba(9,19,15,.10) 0%,rgba(9,19,15,.0) 40%,rgba(9,19,15,.74) 100%)}
-.camp .grain{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.16;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");background-size:220px 220px}
-.camp .body{position:relative;padding:clamp(22px,3.4vw,44px) var(--wrap);display:grid;gap:18px}
-.camp .top{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
-.status{display:inline-flex;align-items:center;gap:8px;font-family:"Archivo";font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:7px 12px 6px;border-radius:999px;background:rgba(9,19,15,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(240,241,235,.18)}
-.status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold)}
-.status.soon::before{background:transparent;border:1.5px solid var(--gold)}
-.camp .month{font-family:"Archivo";font-weight:900;text-transform:uppercase;letter-spacing:-.035em;line-height:.9;font-size:clamp(56px,13vw,136px);min-width:0}
-.camp .month small{display:block;font-size:.32em;font-weight:800;letter-spacing:.02em;color:var(--gold);margin-top:.1em}
-.camp .facts{display:grid;gap:4px;max-width:30em;color:#E4E6DC;font-size:clamp(16px,1.25vw,19px)}
-.camp .facts b{color:var(--bone)}
-.camp .facts .note{color:#B9BCAE;font-size:.9em}
-.camp .act{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
-.camp .act .fine{font-size:14px;color:#B9BCAE}
-@media(min-width:64rem){
-  .camp .body{grid-template-columns:auto minmax(0,1fr) auto;align-items:end;gap:40px}
-  .camp .month{font-size:clamp(56px,6.6vw,96px)}
-  .camp .facts{padding-bottom:6px}
-  .camp .top{grid-column:1/-1}
-  .camp .act{justify-self:end;flex-direction:column;align-items:flex-end;text-align:right}
-}
-/* Video look: slow drift, only while on screen, never with reduced motion */
+/* Ticket stub with the next camp */
+.stub-line{display:inline-flex;align-items:stretch;min-height:56px;text-decoration:none;background:var(--paper);border-radius:12px;box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 10px 30px -14px rgba(20,40,29,.45);position:relative;transition:transform .35s var(--ease),box-shadow .35s var(--ease);
+  -webkit-mask:radial-gradient(circle 7px at 0 50%,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 7px at 100% 50%,#0000 98%,#000) right/51% 100% no-repeat;
+  mask:radial-gradient(circle 7px at 0 50%,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 7px at 100% 50%,#0000 98%,#000) right/51% 100% no-repeat}
+.stub-line:hover{transform:translateY(-2px) rotate(-.4deg)}
+.stub-line>span{display:flex;align-items:center;padding:0 18px}
+.stub-line .lbl{font-family:"Archivo";font-weight:800;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ochre);padding-left:22px}
+.stub-line .when{border-left:1.5px dashed rgba(20,40,29,.25);font-size:17px;gap:.35em}
+.stub-line .when b{font-family:"Archivo";font-weight:900;letter-spacing:-.02em;font-size:19px}
+.stub-line .go{border-left:1.5px dashed rgba(20,40,29,.25);font-weight:700;color:var(--terra);gap:.4em;padding-right:22px}
+.stub-line .go span{transition:transform .35s var(--ease)}
+.stub-line:hover .go span{transform:translateX(4px)}
+@media(max-width:560px){.stub-line{display:grid;width:100%;-webkit-mask:none;mask:none}.stub-line .lbl{padding:14px 18px 0}.stub-line .when{border:0;padding:4px 18px 12px;white-space:nowrap}.stub-line .go{border-left:0;border-top:1.5px dashed rgba(20,40,29,.25);padding:12px 18px 14px}.hero .acts .btn.ghost{width:100%}}
+
+/* Spinning badge in the sky */
+.badge{position:absolute;z-index:2;right:var(--wrap);top:clamp(120px,14vw,190px);width:clamp(96px,11vw,150px);aspect-ratio:1;color:var(--forest)}
+.badge svg.ring{width:100%;height:100%;animation:spin 40s linear infinite}
+.badge .core{position:absolute;inset:27%;border-radius:50%;background:var(--sun);display:grid;place-items:center;box-shadow:0 0 0 6px rgba(242,193,78,.25),0 0 60px 10px rgba(247,216,145,.8)}
+.badge .core img{width:62%}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(min-width:72rem){.badge{right:calc(var(--wrap) + 56px)}}
+@media(max-width:47.99rem){.badge{display:none}}
+/* Phones: keep the approved phrase "Make room for" on one line */
+@media(max-width:600px){.hero h1{font-size:clamp(26px,9vw,54px);white-space:nowrap}}
+
+/* ---------- Day rail: the sun sets as you scroll (wide screens) ---------- */
+.dayrail{position:fixed;z-index:30;right:clamp(10px,1.4vw,22px);top:50%;transform:translateY(-50%);height:min(46vh,380px);width:44px;display:none;pointer-events:none;opacity:0;transition:opacity .6s}
+.dayrail.on{opacity:1}
+@media(min-width:72rem){.dayrail{display:block}}
+.dayrail .track{position:absolute;left:50%;top:0;bottom:0;width:1.5px;transform:translateX(-50%);background:repeating-linear-gradient(to bottom,rgba(20,40,29,.35) 0 4px,transparent 4px 9px)}
+.dayrail .sun{position:absolute;left:50%;top:0;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--sun);box-shadow:0 0 0 4px rgba(242,193,78,.28),0 0 18px 4px rgba(242,193,78,.55);transition:background .4s,box-shadow .4s}
+.dayrail.dusk .sun{background:var(--dusk);box-shadow:0 0 0 4px rgba(217,119,90,.25),0 0 18px 4px rgba(217,119,90,.5)}
+.dayrail.night .sun{background:#E9E4D4;box-shadow:inset -5px -2px 0 0 #9AA79C,0 0 12px 2px rgba(233,228,212,.4)}
+.dayrail .time{position:absolute;right:30px;top:0;transform:translateY(-50%);font-family:"Archivo";font-weight:800;font-size:12px;letter-spacing:.06em;font-variant-numeric:tabular-nums;white-space:nowrap;background:var(--paper);padding:4px 8px;border-radius:999px;box-shadow:0 0 0 1px var(--line)}
+.dayrail .cap{position:absolute;left:50%;bottom:-14px;transform:translate(-50%,100%) ;writing-mode:vertical-rl;rotate:180deg;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--forest-3);white-space:nowrap}
+
+/* ---------- Camps: tickets ---------- */
+.board{position:relative;background:var(--sage);padding:clamp(56px,8vw,112px) var(--wrap) clamp(56px,7vw,96px)}
+.board .head{display:grid;gap:18px;margin-bottom:clamp(32px,4vw,56px)}
+.board .head-top{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:44px}
+.board .head-main{display:grid;gap:18px}
+.board .intro{max-width:30em;color:var(--forest-2);font-size:clamp(17px,1.25vw,19px)}
+@media(min-width:64rem){.board .head-main{grid-template-columns:auto minmax(0,27rem);justify-content:space-between;align-items:end;gap:56px}}
+.rows{display:grid;gap:clamp(20px,2.4vw,32px);align-items:start}
+@media(min-width:60rem){.rows{grid-template-columns:1.18fr 1fr}.rows .is-soon{margin-top:clamp(40px,6vw,88px)}}
+
+.ticket{position:relative;display:grid;background:var(--paper);border-radius:22px;overflow:hidden;box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 30px 60px -36px rgba(20,40,29,.55);transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.ticket:hover{transform:translateY(-4px) rotate(-.3deg);box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 40px 70px -36px rgba(20,40,29,.6)}
+.ticket.is-soon:hover{transform:translateY(-4px) rotate(.3deg)}
+.ticket .media{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--sage-2)}
+.ticket .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.06);will-change:transform}
+.ticket.is-soon .media img{filter:saturate(.85)}
+/* perforation between photo and stub, with notches cut out of both edges */
+.ticket .body{position:relative;padding:clamp(24px,2.6vw,36px) clamp(22px,2.6vw,36px) clamp(24px,2.6vw,34px);display:grid;gap:16px;border-top:2px dashed rgba(20,40,29,.2)}
+.ticket .body::before,.ticket .body::after{content:"";position:absolute;top:-14px;width:26px;height:26px;border-radius:50%;background:var(--sage)}
+.ticket .body::before{left:-13px}.ticket .body::after{right:-13px}
+.ticket .top{display:flex}
+.status{display:inline-flex;align-items:center;gap:8px;font-family:"Archivo";font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:7px 12px 6px;border-radius:999px;background:var(--sage);color:var(--forest)}
+.status::before{content:"";width:8px;height:8px;border-radius:50%;background:#3E7A4F;box-shadow:0 0 0 3px rgba(62,122,79,.2)}
+.status.soon{background:var(--sand)}
+.status.soon::before{background:transparent;border:1.5px solid var(--ochre);box-shadow:none}
+.ticket .month{font-family:"Archivo";font-weight:900;text-transform:uppercase;letter-spacing:-.04em;line-height:.88;font-size:clamp(52px,6.4vw,96px)}
+.ticket.is-soon .month{font-size:clamp(48px,5.4vw,80px)}
+.ticket .month small{display:block;margin-top:.5em;font-family:"Newsreader",serif;font-style:italic;font-weight:500;text-transform:none;letter-spacing:-.01em;font-size:clamp(20px,1.7vw,26px);line-height:1.15;color:var(--ochre)}
+.ticket .facts{display:grid;gap:6px;color:var(--forest-2);font-size:clamp(16px,1.15vw,18px)}
+.ticket .facts b{color:var(--forest)}
+.ticket .facts .note{font-size:15px;color:var(--forest-3);margin-top:6px;padding-top:12px;border-top:1px solid var(--line)}
+.ticket .act{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:4px}
+.ticket .act .fine{font-size:14px;color:var(--forest-3)}
+@media(max-width:600px){.ticket .act .btn{width:100%}}
+
+/* Postmark on confirmed camps, rubber stamp on open ones */
+.postmark{position:absolute;right:clamp(14px,2vw,24px);top:clamp(14px,2vw,24px);width:clamp(96px,10vw,124px);aspect-ratio:1;border-radius:50%;display:grid;place-content:center;text-align:center;color:var(--paper);background:rgba(20,40,29,.28);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);box-shadow:inset 0 0 0 2px rgba(255,252,244,.9),inset 0 0 0 6px rgba(255,252,244,0),inset 0 0 0 7.5px rgba(255,252,244,.6);transform:rotate(-9deg)}
+.postmark b{font-family:"Archivo";font-weight:900;font-size:clamp(28px,3vw,38px);letter-spacing:-.03em;line-height:.9}
+.postmark span{font-family:"Archivo";font-weight:800;font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-top:4px}
+.rubber{position:absolute;right:clamp(14px,2vw,26px);top:clamp(16px,2.4vw,30px);font-family:"Archivo";font-weight:900;font-size:clamp(18px,1.8vw,24px);line-height:.95;letter-spacing:.06em;text-transform:uppercase;text-align:center;color:var(--paper);padding:10px 14px;border:3px solid currentColor;border-radius:8px;outline:1.5px solid currentColor;outline-offset:3px;transform:rotate(8deg);text-shadow:0 1px 8px rgba(20,40,29,.35);background:rgba(155,72,46,.55)}
+
+/* Drift on the ticket photos (toggled by interest.js) */
 @keyframes drift-a{from{transform:scale(1.06) translate3d(0,0,0)}to{transform:scale(1.14) translate3d(-1.6%,-1.2%,0)}}
-@keyframes drift-b{from{transform:scale(1.06) translate3d(0,0,0)}to{transform:scale(1.14) translate3d(1.4%,-1.6%,0)}}
 @keyframes drift-c{from{transform:scale(1.06) translate3d(0,0,0)}to{transform:scale(1.14) translate3d(0,1.8%,0)}}
-@keyframes breathe{from{opacity:.0}to{opacity:.22}}
-.camp .media img{transform:scale(1.06)}
 .camp.live .media img{animation:var(--drift) ease-in-out infinite alternate}
 .camp.live.a .media img{animation-name:drift-a}
-.camp.live.b .media img{animation-name:drift-b}
 .camp.live.c .media img{animation-name:drift-c}
-.camp .light{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;background:radial-gradient(60% 80% at 80% 20%,rgba(214,166,64,.35),transparent 70%)}
-.camp.live .light{animation:breathe calc(var(--drift) * .6) ease-in-out infinite alternate}
-@media(prefers-reduced-motion:reduce){
-  .camp.live .media img,.camp.live .light{animation:none}
-  .camp .media img{transform:scale(1.04)}
-  html{scroll-behavior:auto}
-}
-.board .shared{padding:clamp(22px,3vw,36px) var(--wrap) clamp(40px,6vw,72px);display:grid;gap:10px;color:#C9CBBE;max-width:48em}
-.board .shared b{color:var(--bone)}
+body.motion-paused .camp .media img,body.motion-paused .badge svg.ring{animation:none!important}
+.board .shared{margin-top:clamp(32px,4vw,48px);display:grid;gap:8px;max-width:46em;color:var(--forest-2);font-size:16px}
 
-/* ---------- Planned / still open ---------- */
-.ledger{padding:clamp(56px,8vw,112px) var(--wrap);display:grid;gap:32px}
-.ledger h2{font-size:clamp(30px,3.8vw,52px);max-width:14em}
-.cols{display:grid;gap:28px}
-@media(min-width:48rem){.cols{grid-template-columns:1fr 1fr;gap:48px}}
-.col h3{font-family:"Archivo";font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--gold-deep);padding-bottom:12px;border-bottom:2px solid var(--night)}
+/* Motion toggle */
+.motion-toggle{appearance:none;-webkit-appearance:none;flex:none;display:grid;place-items:center;width:44px;height:44px;padding:0;margin:0;border:0;border-radius:50%;background:none;color:var(--forest);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.motion-toggle[hidden]{display:none}
+.motion-toggle .disc{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--paper);box-shadow:0 0 0 1px var(--line);transition:background .2s,box-shadow .2s}
+.motion-toggle:hover .disc{box-shadow:0 0 0 1.5px var(--forest)}
+.motion-toggle:active .disc{transform:scale(.94)}
+.motion-toggle:focus-visible{outline:3px solid var(--ochre);outline-offset:-4px}
+.motion-toggle svg{width:10px;height:10px;fill:currentColor}
+.motion-toggle .i-play{display:none}
+.motion-toggle[data-state="paused"] .i-pause{display:none}
+.motion-toggle[data-state="paused"] .i-play{display:block;transform:translateX(.5px)}
+
+/* ---------- Packing list ---------- */
+.ledger{position:relative;padding:clamp(64px,9vw,128px) var(--wrap);display:grid;gap:clamp(32px,4vw,56px)}
+@media(min-width:64rem){.ledger{grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);align-items:start}.ledger .intro{position:sticky;top:120px}}
+.ledger .intro p.lead{max-width:22em}
+.paper{position:relative;background:var(--paper);border-radius:6px;padding:clamp(28px,4vw,52px) clamp(22px,4vw,52px) clamp(24px,3vw,40px);box-shadow:0 1px 2px rgba(20,40,29,.08),0 30px 60px -40px rgba(20,40,29,.5)}
+@media(min-width:64rem){.paper{transform:rotate(.6deg)}}
+.paper::before{content:"";position:absolute;top:-14px;left:50%;width:120px;height:30px;transform:translateX(-50%) rotate(-2deg);background:rgba(242,193,78,.55);box-shadow:0 1px 2px rgba(20,40,29,.1)}
+.cols{display:grid;gap:36px}
+@media(min-width:48rem){.cols{grid-template-columns:1fr 1fr;gap:44px}}
+.col h3{font-family:"Newsreader",serif;font-style:italic;font-weight:500;font-size:clamp(26px,2.2vw,32px);letter-spacing:-.01em;padding-bottom:8px}
 .col ul{list-style:none}
-.col li{padding:12px 0;border-bottom:1px solid var(--bone-3);display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start}
-.col li::before{content:"";width:10px;height:10px;border-radius:50%;margin-top:8px;background:var(--night)}
-.col.open li::before{background:transparent;border:1.5px solid var(--moss);width:9px;height:9px}
-.col.open li{color:#3F4238}
-.ledger .fine{color:var(--moss);max-width:40em}
+.col li{position:relative;padding:12px 0 12px 38px;line-height:1.4;border-bottom:1px dashed var(--line)}
+.col li::before{content:"";position:absolute;left:0;top:12px;width:22px;height:22px;border-radius:5px;box-shadow:inset 0 0 0 1.6px rgba(20,40,29,.5)}
+.col.done li::after{content:"";position:absolute;left:2px;top:6px;width:26px;height:26px;background:var(--terra);
+  -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M3.5 13.2c2.2 1.1 3.8 2.9 5.2 5.3 2.9-6 6.6-10.4 11.8-14' fill='none' stroke='black' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/contain no-repeat;
+  mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M3.5 13.2c2.2 1.1 3.8 2.9 5.2 5.3 2.9-6 6.6-10.4 11.8-14' fill='none' stroke='black' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/contain no-repeat}
+.col.open li{color:var(--forest-2)}
+.col.open li::before{box-shadow:inset 0 0 0 1.6px rgba(20,40,29,.3)}
+.ledger .fine{margin-top:28px;font-size:15px;color:var(--forest-3);max-width:40em}
 
-/* ---------- Evergreen sections (shortened versions of the live sections) ---------- */
-.section{padding:clamp(56px,8vw,112px) var(--wrap)}
-.section h2{font-size:clamp(30px,3.8vw,52px);max-width:14em;margin-top:12px}
-.section .lead{font-size:clamp(18px,1.4vw,21px);margin-top:20px}
-.two{display:grid;gap:32px}
-@media(min-width:64rem){.two{grid-template-columns:1.1fr 1fr;gap:64px;align-items:center}}
-.photo{overflow:hidden;background:var(--night-2)}
-.photo img{width:100%;height:100%;object-fit:cover}
-.dark{background:var(--night);color:var(--bone)}
-.dark .section h2{color:var(--bone)}
-.days{list-style:none;display:grid;gap:0;margin-top:28px}
-.days li{display:grid;grid-template-columns:52px 1fr;gap:16px;padding:18px 0;border-top:1px solid rgba(9,19,15,.18)}
-.dark .days li{border-color:rgba(240,241,235,.18)}
-.days b{font-family:"Archivo";font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);padding-top:4px}
-.dark .days b{color:var(--gold)}
-.days h3{font-size:clamp(20px,1.6vw,24px);margin-bottom:6px}
-.hosts{display:grid;gap:28px;margin-top:36px}
-@media(min-width:48rem){.hosts{grid-template-columns:1fr 1fr;gap:40px}}
-.hosts-photo{aspect-ratio:4/3;border-radius:4px;margin-top:36px}
-.hosts-photo img{object-position:52% 40%}
-@media(min-width:48rem){.hosts-photo{aspect-ratio:3/2}}
-.hosts-photo+.hosts{margin-top:8px}
-.host h3{font-size:clamp(22px,1.8vw,26px);margin-top:16px}
-.host .where{color:var(--moss);font-weight:600}
-.dark .host .where{color:#B9BCAE}
-.steps{list-style:none;display:grid;gap:0;margin-top:28px;counter-reset:s}
-@media(min-width:48rem){.steps{grid-template-columns:1fr 1fr;column-gap:48px}}
-.steps li{counter-increment:s;display:grid;grid-template-columns:40px 1fr;gap:14px;padding:16px 0;border-top:1px solid rgba(9,19,15,.18)}
-.steps li::before{content:counter(s,decimal-leading-zero);font-family:"Archivo";font-weight:800;color:var(--gold-deep);padding-top:3px}
-.steps h3{font-size:18px;margin-bottom:4px}
+/* ---------- A camp day: the sun arc ---------- */
+.dayband{position:relative;background:linear-gradient(180deg,var(--sky) 0%,#E4EBE6 100%);padding:clamp(64px,9vw,128px) var(--wrap)}
+.dayband .two{display:grid;gap:40px;align-items:center}
+@media(min-width:64rem){.dayband .two{grid-template-columns:1.25fr 1fr;gap:64px}}
+.arc{position:relative;margin-top:clamp(40px,5vw,72px)}
+.arc svg.path{width:100%;height:auto;overflow:visible;display:none}
+.arc .moments{list-style:none;display:grid;gap:0}
+.arc .moments li{display:grid;grid-template-columns:44px 1fr;gap:16px;padding:18px 0;border-top:1px solid var(--line)}
+.arc .moments li::before{content:"";width:28px;height:28px;border-radius:50%;margin-top:2px;background:var(--c,#F2C14E);box-shadow:0 0 0 5px color-mix(in srgb,var(--c,#F2C14E) 28%,transparent)}
+.arc .moments li:nth-child(1){--c:#F6D88A}.arc .moments li:nth-child(2){--c:#F2C14E}.arc .moments li:nth-child(3){--c:#F2A878}.arc .moments li:nth-child(4){--c:#D9775A}
+.arc h3{font-size:clamp(21px,1.7vw,26px);margin-bottom:6px}
+.arc h3 small{display:block;font-family:"Archivo";font-weight:800;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ochre);margin-bottom:8px}
+.arc p{color:var(--forest-2)}
+@media(min-width:60rem){
+  .arc svg.path{display:block}
+  .arc .moments{grid-template-columns:repeat(4,1fr);gap:28px;margin-top:20px}
+  .arc .moments li{display:block;border:0;padding:0;text-align:center}
+  .arc .moments p{max-width:17em;margin-inline:auto}
+  .arc .moments li::before{display:none}
+}
+.arc .p-line{fill:none;stroke:rgba(20,40,29,.32);stroke-width:2;stroke-dasharray:2 9;stroke-linecap:round}
+.arc .p-dot{fill:var(--paper);stroke:var(--forest);stroke-width:2}
+.arc .p-sun{fill:var(--sun);filter:drop-shadow(0 0 14px rgba(242,193,78,.9))}
+.arc .p-horizon{stroke:rgba(20,40,29,.2);stroke-width:1.5}
 
-/* ---------- Interest form ---------- */
-.interest{position:relative;isolation:isolate;overflow:hidden;background:var(--night);color:var(--bone)}
-.interest>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%;opacity:.32;z-index:-1}
-.interest::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(9,19,15,.75),rgba(9,19,15,.92))}
-.interest .inner{padding:clamp(64px,9vw,128px) var(--wrap);display:grid;gap:36px}
-@media(min-width:64rem){.interest .inner{grid-template-columns:1fr 1fr;gap:72px;align-items:start}}
-.interest h2{font-size:clamp(34px,4.6vw,64px);margin-top:12px}
-.interest .lead{color:#E4E6DC;margin-top:18px;max-width:28em}
-form{display:grid;gap:22px;max-width:34rem}
-fieldset{border:0;display:grid;gap:8px}
-legend{font-weight:700;margin-bottom:10px;font-size:1.05rem}
-.check{display:grid;grid-template-columns:28px 1fr;gap:14px;align-items:start;padding:14px 16px;border:1.5px solid rgba(240,241,235,.28);border-radius:10px;cursor:pointer;background:rgba(9,19,15,.35);transition:border-color .15s,background .15s}
-.check:has(input:checked){border-color:var(--gold);background:rgba(214,166,64,.12)}
-.check:has(input:focus-visible){outline:3px solid var(--gold);outline-offset:2px}
-.check input{width:24px;height:24px;margin-top:2px;accent-color:var(--gold);cursor:pointer}
-.check b{display:block;font-size:1.05rem}
-.check span{display:block;color:#C9CBBE;font-size:.92rem;margin-top:2px}
-.field{display:grid;gap:6px}
-.field label{font-weight:700}
-.field input{font:inherit;min-height:52px;padding:.6em .9em;border-radius:8px;border:1.5px solid rgba(240,241,235,.35);background:rgba(240,241,235,.06);color:var(--bone)}
-.field input::placeholder{color:#8F927F}
-.field .hint{font-size:.9rem;color:#B9BCAE}
-.form-foot{display:grid;gap:10px}
-.form-foot .fine{font-size:.92rem;color:#B9BCAE}
-.ok{display:none;border:1.5px solid var(--gold);border-radius:12px;padding:20px;background:rgba(214,166,64,.1)}
-.ok h3{font-size:22px;margin-bottom:8px}
-.ok p+p{margin-top:8px}
-form.sent{display:none}
-form.sent+.ok{display:block}
+/* Polaroid with the coast film */
+.coastal-film{justify-self:center;width:100%;max-width:340px;background:var(--paper);padding:12px 12px 0;border-radius:4px;box-shadow:0 2px 4px rgba(20,40,29,.08),0 40px 70px -40px rgba(20,40,29,.6);transform:rotate(2.2deg)}
+.film-frame{position:relative;aspect-ratio:9/16;overflow:hidden;background:var(--sky-2)}
+.film-frame img,.film-frame video{width:100%;height:100%;object-fit:cover}
+.film-frame video{position:absolute;inset:0}
+.film-frame .motion-toggle{position:absolute;right:4px;bottom:4px;z-index:2}
+.coastal-film figcaption{font-family:"Newsreader",serif;font-style:italic;font-size:20px;line-height:1.2;padding:16px 6px 18px;color:var(--forest-2)}
 
-/* ---------- Footer ---------- */
-footer{padding:36px var(--wrap) 48px;font-size:15px;color:var(--moss);display:grid;gap:8px}
-footer .brand{color:var(--night);font-size:14px}
-footer a{color:var(--night)}
-footer .proto{font-family:"Archivo";font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:11px;color:var(--gold-deep)}
-/* ---------- Partner credit (SERPAclimbing), sits inside #hosts after .hosts ---------- */
-.partner{display:grid;grid-template-columns:auto 1fr;align-items:center;column-gap:clamp(20px,3vw,36px);row-gap:18px;margin-top:clamp(40px,5vw,64px);padding-top:clamp(22px,2.6vw,30px);border-top:1px solid rgba(9,19,15,.18)}
+/* ---------- Weather ---------- */
+.weather{position:relative;background:var(--sand);padding:clamp(64px,9vw,128px) var(--wrap)}
+.weather .two{display:grid;gap:48px;align-items:center}
+@media(min-width:56rem){.weather .two{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:72px}}
+.snap{position:relative;justify-self:center;width:min(100%,420px);background:var(--paper);padding:14px 14px 56px;box-shadow:0 2px 4px rgba(20,40,29,.08),0 40px 70px -40px rgba(20,40,29,.6);transform:rotate(-3deg)}
+.snap img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
+.snap::before{content:"";position:absolute;top:-12px;left:28px;width:96px;height:28px;transform:rotate(-8deg);background:rgba(221,229,210,.85);box-shadow:0 1px 2px rgba(20,40,29,.1)}
+.snap figcaption{position:absolute;left:18px;right:18px;bottom:14px;font-family:"Newsreader",serif;font-style:italic;font-size:19px;color:var(--forest-2)}
+.weather p+p{margin-top:14px;color:var(--forest-2);max-width:32em}
+
+/* ---------- Hosts ---------- */
+.hostsec{position:relative;padding:clamp(64px,9vw,128px) var(--wrap)}
+.hostsec .lead{max-width:34em}
+.host-note{margin-top:14px;font-size:15px;max-width:48em;color:var(--forest-3)}
+.hosts-photo{position:relative;margin-top:clamp(36px,4vw,56px);border-radius:22px;overflow:hidden;aspect-ratio:4/3;background:var(--sky-2)}
+@media(min-width:48rem){.hosts-photo{aspect-ratio:2/1}}
+.hosts-photo img{width:100%;height:100%;object-fit:cover;object-position:52% 34%}
+.tag{display:none}
+@media(min-width:48rem){
+  .tag{display:flex;align-items:center;gap:10px;position:absolute;bottom:clamp(18px,2.4vw,32px);padding:10px 16px 10px 14px;border-radius:999px;background:rgba(255,252,244,.94);font-family:"Newsreader",serif;font-style:italic;font-size:clamp(19px,1.6vw,23px);line-height:1;box-shadow:0 10px 30px -12px rgba(20,40,29,.5)}
+  .tag small{font-family:"Archivo";font-style:normal;font-weight:800;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ochre)}
+  .tag.l{left:clamp(18px,2.4vw,32px);transform:rotate(-2deg)}
+  .tag.r{right:clamp(18px,2.4vw,32px);transform:rotate(2deg)}
+}
+.hosts{display:grid;gap:28px;margin-top:clamp(28px,3vw,40px)}
+@media(min-width:48rem){.hosts{grid-template-columns:1fr 1fr;gap:56px}}
+.host h3{font-size:clamp(22px,1.8vw,28px)}
+.host .where{display:inline-block;margin:8px 0 10px;font-family:"Archivo";font-weight:800;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ochre)}
+.host p:last-child{color:var(--forest-2)}
+.partner{display:grid;grid-template-columns:auto 1fr;align-items:center;column-gap:clamp(20px,3vw,36px);row-gap:18px;margin-top:clamp(48px,6vw,80px);padding-top:clamp(24px,2.6vw,32px);border-top:1px solid var(--line)}
 .partner .kicker{grid-column:1/-1}
 .partner-logo{display:block;height:clamp(84px,8vw,108px);width:auto}
-.partner-text{padding-left:clamp(20px,3vw,36px);border-left:1px solid rgba(9,19,15,.18);max-width:24rem}
+.partner-text{padding-left:clamp(20px,3vw,36px);border-left:1px solid var(--line);max-width:24rem}
 .partner-text h3{font-size:clamp(20px,1.6vw,24px);line-height:1.08}
-.partner-text .where{margin-top:6px;color:var(--moss);font-weight:600}
-.dark .partner{border-top-color:rgba(240,241,235,.18)}
-.dark .partner-text{border-left-color:rgba(240,241,235,.18)}
-.dark .partner-text .where{color:#B9BCAE}
+.partner-text .where{margin-top:6px;color:var(--forest-3);font-weight:600}
 .partner-text .where span{white-space:nowrap}
-@media(max-width:30rem){.partner-text .where span{display:block}.partner-text .where .sep{display:none}}
 
-</style><link rel="stylesheet" href="/styles/three-camps.css"><link rel="stylesheet" href="/styles/light.css">
+/* ---------- How it works: the route to camp ---------- */
+.route{position:relative;background:var(--sage);padding:clamp(64px,9vw,128px) var(--wrap) clamp(96px,12vw,170px);
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='720' height='480' viewBox='0 0 720 480' fill='none' stroke='%2314281D' stroke-opacity='.08' stroke-width='1.3'><path d='M360 70c110 0 205 50 205 135s-85 150-205 150-220-50-220-140S250 70 360 70z'/><path d='M362 112c80 0 150 35 150 95s-65 108-150 108-162-35-162-102 82-101 162-101z'/><path d='M366 156c48 0 92 22 92 56s-42 63-95 63-98-22-98-60 53-59 101-59z'/><path d='M370 196c20 0 38 9 38 22s-18 25-40 25-40-9-24-30 6-17 26-17z'/><path d='M-20 400c95-36 190 12 285-12s180-84 285-60 165 48 190 36'/><path d='M-20 448c105-30 200 18 295-6s180-72 285-48 155 42 180 30'/><path d='M-20 30c85 24 145-24 240-12s130 48 205 24 160-30 315-6'/></svg>");background-size:720px 480px}
+.route .lead{max-width:30em}
+.steps{list-style:none;counter-reset:s;display:grid;gap:0;margin-top:clamp(40px,5vw,64px);position:relative}
+.steps li{counter-increment:s;position:relative;display:grid;align-content:start;grid-template-columns:56px 1fr;gap:18px;padding:0 0 30px}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--paper);font-family:"Archivo";font-weight:900;font-size:17px;color:var(--forest);box-shadow:0 0 0 1.5px var(--forest),0 0 0 6px var(--sage);position:relative;z-index:1}
+.steps li::after{content:"";position:absolute;left:21px;top:44px;bottom:0;border-left:2px dashed rgba(20,40,29,.35)}
+.steps li:last-child::after{display:none}
+.steps li:last-child::before{background:var(--sun)}
+.steps h3{font-size:clamp(19px,1.4vw,22px);margin:10px 0 6px}
+.steps p{color:var(--forest-2);max-width:26em}
+@media(min-width:64rem){
+  .steps{grid-template-columns:repeat(3,1fr);column-gap:40px;row-gap:48px}
+  .steps li{grid-template-columns:1fr;gap:6px;padding:0}
+  .steps li::after{left:44px;right:-40px;top:21px;bottom:auto;border-left:0;border-top:2px dashed rgba(20,40,29,.35)}
+  .steps li:nth-child(3n)::after{display:none}
+  .steps li:nth-child(n+4){transform:translateY(clamp(0px,2vw,28px))}
+}
+
+/* ---------- Interest form: sunset ---------- */
+.interest{position:relative;isolation:isolate;overflow:hidden;padding:clamp(72px,9vw,128px) var(--wrap) clamp(110px,13vw,190px);
+  background:linear-gradient(180deg,#F5DDA8 0%,#F4C48E 38%,#EE9F79 72%,#DB7C60 100%)}
+.interest .sunball{position:absolute;z-index:-1;left:clamp(-120px,-4vw,-40px);bottom:clamp(-220px,-14vw,-90px);width:clamp(340px,46vw,720px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 50%,#FFE6A6 0%,#FFD27F 45%,rgba(255,210,127,0) 70%);opacity:.9}
+.interest .inner{display:grid;gap:40px}
+@media(min-width:64rem){.interest .inner{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:72px;align-items:start}.interest .copy{position:sticky;top:120px}}
+.interest .kicker{color:#5A3E0B}
+.interest h2{margin-top:16px}
+.interest h2 em{color:#6B3A12}
+.interest .lead{color:#3B3020;max-width:26em}
+.month-help{margin-top:16px;color:#4A3B26;font-size:16px}
+.postcard{position:relative;background:var(--paper);border-radius:10px;padding:clamp(24px,3.6vw,48px);box-shadow:0 2px 4px rgba(20,40,29,.08),0 50px 80px -50px rgba(60,20,10,.75);
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .4 0 0 0 0 .3 0 0 0 0 .2 0 0 0 .05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.postcard .stamp{position:absolute;top:clamp(18px,2.4vw,28px);right:clamp(18px,2.4vw,28px);width:70px;height:82px;padding:6px;background:var(--sun);display:grid;place-items:center;transform:rotate(4deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,radial-gradient(circle 3.2px,#0000 95%,#000) -5px -5px/10px 10px;mask:linear-gradient(#000 0 0) content-box,radial-gradient(circle 3.2px,#0000 95%,#000) -5px -5px/10px 10px}
+.postcard .stamp img{width:44px}
+.postcard .pm{position:absolute;top:clamp(30px,3.4vw,42px);right:clamp(72px,7vw,92px);width:92px;height:92px;border-radius:50%;box-shadow:inset 0 0 0 1.5px rgba(155,72,46,.55);display:grid;place-content:center;text-align:center;font-family:"Archivo";font-weight:800;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(155,72,46,.75);transform:rotate(-12deg);pointer-events:none}
+.postcard .pm b{font-size:15px;letter-spacing:.04em}
+@media(max-width:480px){.postcard .pm{display:none}legend{padding-right:90px}}
+form{display:grid;gap:22px}
+fieldset{border:0;display:grid;gap:10px}
+legend{font-family:"Newsreader",serif;font-style:italic;font-weight:500;font-size:clamp(24px,2vw,30px);margin-bottom:clamp(30px,3vw,44px);padding-right:170px}
+.check{display:grid;grid-template-columns:28px 1fr;gap:14px;align-items:start;padding:14px 16px;border-radius:12px;cursor:pointer;background:#fff;box-shadow:inset 0 0 0 1.5px rgba(20,40,29,.18);transition:box-shadow .2s,background .2s,transform .3s var(--ease)}
+.check:hover{box-shadow:inset 0 0 0 1.5px rgba(20,40,29,.45)}
+.check:has(input:checked){background:#FFF6E2;box-shadow:inset 0 0 0 2px var(--terra)}
+.check:has(input:focus-visible){outline:3px solid var(--ochre);outline-offset:2px}
+.check input{width:22px;height:22px;margin-top:2px;accent-color:var(--terra);cursor:pointer}
+.check b{display:block;font-size:1.05rem}
+.check span{display:block;color:var(--forest-3);font-size:.92rem;margin-top:1px}
+.field{display:grid;gap:6px}
+.field label{font-weight:700}
+.field label span{font-weight:400;color:var(--forest-3)}
+.field input{font:inherit;min-height:52px;padding:.55em .1em;border:0;border-bottom:1.5px solid rgba(20,40,29,.35);border-radius:0;background:transparent;color:var(--forest);transition:border-color .2s}
+.field input:hover{border-bottom-color:var(--forest)}
+.field input:focus-visible{outline:none;border-bottom:2.5px solid var(--terra);background:rgba(242,193,78,.08)}
+.field input::placeholder{color:#7C7F70}
+.form-foot{display:grid;gap:10px;margin-top:6px}
+.form-foot .btn{width:100%}
+.form-foot .fine{font-size:.92rem;color:var(--forest-3)}
+.form-foot a{text-decoration:underline;text-underline-offset:.2em}
+.honeypot{position:absolute;left:-9999px;width:0;height:0;opacity:0}
+.cbtc-inline-success{font-family:"Newsreader",serif;font-style:italic;font-size:clamp(22px,2vw,28px);line-height:1.35;padding:clamp(84px,8vw,104px) 0 8px}
+[data-form-error]{color:#9B2C12;font-weight:600}
+
+/* ---------- Footer: night ---------- */
+footer{position:relative;background:var(--forest);color:#DCE0D3;padding:clamp(56px,7vw,96px) var(--wrap) 40px;font-size:15px;
+  background-image:radial-gradient(1.8px 1.8px at 12% 22%,#fff8 50%,transparent 51%),radial-gradient(1.6px 1.6px at 28% 64%,#fffb 50%,transparent 51%),radial-gradient(2.0px 2.0px at 46% 18%,#fff9 50%,transparent 51%),radial-gradient(1.6px 1.6px at 63% 48%,#fffa 50%,transparent 51%),radial-gradient(1.8px 1.8px at 78% 26%,#fff8 50%,transparent 51%),radial-gradient(1.6px 1.6px at 91% 58%,#fffb 50%,transparent 51%),radial-gradient(1.6px 1.6px at 36% 38%,#fff9 50%,transparent 51%),radial-gradient(1.9px 1.9px at 85% 12%,#fff7 50%,transparent 51%)}
+footer .grid{display:grid;gap:28px}
+@media(min-width:56rem){footer .grid{grid-template-columns:1.2fr 1fr;align-items:end}}
+footer .brand{color:var(--ivory);font-size:15px}
+footer .brand img{filter:invert(1) sepia(.15)}
+footer .sign{font-family:"Newsreader",serif;font-style:italic;font-size:clamp(28px,3vw,44px);line-height:1.05;color:var(--ivory);margin-top:22px;max-width:14em}
+footer .sign em{color:var(--sun)}
+footer p{max-width:44em}
+footer a{color:var(--ivory)}
+footer .meta{display:grid;gap:10px;color:#B7BFAF}
+footer .moon{position:absolute;right:clamp(24px,8vw,120px);top:clamp(28px,4vw,56px);width:38px;height:38px;border-radius:50%;box-shadow:inset -9px -3px 0 0 #E9E4D4;rotate:-20deg;opacity:.9}
+
+/* ---------- Cookie notice (styles injected by meta-pixel-consent.js) ---------- */
+body:has(.hero) [data-marketing-consent-banner]{position:relative;inset:auto;display:block;padding:16px;background:var(--sand)}
+body:has(.hero) .cbtc-consent-card{margin:auto;background:var(--paper);color:var(--forest);border-color:var(--line)}
+body:has(.hero) .cbtc-consent-title{color:var(--ochre)}
+body:has(.hero) .cbtc-consent-copy,body:has(.hero) .cbtc-consent-state{color:var(--forest-2)}
+body:has(.hero) .cbtc-consent-actions [data-marketing-reject]{background:transparent;color:var(--forest);box-shadow:inset 0 0 0 1px rgba(20,40,29,.35)}
+body:has(.hero) [data-marketing-privacy]{background:rgba(255,252,244,.94);color:var(--forest);box-shadow:inset 0 0 0 1px rgba(20,40,29,.25)}
+body:has([data-marketing-consent-banner]) .nav{position:absolute;top:var(--consent-height,0px)}
+body:has([data-marketing-consent-banner]) [data-marketing-privacy]{display:none}
+section{scroll-margin-top:80px}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
+  .js .rv{opacity:1;transform:none}
+}
+</style>
 <script async src="https://plausible.io/js/pa-Ph375L-pQZDyOfoQSaRdy.js"></script><script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)};plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script></head>
 <body>
 
 <nav class="nav" aria-label="Primary navigation">
-  <a class="brand" href="#top"><img src="/images/mark.svg" alt="" width="44" height="44">Costa Blanca Trail Camp</a>
+  <a class="brand" href="#top"><img src="/images/mark.svg" alt="" width="42" height="42">Costa Blanca Trail Camp</a>
   <div class="links">
     <a href="#camps">The camps</a><a href="#days">Your days</a><a href="#hosts">Hosts</a><a href="#how">How it works</a>
   </div>
-  <a class="btn" href="#interest">Send me the dates</a>
+  <a class="btn" href="#interest">Get the details</a>
 </nav>
 
-<header id="top" class="hero">
-  <img src="/images/sunrise-valley-2200.webp" srcset="/images/sunrise-valley-1100.webp 1100w, /images/sunrise-valley-2200.webp 2200w" sizes="100vw" alt="Sunrise over a green valley and layers of mountain ridges on the Costa Blanca" width="2200" height="1650" fetchpriority="high">
+<div class="dayrail" aria-hidden="true"><span class="track"></span><span class="sun"></span><span class="time">07:55</span><span class="cap">A February day in Dénia</span></div>
+
+<header id="top" class="hero" data-time="07:55">
   <div class="inner">
     <p class="kicker">Women's trail running · Costa Blanca · Winter–Spring 2027</p>
     <h1>Make room for<span class="accent"> the mountains</span></h1>
-    <p class="lede">Mountain trails, time for yourself and a women’s group to share it with. Two camps planned: February and late March to early April 2027.</p>
-    <p class="season" aria-label="Winter–Spring 2027 camps">
-February and late March to early April 2027. Exact dates coming soon.    </p>
-    <div class="acts">
-      <a class="btn" href="#camps">See the camps</a>
-      <a class="btn ghost" href="#interest">Send me the dates</a>
-    </div>
+    <p class="lede">Mountain trails, time for yourself and a women’s group to share it with. Next camp: 3–8 February 2027. Another follows in late March to early April.</p>
+    <div class="acts"><a class="stub-line" href="/?camp=february#interest" data-camp="february"><span class="lbl">Next camp</span><span class="when"><b>3–8 February</b> 2027</span><span class="go">Get the details <span aria-hidden="true">→</span></span></a><a class="btn ghost" href="#camps">See the camps</a></div>
+    <p class="then">Then late March to early April. Dates coming soon.</p>
   </div>
+  <div class="badge" aria-hidden="true">
+    <svg class="ring" viewBox="0 0 200 200"><defs><path id="ring" d="M100 100m-78 0a78 78 0 1 1 156 0a78 78 0 1 1-156 0"/></defs><text font-family="Archivo" font-weight="800" font-size="15.5" letter-spacing="4.6" fill="currentColor"><textPath href="#ring">WOMEN’S TRAIL CAMP · COSTA BLANCA · 2027 ·</textPath></text></svg>
+    <span class="core"><img src="/images/mark.svg" alt="" width="40" height="40"></span>
+  </div>
+  <div class="photo">
+    <img src="/images/sunrise-valley-2200.webp" srcset="/images/sunrise-valley-1100.webp 1100w, /images/sunrise-valley-2200.webp 2200w" sizes="100vw" alt="Sunrise over a green valley and layers of mountain ridges on the Costa Blanca" width="2200" height="1650" fetchpriority="high">
+  </div>
+  <svg class="ridge" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path fill="#DDE5D2" d="M0 90V58L70 44 128 54 220 20 284 42 324 34 420 64 508 24 578 48 630 36 740 72 824 44 890 60 980 16 1056 46 1114 36 1218 70 1288 48 1354 60 1440 40V90Z"/></svg>
 </header>
 
-<main><section class="board" id="camps" aria-labelledby="camps-h">
+<main>
+<section class="board" id="camps" aria-labelledby="camps-h" data-time="08:40">
   <div class="head">
-    <div class="head-top"><p class="kicker">Two camps to choose from</p><button type="button" class="motion-toggle" hidden aria-label="Pause animations" title="Pause animations"><span class="disc"><svg viewBox="0 0 10 10" aria-hidden="true" focusable="false"><path class="i-pause" d="M1.5 1h2.6v8H1.5zM5.9 1h2.6v8H5.9z"/><path class="i-play" d="M2 .8 9 5 2 9.2z"/></svg></span></button></div>
-    <div class="head-main"><h2 id="camps-h">Make room for your next mountain day</h2><p class="intro">February, or late March to early April? Tell us what could work. We’ll send the dates and details. You decide from there.</p></div>
+    <div class="head-top"><p class="kicker">Two camps, 2027</p><button type="button" class="motion-toggle" hidden aria-label="Pause animations" title="Pause animations"><span class="disc"><svg viewBox="0 0 10 10" aria-hidden="true" focusable="false"><path class="i-pause" d="M1.5 1h2.6v8H1.5zM5.9 1h2.6v8H5.9z"/><path class="i-play" d="M2 .8 9 5 2 9.2z"/></svg></span></button></div>
+    <div class="head-main"><h2 id="camps-h" class="rv">Pick your <em>mountain days</em></h2><p class="intro rv d1">February is set. Spring is still taking shape. Tell us what could work and we’ll send the details. You decide from there.</p></div>
   </div>
-
-<div class="rows"><article class="camp a" id="february" aria-labelledby="february-h"><div class="media"><img src="/images/coastal-golden-hour-1200.webp" alt="" width="1200" height="802" loading="lazy" decoding="async" style="object-position:50% 42%"></div><div class="light"></div><div class="grain"></div><div class="body"><div class="top"><span class="status ">Dates coming soon</span></div><h3 class="month" id="february-h">February<small>2027</small></h3><div class="facts"><p><b>Mountain days on the trails behind Dénia.</b> A small women’s group to share them with</p><p><b>For women who already run trails.</b> Climbs, rocky descents, hiking the steep bits</p><p class="note">Exact dates, number of days, hotel, rooms and prices to be confirmed.</p></div><div class="act"><a class="btn " href="/?camp=february#interest" data-camp="february">Send me February dates</a><span class="fine">No payment or commitment</span></div></div></article><article class="camp c" id="spring" aria-labelledby="spring-h"><div class="media"><img src="/images/cliff-and-valley-800.webp" alt="" width="800" height="1198" loading="lazy" decoding="async" style="object-position:50% 38%"></div><div class="light"></div><div class="grain"></div><div class="body"><div class="top"><span class="status soon">Details soon</span></div><h3 class="month" id="spring-h">Spring<small>Late March to early April 2027</small></h3><div class="facts"><p><b>More mountain days to look forward to.</b> Dates and details are on their way.</p><p class="note">Exact dates, duration, hosts, rooms and prices are still to be announced.</p></div><div class="act"><a class="btn ghost" href="/?camp=spring#interest" data-camp="spring">Tell me about Spring</a><span class="fine">No payment or commitment</span></div></div></article></div>  <div class="shared">
-    <p>The mountains behind Dénia. A women’s group to share them with. Each camp’s dates and details will be announced here.</p>
+  <div class="rows"><article class="camp ticket a" id="february" aria-labelledby="february-h"><div class="media"><img src="/images/coastal-golden-hour-1200.webp" alt="" width="1200" height="802" loading="lazy" decoding="async" style="object-position:50% 42%"><span class="postmark" aria-hidden="true"><b>3–8</b><span>Feb 2027</span></span></div><div class="body"><div class="top"><span class="status">Dates confirmed</span></div><h3 class="month" id="february-h">February<small>Wednesday 3 to Monday 8, 2027</small></h3><div class="facts"><p><b>Mountain days on the trails behind Dénia.</b> A small women’s group to share them with</p><p><b>For women who already run trails.</b> Climbs, rocky descents, hiking the steep bits</p><p class="note">Number of mountain days, hotel, rooms and prices to be confirmed.</p></div><div class="act"><a class="btn" href="/?camp=february#interest" data-camp="february">Send me the February details</a><span class="fine">No payment or commitment</span></div></div></article><article class="camp ticket c is-soon" id="spring" aria-labelledby="spring-h"><div class="media"><img src="/images/sunlit-rocky-trail-1200.webp" alt="" width="1200" height="802" loading="lazy" decoding="async" style="object-position:50% 55%"><span class="rubber" aria-hidden="true">Details<br>soon</span></div><div class="body"><div class="top"><span class="status soon">Details soon</span></div><h3 class="month" id="spring-h">Spring<small>Late March to early April 2027</small></h3><div class="facts"><p><b>More mountain days to look forward to.</b> Dates and details are on their way.</p><p class="note">Exact dates, duration, hosts, rooms and prices are still to be announced.</p></div><div class="act"><a class="btn ghost" href="/?camp=spring#interest" data-camp="spring">Tell me about Spring</a><span class="fine">No payment or commitment</span></div></div></article></div>
+  <div class="shared">
+    <p>The mountains behind Dénia. A women’s group to share them with. Each camp’s details will be announced here.</p>
     <p>Group size, nights and the hotel are confirmed camp by camp. We don't take payments before the required registration and insurance are in place.</p>
   </div>
 </section>
 
-<section class="ledger" aria-labelledby="ledger-h">
-  <div>
+<section class="ledger" aria-labelledby="ledger-h" data-time="09:30">
+  <div class="intro">
     <p class="kicker">A closer look at the camps</p>
-    <h2 id="ledger-h">The good part, and the practical part</h2>
+    <h2 id="ledger-h" class="rv" style="margin-top:16px">Packed, and <em>still packing</em></h2>
+    <p class="lead rv d1">The good part is sorted. The practical part is coming together, and you’ll hear the moment it does.</p>
   </div>
-  <div class="cols">
-    <div class="col">
-      <h3>What we’re planning</h3>
-      <ul>
-        <li>Mountain days on the trails behind Dénia</li>
-        <li>For women who already run trails</li>
-        <li>A small women-only group</li>
-        <li>Monika and Anna are planning the camps</li>
-      </ul>
+  <div class="paper rv d2">
+    <div class="cols">
+      <div class="col done">
+        <h3>In the bag</h3>
+        <ul>
+          <li>3–8 February 2027 for the first camp</li>
+          <li>Mountain days on the trails behind Dénia</li>
+          <li>For women who already run trails</li>
+          <li>A small women-only group</li>
+          <li>Monika and Anna are planning the camps</li>
+        </ul>
+      </div>
+      <div class="col open">
+        <h3>Still packing</h3>
+        <ul>
+          <li>Spring dates, somewhere in late March to early April</li>
+          <li>Number of mountain days and time on the trails each day</li>
+          <li>The hotel, rooms and any sauna or spa</li>
+          <li>What's included in the price, and prices</li>
+          <li>Exact routes, which depend on the weather</li>
+          <li>Group size for each camp</li>
+        </ul>
+      </div>
     </div>
-    <div class="col open">
-      <h3>Details still to come</h3>
-      <ul>
-        <li>Exact dates, arrival and departure days, number of nights</li>
-        <li>Number of mountain days and time on the trails each day</li>
-        <li>The hotel, rooms and any sauna or spa</li>
-        <li>What's included in the price, and prices</li>
-        <li>Exact routes, which depend on the weather</li>
-        <li>Group size for each camp</li>
-      </ul>
-    </div>
+    <p class="fine">Details for each camp will follow. Please wait for us to confirm your place and dates before booking travel.</p>
   </div>
-  <p class="fine">Details for each camp will follow. Please wait for us to confirm your place and dates before booking travel.</p>
 </section>
 
-<section class="section dark" id="days" aria-labelledby="days-h">
+<section class="dayband" id="days" aria-labelledby="days-h" data-time="11:00">
   <div class="two">
     <div>
       <p class="kicker">A camp day</p>
-      <h2 id="days-h">A climb. A view. No rush to be anywhere else</h2>
-      <p class="lead">Mountain days, with time to enjoy the hours between them. A taste of the camp, not a fixed timetable.</p>
-      <ul class="days">
-        <li><b>01</b><div><h3>Morning</h3><p>Coffee first. Check the weather, pack your bag and head for the trails.</p></div></li>
-        <li><b>02</b><div><h3>Trail</h3><p>Climb, run, hike the steep bits. Stop for the view without apologising for it.</p></div></li>
-        <li><b>03</b><div><h3>Recover</h3><p>Shoes off. Feet up. Time to let your legs catch up with you.</p></div></li>
-        <li><b>04</b><div><h3>Evening</h3><p>Stay for the conversation or take some quiet time. Both count as a good evening.</p></div></li>
-      </ul>
+      <h2 id="days-h" class="rv" style="margin-top:16px">A climb. A view. <em>No rush to be anywhere else</em></h2>
+      <p class="lead rv d1">Mountain days, with time to enjoy the hours between them. A taste of the camp, not a fixed timetable.</p>
     </div>
-    <figure class="coastal-film"><div class="film-frame"><img src="/media/coast-poster.webp" alt="A quiet view of the coast from the trail" width="720" height="1280" loading="lazy"><video muted loop playsinline preload="none" poster="/media/coast-poster.webp" data-src="/media/coast-loop.mp4" aria-hidden="true"></video><button type="button" class="motion-toggle" hidden aria-label="Pause animations" title="Pause animations"><span class="disc"><svg viewBox="0 0 10 10" aria-hidden="true" focusable="false"><path class="i-pause" d="M1.5 1h2.6v8H1.5zM5.9 1h2.6v8H5.9z"/><path class="i-play" d="M2 .8 9 5 2 9.2z"/></svg></span></button></div><figcaption>A little of the coast to look forward to</figcaption></figure>
+    <figure class="coastal-film rv d2"><div class="film-frame"><img src="/media/coast-poster.webp" alt="A quiet view of the coast from the trail" width="720" height="1280" loading="lazy"><video muted loop playsinline preload="none" poster="/media/coast-poster.webp" data-src="/media/coast-loop.mp4" aria-hidden="true"></video><button type="button" class="motion-toggle" hidden aria-label="Pause animations" title="Pause animations"><span class="disc"><svg viewBox="0 0 10 10" aria-hidden="true" focusable="false"><path class="i-pause" d="M1.5 1h2.6v8H1.5zM5.9 1h2.6v8H5.9z"/><path class="i-play" d="M2 .8 9 5 2 9.2z"/></svg></span></button></div><figcaption>A little of the coast to look forward to</figcaption></figure>
   </div>
-  <div class="two" style="margin-top:clamp(56px,8vw,112px)">
-    <div class="photo" style="aspect-ratio:4/5;max-height:640px"><img src="/images/cliff-and-valley-800.webp" alt="A sheer rock face above a green valley and mountain ridges beneath a cloud-filled sky" width="800" height="1198" loading="lazy" decoding="async"></div>
+  <div class="arc">
+    <svg class="path" viewBox="0 0 1000 200" aria-hidden="true"><line class="p-horizon" x1="0" y1="190" x2="1000" y2="190"/><path class="p-line" id="sunpath" d="M40 190C250-40 750-40 960 190"/><circle class="p-dot" cx="121" cy="123" r="7"/><circle class="p-dot" cx="375" cy="29" r="7"/><circle class="p-dot" cx="625" cy="29" r="7"/><circle class="p-dot" cx="879" cy="123" r="7"/><circle class="p-sun" r="15" cx="121" cy="123"/></svg>
+    <ul class="moments">
+      <li class="rv"><div><h3><small>Morning</small>Coffee first</h3><p>Check the weather, pack your bag and head for the trails.</p></div></li>
+      <li class="rv d1"><div><h3><small>Trail</small>Up you go</h3><p>Climb, run, hike the steep bits. Stop for the view without apologising for it.</p></div></li>
+      <li class="rv d2"><div><h3><small>Recover</small>Shoes off</h3><p>Feet up. Time to let your legs catch up with you.</p></div></li>
+      <li class="rv d3"><div><h3><small>Evening</small>Your call</h3><p>Stay for the conversation or take some quiet time. Both count as a good evening.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<section class="weather" aria-labelledby="weather-h" data-time="13:00">
+  <div class="two">
+    <figure class="snap rv"><img src="/images/cliff-and-valley-800.webp" alt="A sheer rock face above a green valley and mountain ridges beneath a cloud-filled sky" width="800" height="1198" loading="lazy" decoding="async"><figcaption>Clouds rolling in over the valley</figcaption></figure>
     <div>
       <p class="kicker">Whatever the weather</p>
-      <h2>Rain makes the coffee taste better</h2>
-      <p class="lead">We don’t make the rules. Some days bring blue skies. Others bring wind, wet shoes and an even better reason to warm up afterwards.</p>
-      <p style="margin-top:14px">We adapt the route to the weather, shorten the day when needed and only head out when it’s safe. The mountains get the final say.</p>
+      <h2 id="weather-h" class="rv" style="margin-top:16px">Rain makes the coffee <em>taste better</em></h2>
+      <p class="lead rv d1">We don’t make the rules. Some days bring blue skies. Others bring wind, wet shoes and an even better reason to warm up afterwards.</p>
+      <p class="rv d2">We adapt the route to the weather, shorten the day when needed and only head out when it’s safe. The mountains get the final say.</p>
     </div>
   </div>
 </section>
 
-<section class="section" id="hosts" aria-labelledby="hosts-h">
+<section class="hostsec" id="hosts" aria-labelledby="hosts-h" data-time="14:30">
   <p class="kicker">Your hosts</p>
-  <h2 id="hosts-h">Run with Monika &amp; Anna</h2>
-  <p class="lead measure">Two women who race internationally and love being out on the trails. Monika knows these Costa Blanca trails. Anna brings years of mountain running. They’re out there with you.</p><p class="host-note">They are experienced runners, not certified coaches. Hosts for each camp are confirmed with the dates.</p>
-  <div class="photo hosts-photo"><img src="/images/hosts-together-1600.webp" srcset="/images/hosts-together-800.webp 800w, /images/hosts-together-1600.webp 1600w" sizes="(min-width:80rem) 1200px, 100vw" alt="Anna Berglind Pálmadóttir, left, and Monika Fahle, right, smiling on a coastal trail above the sea" width="1600" height="1067" loading="lazy" decoding="async"></div>
+  <h2 id="hosts-h" class="rv" style="margin-top:16px">Run with Monika <em>&amp;</em> Anna</h2>
+  <p class="lead rv d1">Two women who race internationally and love being out on the trails. Monika knows these Costa Blanca trails. Anna brings years of mountain running. They’re out there with you.</p><p class="host-note">They are experienced runners, not certified coaches. Hosts for each camp are confirmed with the dates.</p>
+  <div class="hosts-photo rv">
+    <img src="/images/hosts-together-1600.webp" srcset="/images/hosts-together-800.webp 800w, /images/hosts-together-1600.webp 1600w" sizes="(min-width:80rem) 1300px, 100vw" alt="Anna Berglind Pálmadóttir, left, and Monika Fahle, right, smiling on a coastal trail above the sea" width="1600" height="1067" loading="lazy" decoding="async">
+    <p class="tag l" aria-hidden="true">Anna <small>Iceland</small></p>
+    <p class="tag r" aria-hidden="true">Monika <small>Lithuania</small></p>
+  </div>
   <div class="hosts">
-    <div class="host">
+    <div class="host rv">
       <h3>Anna Berglind Pálmadóttir</h3><p class="where">Iceland</p>
       <p>Icelandic national-team trail runner. Years of training and racing in the mountains, shared along the way.</p>
     </div>
-    <div class="host">
+    <div class="host rv d1">
       <h3>Monika Fahle</h3><p class="where">Lithuania</p>
       <p>Lithuanian national-team trail runner. Based on the Costa Blanca, sharing the trails she knows and loves.</p>
     </div>
@@ -332,52 +520,64 @@ February and late March to early April 2027. Exact dates coming soon.    </p>
   </div>
 </section>
 
-<section class="section dark" id="how" aria-labelledby="how-h" style="padding-top:clamp(48px,6vw,80px)">
+<section class="route" id="how" aria-labelledby="how-h" data-time="16:30">
   <p class="kicker">Before you pack your trail shoes</p>
-  <h2 id="how-h">Get the details. Meet us. Then decide</h2>
-  <p class="lead">For now, just tell us which months could work. No payment. No commitment.</p><ol class="steps">
-    <li><div><h3>Get the dates</h3><p>We’ll email the dates and details for the months you choose.</p></div></li>
-    <li><div><h3>Tell us about your running</h3><p>When applications open, share your trail experience and what you want from the camp.</p></div></li>
-    <li><div><h3>Meet the hosts</h3><p>Ask the questions that matter to you before deciding. Meetings open with applications.</p></div></li>
-    <li><div><h3>Find your group</h3><p>We consider trail experience, fitness and expectations before offering a place.</p></div></li>
-    <li><div><h3>Make it yours</h3><p>Once you’ve been offered a place and want to join, a deposit secures it. No payments before the required registration and insurance are in place.</p></div></li>
-    <li><div><h3>Meet the women you’ll run with</h3><p>An online catch-up before camp to talk travel, gear and the days ahead.</p></div></li>
+  <h2 id="how-h" class="rv" style="margin-top:16px">Get the details. Meet us. <em>Then decide</em></h2>
+  <p class="lead rv d1">For now, just tell us which camps could work. No payment. No commitment.</p><ol class="steps">
+    <li class="rv"><div><h3>Get the details</h3><p>We’ll email the dates and details for the camps you choose.</p></div></li>
+    <li class="rv d1"><div><h3>Tell us about your running</h3><p>When applications open, share your trail experience and what you want from the camp.</p></div></li>
+    <li class="rv d2"><div><h3>Meet the hosts</h3><p>Ask the questions that matter to you before deciding. Meetings open with applications.</p></div></li>
+    <li class="rv"><div><h3>Find your group</h3><p>We consider trail experience, fitness and expectations before offering a place.</p></div></li>
+    <li class="rv d1"><div><h3>Make it yours</h3><p>Once you’ve been offered a place and want to join, a deposit secures it. No payments before the required registration and insurance are in place.</p></div></li>
+    <li class="rv d2"><div><h3>Meet the women you’ll run with</h3><p>An online catch-up before camp to talk travel, gear and the days ahead.</p></div></li>
   </ol>
+  <svg class="ridge" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path fill="#F5DDA8" d="M0 90V40L84 58 154 32 250 66 308 52 418 82 490 38 554 58 642 50 746 86 822 56 912 74 974 50 1070 78 1150 62 1220 84 1324 44 1384 62 1440 54V90Z"/></svg>
 </section>
 
-<span id="waitlist"></span><span id="apply"></span><section class="interest" id="interest" aria-labelledby="int-h">
-  <img src="/images/coastal-golden-hour-1200.webp" alt="" width="1200" height="802" loading="lazy" decoding="async">
+<span id="waitlist"></span><span id="apply"></span><section class="interest" id="interest" aria-labelledby="int-h" data-time="18:20">
+  <div class="sunball" aria-hidden="true"></div>
   <div class="inner">
-    <div>
+    <div class="copy">
       <p class="kicker">Your next few days away</p>
-      <h2 id="int-h">Which month has your name on it?</h2>
-      <p class="lead">Tick any months that could work. We’ll email the dates and details so you can decide.</p><p class="month-help" id="month-help">Not sure yet? Leave the months blank and we’ll keep you updated.</p>
+      <h2 id="int-h" class="rv">Which month has <em>your name on it?</em></h2>
+      <p class="lead rv d1">Tick any camps that could work. We’ll email the dates and details so you can decide.</p><p class="month-help rv d2" id="month-help">Not sure yet? Leave them blank and we’ll keep you updated.</p>
     </div>
-    <div>
+    <div class="postcard rv d1">
+      <span class="stamp" aria-hidden="true"><img src="/images/mark.svg" alt="" width="44" height="44"></span>
+      <span class="pm" aria-hidden="true">Dénia<b>2027</b>Costa Blanca</span>
       <form data-form="interest">
         <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="honeypot"><fieldset aria-describedby="month-help">
           <legend>I’m thinking about</legend>
-<label class="check"><input type="checkbox" name="camps" value="february"><span><b>February 2027</b><span>Dates coming soon</span></span></label><label class="check"><input type="checkbox" name="camps" value="spring"><span><b>Late March to early April 2027</b><span>Details soon</span></span></label>          <label class="check"><input type="checkbox" name="camps" value="later"><div><b>None of these. Tell me about later camps</b></div></label>
+<label class="check"><input type="checkbox" name="camps" value="february"><span><b>3–8 February 2027</b><span>Dates confirmed</span></span></label><label class="check"><input type="checkbox" name="camps" value="spring"><span><b>Late March to early April 2027</b><span>Details soon</span></span></label>          <label class="check"><input type="checkbox" name="camps" value="later"><div><b>None of these. Tell me about later camps</b></div></label>
         </fieldset>
         <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required></div>
         <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" inputmode="email" autocomplete="email" required></div>
-        <div class="field"><label for="origin">Where are you coming from? <span style="font-weight:400;color:#5E6156">(optional)</span></label><input id="origin" name="from" autocomplete="off" placeholder="City or country"></div>
+        <div class="field"><label for="origin">Where are you coming from? <span>(optional)</span></label><input id="origin" name="from" autocomplete="off" placeholder="City or country"></div>
         <div class="form-foot">
-          <button class="btn" type="submit">Send me the dates</button>
+          <button class="btn" type="submit">Send me the details</button>
           <p class="fine">Dates and details by email. No payment or commitment.</p>
-          <p class="fine">We only use your details to send you the dates. <a href="/privacy" style="text-decoration:underline;text-underline-offset:.2em">Privacy policy.</a></p>
+          <p class="fine">We only use your details to send you the dates. <a href="/privacy">Privacy policy.</a></p>
         </div>
       </form>
-
     </div>
   </div>
+  <svg class="ridge" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path fill="#14281D" d="M0 90V52L92 22 156 40 236 28 306 58 402 12 460 34 564 24 630 50 718 14 790 34 850 26 960 60 1030 32 1114 48 1178 28 1274 58 1350 40 1440 48V90Z"/></svg>
 </section>
+</main>
 
-</main><footer>
-  <a class="brand" href="#top"><img src="/images/mark.svg" alt="" width="44" height="44">Costa Blanca Trail Camp</a>
-  <p>Winter–Spring 2027 · February and late March to early April · Costa Blanca, Spain. Women’s trail camps by Monika Fahle and Anna Berglind Pálmadóttir. Details confirmed camp by camp.</p>
-  <p><a aria-label="Instagram @costablancatrailcamp" href="https://www.instagram.com/costablancatrailcamp/">@costablancatrailcamp</a></p>
-  <p><a href="/checklist">Packing checklist</a> · <a href="/routes/benigembla">Trail notes</a> · <a href="/privacy">Privacy policy</a></p>
+<footer data-time="19:40">
+  <span class="moon" aria-hidden="true"></span>
+  <div class="grid">
+    <div>
+      <a class="brand" href="#top"><img src="/images/mark.svg" alt="" width="42" height="42">Costa Blanca Trail Camp</a>
+      <p class="sign">Good night from the <em>mountains</em> behind Dénia</p>
+    </div>
+    <div class="meta">
+      <p>Winter–Spring 2027 · 3–8 February and late March to early April · Costa Blanca, Spain. Women’s trail camps by Monika Fahle and Anna Berglind Pálmadóttir. Details confirmed camp by camp.</p>
+      <p><a aria-label="Instagram @costablancatrailcamp" href="https://www.instagram.com/costablancatrailcamp/">@costablancatrailcamp</a></p>
+      <p><a href="/checklist">Packing checklist</a> · <a href="/routes/benigembla">Trail notes</a> · <a href="/privacy">Privacy policy</a></p>
+    </div>
+  </div>
 </footer>
 
-<script type="module" src="/scripts/interest.js"></script><script src="/scripts/forms.js" defer></script><script src="/scripts/meta-pixel-consent.js" defer></script></body></html>
+<script type="module" src="/scripts/interest.js"></script><script src="/scripts/day.js" defer></script><script src="/scripts/forms.js" defer></script><script src="/scripts/meta-pixel-consent.js" defer></script></body></html>
