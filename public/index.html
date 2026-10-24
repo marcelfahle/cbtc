@@ -161,10 +161,19 @@ p{text-wrap:pretty}
 .status.soon::before{background:transparent;border:1.5px solid var(--ochre);box-shadow:none}
 .ticket .month{font-family:"Archivo";font-weight:900;text-transform:uppercase;letter-spacing:-.04em;line-height:.88;font-size:clamp(52px,6.4vw,96px)}
 .ticket.is-soon .month{font-size:clamp(48px,5.4vw,80px)}
+@media(max-width:480px){.ticket .month,.ticket.is-soon .month{font-size:13vw}}
 .ticket .month small{display:block;margin-top:.5em;font-family:"Newsreader",serif;font-style:italic;font-weight:500;text-transform:none;letter-spacing:-.01em;font-size:clamp(20px,1.7vw,26px);line-height:1.15;color:var(--ochre)}
 .ticket .facts{display:grid;gap:6px;color:var(--forest-2);font-size:clamp(16px,1.15vw,18px)}
 .ticket .facts b{color:var(--forest)}
 .ticket .facts .note{font-size:15px;color:var(--forest-3);margin-top:6px;padding-top:12px;border-top:1px solid var(--line)}
+.ticket .price{border-top:1px solid var(--line);padding-top:10px}
+.ticket .price table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:clamp(16px,1.15vw,18px)}
+.ticket .price th,.ticket .price td{padding:8px 0;font-weight:400;text-align:left}
+.ticket .price th{color:var(--forest-2)}
+.ticket .price td{text-align:right;font-weight:700;color:var(--forest)}
+.ticket .price tr+tr{border-top:1px dashed var(--line)}
+.ticket .price .friend{margin-top:6px;font-size:15px;color:var(--forest-3)}
+.rows>*{min-width:0}
 .ticket .act{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:4px}
 .ticket .act .fine{font-size:14px;color:var(--forest-3)}
 @media(max-width:600px){.ticket .act .btn{width:100%}}
@@ -415,10 +424,10 @@ section{scroll-margin-top:80px}
 <main>
 <section class="board" id="camps" aria-labelledby="camps-h" data-time="08:40">
   <div class="head">
-    <div class="head-top"><p class="kicker">Two camps, 2027</p><button type="button" class="motion-toggle" hidden aria-label="Pause animations" title="Pause animations"><span class="disc"><svg viewBox="0 0 10 10" aria-hidden="true" focusable="false"><path class="i-pause" d="M1.5 1h2.6v8H1.5zM5.9 1h2.6v8H5.9z"/><path class="i-play" d="M2 .8 9 5 2 9.2z"/></svg></span></button></div>
+    <div class="head-top"><p class="kicker">Two camps, 2027</p></div>
     <div class="head-main"><h2 id="camps-h" class="rv">Pick your <em>mountain days</em></h2><p class="intro rv d1">February is set. Spring is still taking shape. Tell us what could work and we’ll send the details. You decide from there.</p></div>
   </div>
-  <div class="rows"><article class="camp ticket a" id="february" aria-labelledby="february-h"><div class="media"><img src="/images/coastal-golden-hour-1200.webp" alt="" width="1200" height="802" loading="lazy" decoding="async" style="object-position:50% 42%"><span class="postmark" aria-hidden="true"><b>2–7</b><span>Feb 2027</span></span></div><div class="body"><div class="top"><span class="status">Dates confirmed</span></div><h3 class="month" id="february-h">February<small>Tuesday 2 to Sunday 7, 2027</small></h3><div class="facts"><p><b>Arrive Tuesday, home on Sunday.</b> Four mountain days in between on the trails behind Dénia, with a small women’s group to share them</p><p><b>For women who already run trails.</b> Climbs, rocky descents, hiking the steep bits</p><p class="note">Hotel, rooms and prices to be confirmed.</p></div><div class="act"><a class="btn" href="/?camp=february#interest" data-camp="february">Send me the February details</a><span class="fine">No payment or commitment</span></div></div></article><article class="camp ticket c is-soon" id="spring" aria-labelledby="spring-h"><div class="media"><img src="/images/sunlit-rocky-trail-1200.webp" alt="" width="1200" height="802" loading="lazy" decoding="async" style="object-position:50% 55%"><span class="rubber" aria-hidden="true">Details<br>soon</span></div><div class="body"><div class="top"><span class="status soon">Details soon</span></div><h3 class="month" id="spring-h">Spring<small>Late March to early April 2027</small></h3><div class="facts"><p><b>More mountain days to look forward to.</b> Dates and details are on their way.</p><p class="note">Exact dates, duration, hosts, rooms and prices are still to be announced.</p></div><div class="act"><a class="btn ghost" href="/?camp=spring#interest" data-camp="spring">Tell me about Spring</a><span class="fine">No payment or commitment</span></div></div></article></div>
+  <div class="rows"><article class="camp ticket a" id="february" aria-labelledby="february-h"><div class="media"><img src="/images/coastal-golden-hour-1200.webp" alt="" width="1200" height="802" loading="lazy" decoding="async" style="object-position:50% 42%"><span class="postmark" aria-hidden="true"><b>2–7</b><span>Feb 2027</span></span></div><div class="body"><div class="top"><span class="status">Dates confirmed</span></div><h3 class="month" id="february-h">February<small>Tuesday 2 to Sunday 7, 2027</small></h3><div class="facts"><p><b>Arrive Tuesday, home on Sunday.</b> Four mountain days in between on the trails behind Dénia, with a small women’s group to share them</p><p><b>For women who already run trails.</b> Climbs, rocky descents, hiking the steep bits</p><p class="note">Hotel to be confirmed.</p></div><div class="price"><table><caption class="sr">February prices per person</caption><tbody><tr><th scope="row">Shared room</th><td>€1,800</td></tr><tr><th scope="row">Single room</th><td>€2,200</td></tr></tbody></table><p class="friend">Per person. Bring a friend and you each get 10% off.</p></div><div class="act"><a class="btn" href="/?camp=february#interest" data-camp="february">Send me the February details</a><span class="fine">No payment or commitment</span></div></div></article><article class="camp ticket c is-soon" id="spring" aria-labelledby="spring-h"><div class="media"><img src="/images/sunlit-rocky-trail-1200.webp" alt="" width="1200" height="802" loading="lazy" decoding="async" style="object-position:50% 55%"><span class="rubber" aria-hidden="true">Details<br>soon</span></div><div class="body"><div class="top"><span class="status soon">Details soon</span></div><h3 class="month" id="spring-h">Spring<small>Late March to early April 2027</small></h3><div class="facts"><p><b>More mountain days to look forward to.</b> Dates and details are on their way.</p><p class="note">Exact dates, duration, hosts, rooms and prices are still to be announced.</p></div><div class="act"><a class="btn ghost" href="/?camp=spring#interest" data-camp="spring">Tell me about Spring</a><span class="fine">No payment or commitment</span></div></div></article></div>
   <div class="shared">
     <p>The mountains behind Dénia. A women’s group to share them with. Each camp’s details will be announced here.</p>
     <p>Group size, nights and the hotel are confirmed camp by camp. We don't take payments before the required registration and insurance are in place.</p>
@@ -438,6 +447,7 @@ section{scroll-margin-top:80px}
         <ul>
           <li>2–7 February 2027 for the first camp</li>
           <li>Four mountain days, Wednesday to Saturday</li>
+          <li>€1,800 in a shared room, €2,200 in a single, and 10% off each when you bring a friend</li>
           <li>Mountain days on the trails behind Dénia</li>
           <li>For women who already run trails</li>
           <li>A small women-only group</li>
@@ -450,7 +460,7 @@ section{scroll-margin-top:80px}
           <li>Spring dates, somewhere in late March to early April</li>
           <li>Time on the trails each day</li>
           <li>The hotel, rooms and any sauna or spa</li>
-          <li>What's included in the price, and prices</li>
+          <li>What's included in the price</li>
           <li>Exact routes, which depend on the weather</li>
           <li>Group size for each camp</li>
         </ul>

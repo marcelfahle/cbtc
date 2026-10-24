@@ -16,15 +16,15 @@ test('approved light hero with confirmed February dates and details CTA',()=>{
  assert.doesNotMatch(html,/Join the interest list|Interest list open|proto-bar|h1-switcher/);
  assert.doesNotMatch(hero,/sauna|\bspa\b|four days/i);
 });
-test('unconfirmed February details (sauna, hours, prices) are not published',()=>{
+test('unconfirmed February details (sauna, hours) are not published',()=>{
  const text=html.replace(/<style[\s\S]*?<\/style>/g,'').replace(/<[^>]*>/g,' ').replace(/\s+/g,' ');
- assert.doesNotMatch(text,/Sauna confirmed|Sauna on|sauna better|2–4 hours|€/);
+ assert.doesNotMatch(text,/Sauna confirmed|Sauna on|sauna better|2–4 hours/);
  assert.match(text,/The hotel, rooms and any sauna or spa/);
  assert.match(text,/Whatever the weather/);assert.match(text,/Rain makes the coffee taste better/);
  assert.match(html,/only head out when it’s safe/);
 });
-test('small shared motion controls have honest labels and graceful no-JS defaults',()=>{
- assert.equal((html.match(/class="motion-toggle" hidden aria-label="Pause animations"/g)||[]).length,2);
+test('one motion control on the coast film pauses all motion, honest label, graceful no-JS default',()=>{
+ assert.equal((html.match(/class="motion-toggle" hidden aria-label="Pause animations"/g)||[]).length,1);
  assert.doesNotMatch(html,/aria-pressed|Pause photo|Pause coast/);
  assert.ok(html.includes('</video><button type="button" class="motion-toggle"'));
 });
