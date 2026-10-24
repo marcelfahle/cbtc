@@ -62,11 +62,40 @@ body{background:var(--sand)}
 .g-label{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:0 var(--wrap) 10px;font-family:"Archivo";font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ochre)}
 .g-label a{font-family:"Source Sans 3";font-weight:600;font-size:13px;letter-spacing:0;text-transform:none;color:var(--forest-2);text-decoration:none;white-space:nowrap}
 .g-label a:hover{text-decoration:underline}
+.g-label .g-nb{white-space:nowrap}
 .g-frame{position:relative;background:var(--ivory);border-block:1px solid rgba(20,40,29,.14)}
 .g-frame .nav{position:absolute}
 .hero .fine-print{margin-top:14px;font-size:15px;color:var(--forest-2)}
 .hero .spec{font-weight:600;color:var(--forest)}
 .g-end{min-height:50svh;padding:40px var(--wrap) 56px;font-size:14px;color:var(--forest-2)}
+
+/* ---------- Gallery only: composed headlines (homepage untouched) ----------
+   Each headline is set in its own phrase lines (.ln), never wrapped inside a phrase.
+   --fit is the widest line in em (measured), so the type shrinks only as far as that line needs
+   and never runs past the column. The Newsreader italic accent from the homepage is used on the payoff line. */
+.g-frame .hero .inner{padding-top:clamp(84px,8.5vw,128px)}
+.g-frame .hero .kicker{font-size:clamp(11.5px,.35vw + 10.5px,13px);letter-spacing:.13em;line-height:1.55}
+.g-frame .hero .seg{white-space:nowrap}
+.g-frame .hero h1{--fit:10;white-space:nowrap;max-width:none;margin-top:clamp(10px,1.1vw,16px);line-height:.94;
+  font-size:min(clamp(38px,4.4vw + 24px,88px),calc((100vw - 2 * var(--wrap)) / (var(--fit) * 1.03)))}
+.g-frame .hero h1 .ln{display:block}
+.g-frame .hero h1 .accent{line-height:1.04;padding-top:.02em}
+#recommended h1 .accent{padding-left:.07em} /* the italic f descender would otherwise hang past the column */
+#current h1{--fit:8.9}#option-1 h1{--fit:9.75}#option-2 h1{--fit:7.99}#option-3 h1{--fit:9.92}
+#option-4 h1{--fit:9.31}#option-5 h1{--fit:7.91}#option-6 h1{--fit:6.61}#recommended h1{--fit:9.54}
+.g-frame .hero .lede{font-size:clamp(17px,.5vw + 15px,21px);line-height:1.45;max-width:27em;text-wrap:balance;margin-top:clamp(14px,1.5vw,22px)}
+.g-frame .hero .lede.spec{max-width:none}
+.g-frame .hero .acts{margin-top:clamp(18px,2vw,26px);gap:10px}
+.g-frame .hero .fine-print{margin-top:10px;font-size:14px;max-width:34em}
+.g-frame .hero .lede + .fine-print{margin-top:12px}
+/* the photo starts sooner and stands taller; its masked top fades under the last line of small print */
+.g-frame .hero img{height:clamp(330px,50vw,720px);margin-top:clamp(-240px,-15vw,-84px)}
+@media(max-width:600px){
+  .g-option{padding-top:22px}
+  .g-label{padding-bottom:8px;font-size:11.5px;letter-spacing:.1em}
+  .g-frame .nav{padding-block:10px}
+  .g-frame .hero .btn{min-height:48px;padding:.7em 1.2em}
+}
 </style>
 </head>
 <body>
@@ -89,8 +118,8 @@ body{background:var(--sand)}
     <header class="hero">
       <img src="/images/sunrise-valley-2200.webp" srcset="/images/sunrise-valley-1100.webp 1100w, /images/sunrise-valley-2200.webp 2200w" sizes="100vw" alt="Sunrise over a green valley and layers of mountain ridges on the Costa Blanca" width="2200" height="1650" fetchpriority="high">
       <div class="inner">
-        <p class="kicker">Women’s trail running · Costa Blanca · Winter 2027</p>
-        <h1>Make room for the mountains</h1>
+        <p class="kicker"><span class="seg">Women’s trail running ·</span> <span class="seg">Costa Blanca ·</span> <span class="seg">Winter 2027</span></p>
+        <h1>Make room for<span class="accent"> the mountains</span></h1>
         <p class="lede">Mountain trails, time for yourself and a women’s group to share it with. Three camps planned for January, February and March 2027.</p>
         <p class="fine-print">January, February and March 2027. Exact dates coming soon.</p>
         <div class="acts"><a class="btn" href="/#camps">See the camps</a><a class="btn ghost" href="/#interest">Send me the dates</a></div>
@@ -110,8 +139,8 @@ body{background:var(--sand)}
     <header class="hero">
       <img src="/images/sunrise-valley-2200.webp" srcset="/images/sunrise-valley-1100.webp 1100w, /images/sunrise-valley-2200.webp 2200w" sizes="100vw" alt="Sunrise over a green valley and layers of mountain ridges on the Costa Blanca" width="2200" height="1650" loading="lazy">
       <div class="inner">
-        <p class="kicker">Women’s trail camp · Costa Blanca · February 2027</p>
-        <h1>Four days. Real mountains. Then the sauna.</h1>
+        <p class="kicker"><span class="seg">Women’s trail camp ·</span> <span class="seg">Costa Blanca ·</span> <span class="seg">February 2027</span></p>
+        <h1><span class="ln">Four days.</span> <span class="ln">Real mountains.</span> <span class="ln accent">Then the sauna.</span></h1>
         <p class="lede">A small women’s trail camp above the Mediterranean.</p>
         <div class="acts"><a class="btn" href="/#interest">Get the February dates</a></div>
         <p class="fine-print">No payment or commitment.</p>
@@ -131,8 +160,8 @@ body{background:var(--sand)}
     <header class="hero">
       <img src="/images/sunrise-valley-2200.webp" srcset="/images/sunrise-valley-1100.webp 1100w, /images/sunrise-valley-2200.webp 2200w" sizes="100vw" alt="Sunrise over a green valley and layers of mountain ridges on the Costa Blanca" width="2200" height="1650" loading="lazy">
       <div class="inner">
-        <p class="kicker">Women’s trail camp · Costa Blanca · February 2027</p>
-        <h1>It’s February. Pick your trail.</h1>
+        <p class="kicker"><span class="seg">Women’s trail camp ·</span> <span class="seg">Costa Blanca ·</span> <span class="seg">February 2027</span></p>
+        <h1><span class="ln">It’s February.</span> <span class="ln accent">Pick your trail.</span></h1>
         <p class="lede">The headtorch loop at home. Or this, with seven women who get it.</p>
         <div class="acts"><a class="btn" href="/#interest">Send me the dates</a></div>
         <p class="fine-print">No payment, no commitment.</p>
@@ -152,9 +181,9 @@ body{background:var(--sand)}
     <header class="hero">
       <img src="/images/sunrise-valley-2200.webp" srcset="/images/sunrise-valley-1100.webp 1100w, /images/sunrise-valley-2200.webp 2200w" sizes="100vw" alt="Sunrise over a green valley and layers of mountain ridges on the Costa Blanca" width="2200" height="1650" loading="lazy">
       <div class="inner">
-        <p class="kicker">Women’s trail camp · Dénia, Spain</p>
-        <h1>Four days on the Costa Blanca trails.</h1>
-        <p class="lede spec">8 women · February 2027 · Sauna after</p>
+        <p class="kicker"><span class="seg">Women’s trail camp ·</span> <span class="seg">Dénia, Spain</span></p>
+        <h1><span class="ln">Four days on the</span> <span class="ln accent">Costa Blanca trails.</span></h1>
+        <p class="lede spec"><span class="seg">8 women ·</span> <span class="seg">February 2027 ·</span> <span class="seg">Sauna after</span></p>
         <div class="acts"><a class="btn" href="/#interest">Get the dates</a></div>
         <p class="fine-print">No payment or commitment.</p>
       </div>
@@ -173,8 +202,8 @@ body{background:var(--sand)}
     <header class="hero">
       <img src="/images/sunrise-valley-2200.webp" srcset="/images/sunrise-valley-1100.webp 1100w, /images/sunrise-valley-2200.webp 2200w" sizes="100vw" alt="Sunrise over a green valley and layers of mountain ridges on the Costa Blanca" width="2200" height="1650" loading="lazy">
       <div class="inner">
-        <p class="kicker">Costa Blanca · February 2027</p>
-        <h1>For women who run trails.</h1>
+        <p class="kicker"><span class="seg">Costa Blanca ·</span> <span class="seg">February 2027</span></p>
+        <h1><span class="ln">For women</span> <span class="ln">who run trails.</span></h1>
         <p class="lede">Four winter days in the mountains behind Dénia. Small group. Your own pace.</p>
         <div class="acts"><a class="btn" href="/#interest">Send me the dates</a></div>
         <p class="fine-print">No payment or commitment.</p>
@@ -194,8 +223,8 @@ body{background:var(--sand)}
     <header class="hero">
       <img src="/images/sunrise-valley-2200.webp" srcset="/images/sunrise-valley-1100.webp 1100w, /images/sunrise-valley-2200.webp 2200w" sizes="100vw" alt="Sunrise over a green valley and layers of mountain ridges on the Costa Blanca" width="2200" height="1650" loading="lazy">
       <div class="inner">
-        <p class="kicker">Women’s trail camp · Dénia, Spain</p>
-        <h1>Eight places. February. Costa Blanca.</h1>
+        <p class="kicker"><span class="seg">Women’s trail camp ·</span> <span class="seg">Dénia, Spain</span></p>
+        <h1><span class="ln">Eight places.</span> <span class="ln">February.</span> <span class="ln accent">Costa Blanca.</span></h1>
         <p class="lede">Four mountain days above the Mediterranean, sauna after.</p>
         <div class="acts"><a class="btn" href="/#interest">Get the dates</a></div>
         <p class="fine-print">No payment or commitment.</p>
@@ -215,8 +244,8 @@ body{background:var(--sand)}
     <header class="hero">
       <img src="/images/sunrise-valley-2200.webp" srcset="/images/sunrise-valley-1100.webp 1100w, /images/sunrise-valley-2200.webp 2200w" sizes="100vw" alt="Sunrise over a green valley and layers of mountain ridges on the Costa Blanca" width="2200" height="1650" loading="lazy">
       <div class="inner">
-        <p class="kicker">Monika &amp; Anna · Costa Blanca · February 2027</p>
-        <h1>Our trails. Your February.</h1>
+        <p class="kicker"><span class="seg">Monika &amp; Anna ·</span> <span class="seg">Costa Blanca ·</span> <span class="seg">February 2027</span></p>
+        <h1><span class="ln">Our trails.</span> <span class="ln accent">Your February.</span></h1>
         <p class="lede">Four days in the mountains we run every week, with eight women who want the same thing.</p>
         <div class="acts"><a class="btn" href="/#interest">Send me the dates</a></div>
         <p class="fine-print">No payment or commitment.</p>
@@ -226,7 +255,7 @@ body{background:var(--sand)}
 </section>
 
 <section class="g-option" id="recommended" aria-label="Recommended · Trade February for this">
-  <p class="g-label"><span>Recommended · Trade February for this</span><a href="#top-of-page">Back to top</a></p>
+  <p class="g-label"><span>Recommended · <span class="g-nb">Trade February for this</span></span><a href="#top-of-page">Back to top</a></p>
   <div class="g-frame">
     <nav class="nav" aria-label="Site navigation (preview)">
       <a class="brand" href="/"><img src="/images/mark.svg" alt="" width="44" height="44">Costa Blanca Trail Camp</a>
@@ -236,9 +265,9 @@ body{background:var(--sand)}
     <header class="hero">
       <img src="/images/sunrise-valley-2200.webp" srcset="/images/sunrise-valley-1100.webp 1100w, /images/sunrise-valley-2200.webp 2200w" sizes="100vw" alt="Sunrise over a green valley and layers of mountain ridges on the Costa Blanca" width="2200" height="1650" loading="lazy">
       <div class="inner">
-        <p class="kicker">Women’s trail camp · Costa Blanca · February 2027</p>
-        <h1>Trade February for this.</h1>
-        <p class="lede spec">4 days · 8 women · Sauna after · Dénia, Spain</p>
+        <p class="kicker"><span class="seg">Women’s trail camp ·</span> <span class="seg">Costa Blanca ·</span> <span class="seg">February 2027</span></p>
+        <h1><span class="ln">Trade February</span> <span class="ln accent">for this.</span></h1>
+        <p class="lede spec"><span class="seg">4 days ·</span> <span class="seg">8 women ·</span> <span class="seg">Sauna after ·</span> <span class="seg">Dénia, Spain</span></p>
         <div class="acts"><a class="btn" href="/#interest">Get the February dates</a></div>
         <p class="fine-print">No payment or commitment.</p>
       </div>
