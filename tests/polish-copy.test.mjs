@@ -6,7 +6,7 @@ const hero=html.split('<header id="top"')[1].split('</header>')[0];
 test('approved light hero with confirmed February dates and details CTA',()=>{
  assert.ok(hero.includes('<h1>Make room for<span class="accent"> the mountains</span></h1>'));
  assert.ok(hero.includes("Women's trail running · Costa Blanca · Winter–Spring 2027"));
- assert.ok(hero.includes('Mountain trails, time for yourself and a women’s group to share it with. Next camp: 3–8 February 2027. Another follows in late March to early April.'));
+ assert.ok(hero.includes('Mountain trails, time for yourself and a women’s group to share it with. Next camp: 2–7 February 2027. Another follows in late March to early April.'));
  assert.match(hero,/class="stub-line" href="\/\?camp=february#interest" data-camp="february"/);
  assert.ok(hero.includes('Then late March to early April. Dates coming soon.'));
  assert.match(hero,/sunrise-valley-2200\.webp/);
@@ -16,9 +16,9 @@ test('approved light hero with confirmed February dates and details CTA',()=>{
  assert.doesNotMatch(html,/Join the interest list|Interest list open|proto-bar|h1-switcher/);
  assert.doesNotMatch(hero,/sauna|\bspa\b|four days/i);
 });
-test('unconfirmed February details (sauna, days, hours, prices) are not published',()=>{
+test('unconfirmed February details (sauna, hours, prices) are not published',()=>{
  const text=html.replace(/<style[\s\S]*?<\/style>/g,'').replace(/<[^>]*>/g,' ').replace(/\s+/g,' ');
- assert.doesNotMatch(text,/Sauna confirmed|Sauna on|sauna better|Four mountain days|2–4 hours|€/);
+ assert.doesNotMatch(text,/Sauna confirmed|Sauna on|sauna better|2–4 hours|€/);
  assert.match(text,/The hotel, rooms and any sauna or spa/);
  assert.match(text,/Whatever the weather/);assert.match(text,/Rain makes the coffee taste better/);
  assert.match(html,/only head out when it’s safe/);
