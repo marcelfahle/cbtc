@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hero concepts for review · Costa Blanca Trail Camp</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/images/mark.svg">
+<!-- Review-only page: draft hero copy side by side on the live light design.
+     Not linked from the site, not indexed, no analytics, no forms. -->
+<style>
+/* ---------- Same fonts, tokens, buttons, nav and hero base as src/home.html ---------- */
+@font-face{font-family:"Archivo";src:url("/fonts/Archivo-var.woff2") format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Source Sans 3";src:url("/fonts/SourceSans3-var.woff2") format("woff2");font-weight:200 900;font-display:swap}
+@font-face{font-family:"Newsreader";src:url("/fonts/Newsreader-italic-var.woff2") format("woff2");font-weight:200 800;font-style:italic;font-display:swap}
+:root{
+  --night:#09130F; --night-2:#18211C; --night-3:#272B23;
+  --bone:#F0F1EB; --bone-2:#F3EDDF; --bone-3:#D9D5C9;
+  --gold:#D6A640; --gold-deep:#806019; --moss:#686A59; --blush:#F0AA96;
+  --ember:oklch(57.2% .128 37.49); --ember-deep:oklch(42.8% .128 37.49);
+  --wrap:clamp(16px,5vw,64px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:"Source Sans 3",system-ui,sans-serif;font-size:clamp(17px,1.05vw + 12px,19px);line-height:1.5;color:var(--night);background:var(--bone)}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3,.display{font-family:"Archivo",sans-serif;letter-spacing:-.025em;line-height:1;font-weight:800;text-wrap:balance}
+p{text-wrap:pretty}
+.kicker{font-family:"Archivo";font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:52px;padding:.8em 1.5em;border-radius:999px;border:0;font:inherit;font-weight:700;font-size:1rem;text-decoration:none;cursor:pointer;background:var(--ember);color:#fff;transition:background .2s,transform .2s}
+.btn:hover{background:var(--ember-deep)}
+.btn:active{transform:translateY(1px)}
+.btn:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.btn.ghost{background:transparent;color:var(--bone);border:1.5px solid rgba(240,241,235,.55)}
+.nav{position:fixed;inset-inline:0;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px var(--wrap);color:var(--bone);background:linear-gradient(rgba(9,19,15,.86),rgba(9,19,15,0))}
+.brand{display:flex;align-items:center;gap:12px;font-family:"Archivo";font-weight:800;font-size:16px;line-height:1.05;letter-spacing:.02em;text-transform:uppercase;text-decoration:none;max-width:12em}
+.brand img{width:44px;height:44px;flex:none}
+.nav .links{display:none;gap:28px;font-weight:600;font-size:15px}
+.nav .links a{text-decoration:none;opacity:.9}
+.nav .links a:hover{opacity:1;text-decoration:underline;text-underline-offset:4px}
+@media(min-width:64rem){.nav .links{display:flex}}
+.nav .btn{min-height:46px;padding:.6em 1.2em;font-size:15px}
+.hero{position:relative;isolation:isolate;min-height:92svh;display:flex;align-items:end;overflow:hidden;background:var(--night);color:var(--bone)}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:74% 45%;z-index:-2}
+.hero .inner{padding:38vh var(--wrap) clamp(28px,5vw,56px);width:100%}
+.hero h1{font-size:clamp(44px,8.2vw,112px);font-weight:900;text-transform:uppercase;letter-spacing:-.035em;line-height:.92;max-width:11em;margin-top:14px}
+.hero .lede{font-size:clamp(18px,1.6vw,23px);max-width:30em;margin-top:22px;color:#E4E6DC}
+.hero .season{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-weight:600;font-size:clamp(15px,1.2vw,18px)}
+.hero .acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+</style>
+<link rel="stylesheet" href="/styles/three-camps.css"><link rel="stylesheet" href="/styles/light.css">
+<style>
+/* ---------- Gallery only: each concept is one framed copy of the live hero ---------- */
+body{background:var(--sand)}
+.g-intro{padding:20px var(--wrap) 18px;font-size:15px;line-height:1.45;color:var(--forest-2);border-bottom:1px solid rgba(20,40,29,.14)}
+.g-intro b{color:var(--forest);font-weight:700}
+.g-intro nav{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px 8px}
+.g-intro nav a{font-size:14px;font-weight:600;text-decoration:none;color:var(--forest);padding:4px 10px;border-radius:999px;border:1px solid rgba(20,40,29,.22);white-space:nowrap}
+.g-intro nav a:hover{background:rgba(20,40,29,.06)}
+.g-option{scroll-margin-top:0;padding-top:clamp(28px,4vw,48px)}
+.g-label{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:0 var(--wrap) 10px;font-family:"Archivo";font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ochre)}
+.g-label a{font-family:"Source Sans 3";font-weight:600;font-size:13px;letter-spacing:0;text-transform:none;color:var(--forest-2);text-decoration:none;white-space:nowrap}
+.g-label a:hover{text-decoration:underline}
+.g-frame{position:relative;background:var(--ivory);border-block:1px solid rgba(20,40,29,.14)}
+.g-frame .nav{position:absolute}
+.hero .fine-print{margin-top:14px;font-size:15px;color:var(--forest-2)}
+.hero .spec{font-weight:600;color:var(--forest)}
+.g-end{min-height:50svh;padding:40px var(--wrap) 56px;font-size:14px;color:var(--forest-2)}
+</style>
+</head>
+<body>
+
+<div class="g-intro" id="top-of-page">
+  <p><b>Hero copy concepts for review.</b> Drafts only, not live on the site. Same page design and photo for each, so only the words change. The copy here does not confirm dates, sauna, number of days or group size.</p>
+  <nav aria-label="Jump to a concept">
+    <a href="#current">Current</a><a href="#option-1">1 · Four days</a><a href="#option-2">2 · It’s February</a><a href="#option-3">3 · Costa Blanca trails</a><a href="#option-4">4 · For women who run trails</a><a href="#option-5">5 · Eight places</a><a href="#option-6">6 · Our trails</a><a href="#recommended">Recommended · Trade February for this</a>
+  </nav>
+</div>
+
+<section class="g-option" id="current" aria-label="Current (for reference)">
+  <p class="g-label"><span>Current (for reference)</span><a href="#top-of-page">Back to top</a></p>
+  <div class="g-frame">
+    <nav class="nav" aria-label="Site navigation (preview)">
+      <a class="brand" href="/"><img src="/images/mark.svg" alt="" width="44" height="44">Costa Blanca Trail Camp</a>
+      <div class="links"><a href="/#camps">The camp</a><a href="/#days">A day</a><a href="/#hosts">Hosts</a><a href="/#how">How it works</a></div>
+      <a class="btn" href="/#interest">Get the dates</a>
+    </nav>
+    <header class="hero">
+      <img src="/images/sunrise-valley-2200.webp" srcset="/images/sunrise-valley-1100.webp 1100w, /images/sunrise-valley-2200.webp 2200w" sizes="100vw" alt="Sunrise over a green valley and layers of mountain ridges on the Costa Blanca" width="2200" height="1650" fetchpriority="high">
+      <div class="inner">
+        <p class="kicker">Women’s trail running · Costa Blanca · Winter 2027</p>
+        <h1>Make room for the mountains</h1>
+        <p class="lede">Mountain trails, time for yourself and a women’s group to share it with. Three camps planned for January, February and March 2027.</p>
+        <p class="fine-print">January, February and March 2027. Exact dates coming soon.</p>
+        <div class="acts"><a class="btn" href="/#camps">See the camps</a><a class="btn ghost" href="/#interest">Send me the dates</a></div>
+      </div>
+    </header>
+  </div>
+</section>
+
+<section class="g-option" id="option-1" aria-label="1 · Four days">
+  <p class="g-label"><span>1 · Four days</span><a href="#top-of-page">Back to top</a></p>
+  <div class="g-frame">
+    <nav class="nav" aria-label="Site navigation (preview)">
+      <a class="brand" href="/"><img src="/images/mark.svg" alt="" width="44" height="44">Costa Blanca Trail Camp</a>
+      <div class="links"><a href="/#camps">The camp</a><a href="/#days">A day</a><a href="/#hosts">Hosts</a><a href="/#how">How it works</a></div>
+      <a class="btn" href="/#interest">Get the dates</a>
+    </nav>
+    <header class="hero">
+      <img src="/images/sunrise-valley-2200.webp" srcset="/images/sunrise-valley-1100.webp 1100w, /images/sunrise-valley-2200.webp 2200w" sizes="100vw" alt="Sunrise over a green valley and layers of mountain ridges on the Costa Blanca" width="2200" height="1650" loading="lazy">
+      <div class="inner">
+        <p class="kicker">Women’s trail camp · Costa Blanca · February 2027</p>
+        <h1>Four days. Real mountains. Then the sauna.</h1>
+        <p class="lede">A small women’s trail camp above the Mediterranean.</p>
+        <div class="acts"><a class="btn" href="/#interest">Get the February dates</a></div>
+        <p class="fine-print">No payment or commitment.</p>
+      </div>
+    </header>
+  </div>
+</section>
+
+<section class="g-option" id="option-2" aria-label="2 · It’s February">
+  <p class="g-label"><span>2 · It’s February</span><a href="#top-of-page">Back to top</a></p>
+  <div class="g-frame">
+    <nav class="nav" aria-label="Site navigation (preview)">
+      <a class="brand" href="/"><img src="/images/mark.svg" alt="" width="44" height="44">Costa Blanca Trail Camp</a>
+      <div class="links"><a href="/#camps">The camp</a><a href="/#days">A day</a><a href="/#hosts">Hosts</a><a href="/#how">How it works</a></div>
+      <a class="btn" href="/#interest">Get the dates</a>
+    </nav>
+    <header class="hero">
+      <img src="/images/sunrise-valley-2200.webp" srcset="/images/sunrise-valley-1100.webp 1100w, /images/sunrise-valley-2200.webp 2200w" sizes="100vw" alt="Sunrise over a green valley and layers of mountain ridges on the Costa Blanca" width="2200" height="1650" loading="lazy">
+      <div class="inner">
+        <p class="kicker">Women’s trail camp · Costa Blanca · February 2027</p>
+        <h1>It’s February. Pick your trail.</h1>
+        <p class="lede">The headtorch loop at home. Or this, with seven women who get it.</p>
+        <div class="acts"><a class="btn" href="/#interest">Send me the dates</a></div>
+        <p class="fine-print">No payment, no commitment.</p>
+      </div>
+    </header>
+  </div>
+</section>
+
+<section class="g-option" id="option-3" aria-label="3 · Costa Blanca trails">
+  <p class="g-label"><span>3 · Costa Blanca trails</span><a href="#top-of-page">Back to top</a></p>
+  <div class="g-frame">
+    <nav class="nav" aria-label="Site navigation (preview)">
+      <a class="brand" href="/"><img src="/images/mark.svg" alt="" width="44" height="44">Costa Blanca Trail Camp</a>
+      <div class="links"><a href="/#camps">The camp</a><a href="/#days">A day</a><a href="/#hosts">Hosts</a><a href="/#how">How it works</a></div>
+      <a class="btn" href="/#interest">Get the dates</a>
+    </nav>
+    <header class="hero">
+      <img src="/images/sunrise-valley-2200.webp" srcset="/images/sunrise-valley-1100.webp 1100w, /images/sunrise-valley-2200.webp 2200w" sizes="100vw" alt="Sunrise over a green valley and layers of mountain ridges on the Costa Blanca" width="2200" height="1650" loading="lazy">
+      <div class="inner">
+        <p class="kicker">Women’s trail camp · Dénia, Spain</p>
+        <h1>Four days on the Costa Blanca trails.</h1>
+        <p class="lede spec">8 women · February 2027 · Sauna after</p>
+        <div class="acts"><a class="btn" href="/#interest">Get the dates</a></div>
+        <p class="fine-print">No payment or commitment.</p>
+      </div>
+    </header>
+  </div>
+</section>
+
+<section class="g-option" id="option-4" aria-label="4 · For women who run trails">
+  <p class="g-label"><span>4 · For women who run trails</span><a href="#top-of-page">Back to top</a></p>
+  <div class="g-frame">
+    <nav class="nav" aria-label="Site navigation (preview)">
+      <a class="brand" href="/"><img src="/images/mark.svg" alt="" width="44" height="44">Costa Blanca Trail Camp</a>
+      <div class="links"><a href="/#camps">The camp</a><a href="/#days">A day</a><a href="/#hosts">Hosts</a><a href="/#how">How it works</a></div>
+      <a class="btn" href="/#interest">Get the dates</a>
+    </nav>
+    <header class="hero">
+      <img src="/images/sunrise-valley-2200.webp" srcset="/images/sunrise-valley-1100.webp 1100w, /images/sunrise-valley-2200.webp 2200w" sizes="100vw" alt="Sunrise over a green valley and layers of mountain ridges on the Costa Blanca" width="2200" height="1650" loading="lazy">
+      <div class="inner">
+        <p class="kicker">Costa Blanca · February 2027</p>
+        <h1>For women who run trails.</h1>
+        <p class="lede">Four winter days in the mountains behind Dénia. Small group. Your own pace.</p>
+        <div class="acts"><a class="btn" href="/#interest">Send me the dates</a></div>
+        <p class="fine-print">No payment or commitment.</p>
+      </div>
+    </header>
+  </div>
+</section>
+
+<section class="g-option" id="option-5" aria-label="5 · Eight places">
+  <p class="g-label"><span>5 · Eight places</span><a href="#top-of-page">Back to top</a></p>
+  <div class="g-frame">
+    <nav class="nav" aria-label="Site navigation (preview)">
+      <a class="brand" href="/"><img src="/images/mark.svg" alt="" width="44" height="44">Costa Blanca Trail Camp</a>
+      <div class="links"><a href="/#camps">The camp</a><a href="/#days">A day</a><a href="/#hosts">Hosts</a><a href="/#how">How it works</a></div>
+      <a class="btn" href="/#interest">Get the dates</a>
+    </nav>
+    <header class="hero">
+      <img src="/images/sunrise-valley-2200.webp" srcset="/images/sunrise-valley-1100.webp 1100w, /images/sunrise-valley-2200.webp 2200w" sizes="100vw" alt="Sunrise over a green valley and layers of mountain ridges on the Costa Blanca" width="2200" height="1650" loading="lazy">
+      <div class="inner">
+        <p class="kicker">Women’s trail camp · Dénia, Spain</p>
+        <h1>Eight places. February. Costa Blanca.</h1>
+        <p class="lede">Four mountain days above the Mediterranean, sauna after.</p>
+        <div class="acts"><a class="btn" href="/#interest">Get the dates</a></div>
+        <p class="fine-print">No payment or commitment.</p>
+      </div>
+    </header>
+  </div>
+</section>
+
+<section class="g-option" id="option-6" aria-label="6 · Our trails">
+  <p class="g-label"><span>6 · Our trails</span><a href="#top-of-page">Back to top</a></p>
+  <div class="g-frame">
+    <nav class="nav" aria-label="Site navigation (preview)">
+      <a class="brand" href="/"><img src="/images/mark.svg" alt="" width="44" height="44">Costa Blanca Trail Camp</a>
+      <div class="links"><a href="/#camps">The camp</a><a href="/#days">A day</a><a href="/#hosts">Hosts</a><a href="/#how">How it works</a></div>
+      <a class="btn" href="/#interest">Get the dates</a>
+    </nav>
+    <header class="hero">
+      <img src="/images/sunrise-valley-2200.webp" srcset="/images/sunrise-valley-1100.webp 1100w, /images/sunrise-valley-2200.webp 2200w" sizes="100vw" alt="Sunrise over a green valley and layers of mountain ridges on the Costa Blanca" width="2200" height="1650" loading="lazy">
+      <div class="inner">
+        <p class="kicker">Monika &amp; Anna · Costa Blanca · February 2027</p>
+        <h1>Our trails. Your February.</h1>
+        <p class="lede">Four days in the mountains we run every week, with eight women who want the same thing.</p>
+        <div class="acts"><a class="btn" href="/#interest">Send me the dates</a></div>
+        <p class="fine-print">No payment or commitment.</p>
+      </div>
+    </header>
+  </div>
+</section>
+
+<section class="g-option" id="recommended" aria-label="Recommended · Trade February for this">
+  <p class="g-label"><span>Recommended · Trade February for this</span><a href="#top-of-page">Back to top</a></p>
+  <div class="g-frame">
+    <nav class="nav" aria-label="Site navigation (preview)">
+      <a class="brand" href="/"><img src="/images/mark.svg" alt="" width="44" height="44">Costa Blanca Trail Camp</a>
+      <div class="links"><a href="/#camps">The camp</a><a href="/#days">A day</a><a href="/#hosts">Hosts</a><a href="/#how">How it works</a></div>
+      <a class="btn" href="/#interest">Get the dates</a>
+    </nav>
+    <header class="hero">
+      <img src="/images/sunrise-valley-2200.webp" srcset="/images/sunrise-valley-1100.webp 1100w, /images/sunrise-valley-2200.webp 2200w" sizes="100vw" alt="Sunrise over a green valley and layers of mountain ridges on the Costa Blanca" width="2200" height="1650" loading="lazy">
+      <div class="inner">
+        <p class="kicker">Women’s trail camp · Costa Blanca · February 2027</p>
+        <h1>Trade February for this.</h1>
+        <p class="lede spec">4 days · 8 women · Sauna after · Dénia, Spain</p>
+        <div class="acts"><a class="btn" href="/#interest">Get the February dates</a></div>
+        <p class="fine-print">No payment or commitment.</p>
+      </div>
+    </header>
+  </div>
+</section>
+
+<p class="g-end">Draft concepts for review. Buttons and menu links go to the matching part of the live homepage.</p>
+
+</body>
+</html>
