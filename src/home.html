@@ -3,12 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Costa Blanca Trail Camp · Make room for the mountains · Winter–Spring 2027</title>
-<meta name="description" content="Women’s trail camps on the Costa Blanca. Next camp 2–7 February 2027, then late March to early April. Get the details by email.">
-<meta name="robots" content="index, follow"><link rel="canonical" href="https://www.costablancatrailcamp.com/"><meta property="og:title" content="Costa Blanca Trail Camp · February to early April 2027"><meta property="og:image" content="https://www.costablancatrailcamp.com/images/og-sunrise.jpg"><meta property="og:description" content="Women’s trail camps on the Costa Blanca. Next camp 2–7 February 2027. Get the details by email. No payment or commitment."><meta name="twitter:card" content="summary_large_image">
+<title>Women’s Trail Running Camp in Costa Blanca, Spain · 2027</title>
+<meta name="description" content="Women’s trail running camps in the mountains behind Dénia, Costa Blanca. Next camp 2–7 February 2027, then late March to early April. Get the details by email.">
+<meta name="robots" content="index, follow"><link rel="canonical" href="https://www.costablancatrailcamp.com/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Costa Blanca Trail Camp"><meta property="og:locale" content="en_GB"><meta property="og:url" content="https://www.costablancatrailcamp.com/"><meta property="og:title" content="Costa Blanca Trail Camp · February to early April 2027"><meta property="og:image" content="https://www.costablancatrailcamp.com/images/og-sunrise.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Sunrise over mountain ridges on the Costa Blanca"><meta property="og:description" content="Women’s trail camps on the Costa Blanca. Next camp 2–7 February 2027. Get the details by email. No payment or commitment.">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Costa Blanca Trail Camp · February to early April 2027"><meta name="twitter:description" content="Women’s trail camps on the Costa Blanca. Next camp 2–7 February 2027. Get the details by email. No payment or commitment."><meta name="twitter:image" content="https://www.costablancatrailcamp.com/images/og-sunrise.jpg">
 <meta name="theme-color" content="#C9D6DC">
-<link rel="icon" href="/images/mark.svg">
+<link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/images/sunrise-valley-800.webp" as="image" type="image/webp" imagesrcset="/images/sunrise-valley-640.webp 640w, /images/sunrise-valley-800.webp 800w, /images/sunrise-valley-1100.webp 1100w, /images/sunrise-valley-1600.webp 1600w, /images/sunrise-valley-2200.webp 2200w" imagesizes="100vw" fetchpriority="high">
 <link rel="preload" href="/fonts/Archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/SourceSans3-var.woff2" as="font" type="font/woff2" crossorigin>
+<!-- JSON_LD -->
 <script>document.documentElement.classList.add('js')</script>
 <style>
 /* Costa Blanca Trail Camp homepage, design v2 (Oct 2026).
@@ -315,6 +320,22 @@ body.motion-paused .camp .media img,body.motion-paused .badge svg.ring{animation
   .steps li:nth-child(n+4){transform:translateY(clamp(0px,2vw,28px))}
 }
 
+/* ---------- Questions: late afternoon, back on ivory ---------- */
+.faq{position:relative;padding:clamp(64px,9vw,128px) var(--wrap) clamp(96px,12vw,170px)}
+.faq .inner{display:grid;gap:clamp(32px,4vw,56px)}
+@media(min-width:64rem){.faq .inner{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:72px;align-items:start}.faq .copy{position:sticky;top:120px}}
+.faq h2{margin-top:16px}
+.faq .lead{max-width:22em}
+.faq .qs{border-bottom:1px solid var(--line)}
+.faq details{border-top:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;padding:22px 0;font-family:"Archivo";font-weight:700;font-size:clamp(18px,1.35vw,22px);letter-spacing:-.01em;line-height:1.25;color:var(--forest);transition:color .2s}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";width:30px;height:30px;border-radius:50%;box-shadow:inset 0 0 0 1.5px currentColor;background:linear-gradient(currentColor,currentColor) center/12px 2px no-repeat,linear-gradient(currentColor,currentColor) center/2px 12px no-repeat;transition:transform .35s var(--ease),background-color .2s}
+.faq details[open] summary::after{transform:rotate(45deg);background-color:var(--sun)}
+.faq summary:hover{color:var(--terra)}
+.faq summary:focus-visible{outline:2px solid var(--terra);outline-offset:4px;border-radius:4px}
+.faq details p{padding:0 50px 26px 0;color:var(--forest-2);max-width:36em}
+
 /* ---------- Interest form: sunset ---------- */
 .interest{position:relative;isolation:isolate;overflow:hidden;padding:clamp(72px,9vw,128px) var(--wrap) clamp(110px,13vw,190px);
   background:linear-gradient(180deg,#F5DDA8 0%,#F4C48E 38%,#EE9F79 72%,#DB7C60 100%)}
@@ -374,13 +395,14 @@ footer .meta{display:grid;gap:10px;color:#B7BFAF}
 footer .moon{position:absolute;right:clamp(24px,8vw,120px);top:clamp(28px,4vw,56px);width:38px;height:38px;border-radius:50%;box-shadow:inset -9px -3px 0 0 #E9E4D4;rotate:-20deg;opacity:.9}
 
 /* ---------- Cookie notice (styles injected by meta-pixel-consent.js) ---------- */
-body:has(.hero) [data-marketing-consent-banner]{position:relative;inset:auto;display:block;padding:16px;background:var(--sand)}
-body:has(.hero) .cbtc-consent-card{margin:auto;background:var(--paper);color:var(--forest);border-color:var(--line)}
+/* The notice floats over the bottom of the page (the script's default) instead of pushing the hero down after load,
+   which was the page's whole layout shift (CLS 0.25 on phones). */
+body:has(.hero) .cbtc-consent-card{background:var(--paper);color:var(--forest);border-color:var(--line);box-shadow:0 18px 48px rgba(20,40,29,.22)}
 body:has(.hero) .cbtc-consent-title{color:var(--ochre)}
 body:has(.hero) .cbtc-consent-copy,body:has(.hero) .cbtc-consent-state{color:var(--forest-2)}
+body:has(.hero) .cbtc-consent-actions [data-marketing-accept]{background:var(--terra);color:var(--paper)}
 body:has(.hero) .cbtc-consent-actions [data-marketing-reject]{background:transparent;color:var(--forest);box-shadow:inset 0 0 0 1px rgba(20,40,29,.35)}
 body:has(.hero) [data-marketing-privacy]{background:rgba(255,252,244,.94);color:var(--forest);box-shadow:inset 0 0 0 1px rgba(20,40,29,.25)}
-body:has([data-marketing-consent-banner]) .nav{position:absolute;top:var(--consent-height,0px)}
 body:has([data-marketing-consent-banner]) [data-marketing-privacy]{display:none}
 section{scroll-margin-top:80px}
 
@@ -407,7 +429,7 @@ section{scroll-margin-top:80px}
   <div class="inner">
     <p class="kicker">Women's trail running · Costa Blanca · Winter–Spring 2027</p>
     <h1>Make room for<span class="accent"> the mountains</span></h1>
-    <p class="lede">Mountain trails, time for yourself and a women’s group to share it with. Next camp: 2–7 February 2027. Another follows in late March to early April.</p>
+    <p class="lede">Trail running in the mountains behind Dénia, time for yourself and a women’s group to share it with. Next camp: 2–7 February 2027. Another follows in late March to early April.</p>
     <div class="acts"><!-- NEXT_CAMP --><a class="btn ghost" href="#camps">See the camps</a></div>
     <!-- THEN_LINE -->
   </div>
@@ -416,7 +438,7 @@ section{scroll-margin-top:80px}
     <span class="core"><img src="/images/mark.svg" alt="" width="40" height="40"></span>
   </div>
   <div class="photo">
-    <img src="/images/sunrise-valley-2200.webp" srcset="/images/sunrise-valley-1100.webp 1100w, /images/sunrise-valley-2200.webp 2200w" sizes="100vw" alt="Sunrise over a green valley and layers of mountain ridges on the Costa Blanca" width="2200" height="1650" fetchpriority="high">
+    <img src="/images/sunrise-valley-2200.webp" srcset="/images/sunrise-valley-640.webp 640w, /images/sunrise-valley-800.webp 800w, /images/sunrise-valley-1100.webp 1100w, /images/sunrise-valley-1600.webp 1600w, /images/sunrise-valley-2200.webp 2200w" sizes="100vw" alt="Sunrise over a green valley and layers of mountain ridges on the Costa Blanca" width="2200" height="1650" fetchpriority="high">
   </div>
   <svg class="ridge" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path fill="#DDE5D2" d="M0 90V58L70 44 128 54 220 20 284 42 324 34 420 64 508 24 578 48 630 36 740 72 824 44 890 60 980 16 1056 46 1114 36 1218 70 1288 48 1354 60 1440 40V90Z"/></svg>
 </header>
@@ -429,7 +451,7 @@ section{scroll-margin-top:80px}
   </div>
   <div class="rows"><!-- CAMP_ROWS --></div>
   <div class="shared">
-    <p>The mountains behind Dénia. A women’s group to share them with. Each camp’s details will be announced here.</p>
+    <p>The mountains behind Dénia, on Spain’s Costa Blanca. A women’s group to share them with. Each camp’s details will be announced here.</p>
     <p>Group size, nights and the hotel are confirmed camp by camp. We don't take payments before the required registration and insurance are in place.</p>
   </div>
 </section>
@@ -477,7 +499,7 @@ section{scroll-margin-top:80px}
       <h2 id="days-h" class="rv" style="margin-top:16px">A climb. A view. <em>No rush to be anywhere else</em></h2>
       <p class="lead rv d1">Mountain days, with time to enjoy the hours between them. A taste of the camp, not a fixed timetable.</p>
     </div>
-    <figure class="coastal-film rv d2"><div class="film-frame"><img src="/media/coast-poster.webp" alt="A quiet view of the coast from the trail" width="720" height="1280" loading="lazy"><video muted loop playsinline preload="none" poster="/media/coast-poster.webp" data-src="/media/coast-loop.mp4" aria-hidden="true"></video><button type="button" class="motion-toggle" hidden aria-label="Pause animations" title="Pause animations"><span class="disc"><svg viewBox="0 0 10 10" aria-hidden="true" focusable="false"><path class="i-pause" d="M1.5 1h2.6v8H1.5zM5.9 1h2.6v8H5.9z"/><path class="i-play" d="M2 .8 9 5 2 9.2z"/></svg></span></button></div><figcaption>A little of the coast to look forward to</figcaption></figure>
+    <figure class="coastal-film rv d2"><div class="film-frame"><img src="/media/coast-poster.webp" srcset="/media/coast-poster-400.webp 400w, /media/coast-poster.webp 720w" sizes="316px" alt="A quiet view of the coast from the trail" width="720" height="1280" loading="lazy" decoding="async"><video muted loop playsinline preload="none" data-src="/media/coast-loop.mp4" aria-hidden="true"></video><button type="button" class="motion-toggle" hidden aria-label="Pause animations" title="Pause animations"><span class="disc"><svg viewBox="0 0 10 10" aria-hidden="true" focusable="false"><path class="i-pause" d="M1.5 1h2.6v8H1.5zM5.9 1h2.6v8H5.9z"/><path class="i-play" d="M2 .8 9 5 2 9.2z"/></svg></span></button></div><figcaption>A little of the coast to look forward to</figcaption></figure>
   </div>
   <div class="arc">
     <svg class="path" viewBox="0 0 1000 200" aria-hidden="true"><line class="p-horizon" x1="0" y1="190" x2="1000" y2="190"/><path class="p-line" id="sunpath" d="M40 190C250-40 750-40 960 190"/><circle class="p-dot" cx="121" cy="123" r="7"/><circle class="p-dot" cx="375" cy="29" r="7"/><circle class="p-dot" cx="625" cy="29" r="7"/><circle class="p-dot" cx="879" cy="123" r="7"/><circle class="p-sun" r="15" cx="121" cy="123"/></svg>
@@ -542,7 +564,48 @@ section{scroll-margin-top:80px}
     <li class="rv d1"><div><h3>Make it yours</h3><p>Once you’ve been offered a place and want to join, a deposit secures it. No payments before the required registration and insurance are in place.</p></div></li>
     <li class="rv d2"><div><h3>Meet the women you’ll run with</h3><p>An online catch-up before camp to talk travel, gear and the days ahead.</p></div></li>
   </ol>
-  <svg class="ridge" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path fill="#F5DDA8" d="M0 90V40L84 58 154 32 250 66 308 52 418 82 490 38 554 58 642 50 746 86 822 56 912 74 974 50 1070 78 1150 62 1220 84 1324 44 1384 62 1440 54V90Z"/></svg>
+  <svg class="ridge" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path fill="#F8F3E8" d="M0 90V40L84 58 154 32 250 66 308 52 418 82 490 38 554 58 642 50 746 86 822 56 912 74 974 50 1070 78 1150 62 1220 84 1324 44 1384 62 1440 54V90Z"/></svg>
+</section>
+
+<section class="faq" id="questions" aria-labelledby="faq-h" data-time="17:30">
+  <div class="inner">
+    <div class="copy">
+      <p class="kicker">Good to know</p>
+      <h2 id="faq-h" class="rv">Your questions, <em>short answers</em></h2>
+      <p class="lead rv d1">Anything else, just ask when you get the details.</p>
+    </div>
+    <div class="qs rv d1">
+      <details>
+        <summary>Where is the camp?</summary>
+        <p>In the mountains behind Dénia, in the Marina Alta on Spain’s Costa Blanca. Dénia sits on the coast between Valencia and Alicante.</p>
+      </details>
+      <details>
+        <summary>Which airport should I fly into?</summary>
+        <p>Alicante and Valencia are the closest airports, both a little over an hour from Dénia by car. Please wait until we’ve confirmed your place and the dates before you book flights.</p>
+      </details>
+      <details>
+        <summary>How fit do I need to be?</summary>
+        <p>The camps are for women who already run trails. You’ll be happy on climbs and rocky descents, and fine with hiking the steep bits. When applications open, we ask about your running before offering a place.</p>
+      </details>
+      <details>
+        <summary>What does the February camp cost?</summary>
+        <p>€1,800 per person in a shared room or €2,200 in a single room. Bring a friend and you each get 10% off. We’ll confirm what’s included with the details. Spring prices follow with its dates.</p>
+      </details>
+      <details>
+        <summary>Is it women only?</summary>
+        <p>Yes. Each camp is a small women-only group of runners.</p>
+      </details>
+      <details>
+        <summary>What’s the weather like in February?</summary>
+        <p>Usually mild by the coast, with daytime temperatures often in the mid-teens °C, and cooler and windier up on the ridges. Expect sunny days and some rain. We adapt each route to the weather.</p>
+      </details>
+      <details>
+        <summary>Do I need to pay anything now?</summary>
+        <p>No. Ticking a camp in the form below just gets you the dates and details by email. If you’re offered a place and want to join, a deposit secures it.</p>
+      </details>
+    </div>
+  </div>
+  <svg class="ridge" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path fill="#F5DDA8" d="M0 90V58L76 40 140 62 236 30 300 50 392 36 470 70 552 44 616 56 700 26 790 64 862 46 940 60 1012 34 1102 66 1180 50 1262 72 1340 42 1440 56V90Z"/></svg>
 </section>
 
 <span id="waitlist"></span><span id="apply"></span><section class="interest" id="interest" aria-labelledby="int-h" data-time="18:20">

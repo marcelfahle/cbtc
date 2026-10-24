@@ -136,7 +136,7 @@
       '.cbtc-consent-state{margin-top:6px;color:rgba(246,241,229,.66);font-weight:700}' +
       '.cbtc-consent-actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}' +
       '.cbtc-consent-actions button,[data-marketing-privacy]{min-height:40px;border:0;border-radius:8px;padding:0 14px;font:800 .92rem/1 "Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;cursor:pointer}' +
-      '.cbtc-consent-actions [data-marketing-accept]{background:oklch(57.2% .128 37.49);color:rgb(246,241,229)}' +
+      '.cbtc-consent-actions [data-marketing-accept]{background:oklch(49% .115 37.49);color:rgb(246,241,229)}' +
       '.cbtc-consent-actions [data-marketing-reject]{background:rgba(255,255,255,.08);color:rgb(246,241,229);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}' +
       '[data-marketing-privacy]{position:fixed;z-index:9998;left:16px;bottom:16px;background:rgba(9,19,15,.86);color:rgb(246,241,229);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22);backdrop-filter:blur(6px)}' +
       '.cbtc-consent-actions button:focus-visible,[data-marketing-privacy]:focus-visible{outline:2px solid rgb(214,166,64);outline-offset:3px}' +

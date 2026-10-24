@@ -6,11 +6,11 @@ const hero=html.split('<header id="top"')[1].split('</header>')[0];
 test('approved light hero with confirmed February dates and details CTA',()=>{
  assert.ok(hero.includes('<h1>Make room for<span class="accent"> the mountains</span></h1>'));
  assert.ok(hero.includes("Women's trail running · Costa Blanca · Winter–Spring 2027"));
- assert.ok(hero.includes('Mountain trails, time for yourself and a women’s group to share it with. Next camp: 2–7 February 2027. Another follows in late March to early April.'));
+ assert.ok(hero.includes('Trail running in the mountains behind Dénia, time for yourself and a women’s group to share it with. Next camp: 2–7 February 2027. Another follows in late March to early April.'));
  assert.match(hero,/class="stub-line" href="\/\?camp=february#interest" data-camp="february"/);
  assert.ok(hero.includes('Then late March to early April. Dates coming soon.'));
  assert.match(hero,/sunrise-valley-2200\.webp/);
- assert.match(html,/<title>Costa Blanca Trail Camp · Make room for the mountains · Winter–Spring 2027<\/title>/);
+ assert.match(html,/<title>Women’s Trail Running Camp in Costa Blanca, Spain · 2027<\/title>/);
   assert.doesNotMatch(html,/Tired legs|Quiet head/);
  assert.match(html,/Send me the details/);
  assert.doesNotMatch(html,/Join the interest list|Interest list open|proto-bar|h1-switcher/);

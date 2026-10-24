@@ -1,0 +1,46 @@
+---
+// Branded not-found page in the homepage's palette (design v2): a wrong turn at dusk.
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wrong turn · Costa Blanca Trail Camp</title>
+  <meta name="robots" content="noindex, follow" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preload" href="/fonts/Archivo-var.woff2" as="font" type="font/woff2" crossorigin />
+  <style is:inline>
+    @font-face{font-family:"Archivo";src:url("/fonts/Archivo-var.woff2") format("woff2");font-weight:100 900;font-display:swap}
+    @font-face{font-family:"Source Sans 3";src:url("/fonts/SourceSans3-var.woff2") format("woff2");font-weight:200 900;font-display:swap}
+    @font-face{font-family:"Newsreader";src:url("/fonts/Newsreader-italic-var.woff2") format("woff2");font-weight:200 800;font-style:italic;font-display:swap}
+    :root{--ivory:#F8F3E8;--paper:#FFFCF4;--sage:#DDE5D2;--forest:#14281D;--forest-2:#3A4A3F;--ochre:#7A5512;--sun:#F2C14E;--terra:#9B482E;--wrap:clamp(16px,5vw,72px)}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{min-height:100vh;min-height:100dvh;display:grid;grid-template-rows:auto 1fr auto;font-family:"Source Sans 3",system-ui,sans-serif;font-size:clamp(17px,1.05vw + 12px,19px);line-height:1.5;color:var(--forest);background:linear-gradient(180deg,var(--ivory) 0%,var(--ivory) 55%,#F5DDA8 100%)}
+    a{color:inherit}
+    .brand{display:inline-flex;align-items:center;gap:12px;padding:24px var(--wrap);font-family:"Archivo";font-weight:800;font-size:15px;letter-spacing:.02em;text-decoration:none}
+    main{align-self:center;padding:24px var(--wrap) 64px;max-width:60rem}
+    .kicker{display:inline-flex;align-items:center;gap:12px;font-family:"Archivo";font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--ochre)}
+    .kicker::before{content:"";width:18px;height:14px;background:linear-gradient(#fff 0 50%,var(--sun) 50% 100%);box-shadow:0 0 0 1px rgba(20,40,29,.2)}
+    h1{font-family:"Archivo";font-weight:900;font-size:clamp(40px,7vw,84px);letter-spacing:-.04em;line-height:.95;margin-top:18px;text-transform:uppercase}
+    h1 em{display:block;font-family:"Newsreader",serif;font-weight:500;font-style:italic;text-transform:none;letter-spacing:-.02em;color:var(--terra)}
+    p.lead{font-size:clamp(18px,1.4vw,21px);color:var(--forest-2);margin-top:22px;max-width:28em}
+    .acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+    .btn{display:inline-flex;align-items:center;min-height:48px;padding:0 24px;border-radius:999px;background:var(--forest);color:var(--paper);font-family:"Archivo";font-weight:800;font-size:15px;text-decoration:none}
+    .btn.ghost{background:transparent;color:var(--forest);box-shadow:inset 0 0 0 1.5px var(--forest)}
+    .btn:focus-visible{outline:2px solid var(--terra);outline-offset:3px}
+    svg.ridge{display:block;width:100%;height:clamp(40px,7vw,96px)}
+  </style>
+</head>
+<body>
+  <a class="brand" href="/"><img src="/images/mark.svg" alt="" width="36" height="36" />Costa Blanca Trail Camp</a>
+  <main>
+    <p class="kicker">Page not found</p>
+    <h1>Wrong turn. <em>It happens on every trail</em></h1>
+    <p class="lead">This path doesn’t lead anywhere. The camps, the dates and the hosts are all back on the main trail.</p>
+    <div class="acts"><a class="btn" href="/">Back to the homepage</a><a class="btn ghost" href="/#camps">See the camps</a></div>
+  </main>
+  <svg class="ridge" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path fill="#14281D" d="M0 90V52L92 22 156 40 236 28 306 58 402 12 460 34 564 24 630 50 718 14 790 34 850 26 960 60 1030 32 1114 48 1178 28 1274 58 1350 40 1440 48V90Z"/></svg>
+</body>
+</html>
