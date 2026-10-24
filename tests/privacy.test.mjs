@@ -17,7 +17,7 @@ test('privacy links survive homepage generation and exist in shared footer and b
   const html = read(path);
   assert.ok(html.includes('We only use your details to send you the dates. <a href="/privacy"'));
   assert.ok(html.includes('>Privacy policy.</a>'));
-  assert.ok(html.split('</main><footer>')[1].includes('href="/privacy"'));
+  assert.ok(html.split('</main>')[1].split('</footer>')[0].includes('href="/privacy"'));
  }
  assert.ok(read('src/layouts/RunnerPage.astro').includes('href="/privacy"'));
  assert.ok(read('public/scripts/meta-pixel-consent.js').includes('<a href="/privacy">Privacy policy</a>'));
