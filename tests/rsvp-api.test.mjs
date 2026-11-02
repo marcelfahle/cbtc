@@ -10,7 +10,7 @@ const source = stripTypeScriptTypes(fs.readFileSync(new URL('../src/pages/api/rs
   .replace(/export const /g, 'const ')
   .replaceAll('import.meta.env', '{}') + '\nglobalThis.handler = POST;';
 
-function harness(env = { RESEND_API_KEY: 'synthetic-test-only', APPLY_TO_EMAIL: 'host@example.com', QA_ZOOM_URL: 'https://zoom.us/j/123' }) {
+function harness(env = { RESEND_API_KEY: 'synthetic-test-only', APPLY_TO_EMAIL: 'host@example.com', QA_MEET_URL: 'https://meet.google.com/abc-defg-hij' }) {
   const deliveries = [];
   const context = vm.createContext({
     sessionById, sessionLabel, buildIcs, camp, Response, Date, Buffer, Promise, console: { error() {} },
@@ -21,20 +21,21 @@ function harness(env = { RESEND_API_KEY: 'synthetic-test-only', APPLY_TO_EMAIL: 
   return { deliveries, post: async data => context.handler({ request: { json: async () => data } }) };
 }
 
-test('a valid RSVP emails the hosts and sends the runner an invitation with the Zoom link', async () => {
+test('a valid RSVP emails the hosts and sends the runner an invitation with the Meet link', async () => {
   const h = harness();
   const res = await h.post({ session: 'thu-12', fields: { name: 'Hanna Test', email: 'runner@example.com', question: 'Poles?' } });
   assert.equal(res.status, 200);
   const body = await res.json();
   assert.equal(body.session, 'thu-12');
-  assert.equal(body.zoom, 'https://zoom.us/j/123');
+  assert.equal(body.zoom, 'https://meet.google.com/abc-defg-hij');
   assert.equal(h.deliveries.length, 2);
   const host = h.deliveries.find(d => d.to.includes('host@example.com'));
   const runner = h.deliveries.find(d => d.to.includes('runner@example.com'));
   assert.match(host.subject, /Q&A RSVP Thursday 12: Hanna Test/);
   assert.match(host.text, /Their question:\nPoles\?/);
   assert.match(runner.text, /Thursday 12 November, 18:00 CET/);
-  assert.match(runner.text, /https:\/\/zoom.us\/j\/123/);
+  assert.match(runner.text, /https:\/\/meet.google.com\/abc-defg-hij/);
+  assert.equal(runner.reply_to, 'hello@costablancatrailcamp.com');
   const ics = Buffer.from(runner.attachments[0].content, 'base64').toString('utf8');
   assert.match(ics, /METHOD:REQUEST/);
   assert.match(ics, /DTSTART:20261112T170000Z/);

@@ -1,7 +1,8 @@
-// The live Q&A sessions for the February 2027 camp ("open house" on Zoom).
+// The live Q&A sessions for the February 2027 camp (open house on Google Meet).
 // Single source for the page, the client script and /api/rsvp.
 // Edit `sessions` to move a date. `utc` is the start in UTC; Spain is CET (UTC+1)
 // in November, so 18:00 in Dénia is 17:00Z. The label is what we print.
+// `link` is optional per session; otherwise /api/rsvp uses the QA_MEET_URL env var for all four.
 export const camp = {
   id: 'february',
   name: 'February camp',
@@ -29,7 +30,7 @@ export const eventDescription = zoom =>
     'A live, small-group Q&A about the February camp (2–7 February 2027).',
     'The week day by day, the trails, rooms, prices, travel and whatever you want to ask.',
     'No payment, nothing to decide on the call.',
-    zoom ? `Join on Zoom: ${zoom}` : 'The Zoom link is in your confirmation email.',
+    zoom ? `Join on Google Meet: ${zoom}` : 'The Google Meet link is in your confirmation email.',
     `Page: ${camp.page}`,
   ].join('\n');
 
@@ -53,7 +54,7 @@ export function buildIcs(session, { zoom = '', organizerEmail = '', organizerNam
     `DTEND:${stamp(endUtc(session))}`,
     `SUMMARY:${icsText(eventTitle)}`,
     `DESCRIPTION:${icsText(eventDescription(zoom))}`,
-    `LOCATION:${icsText(zoom || 'Zoom')}`,
+    `LOCATION:${icsText(zoom || 'Google Meet')}`,
     zoom && `URL:${zoom}`,
     organizerEmail && `ORGANIZER;CN=${icsText(organizerName)}:mailto:${organizerEmail}`,
     attendeeEmail && `ATTENDEE;CN=${icsText(attendeeName || attendeeEmail)};ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;RSVP=FALSE:mailto:${attendeeEmail}`,
@@ -75,7 +76,7 @@ export function googleCalendarUrl(session, zoom = '') {
     text: eventTitle,
     dates: `${stamp(session.utc)}/${stamp(endUtc(session))}`,
     details: eventDescription(zoom),
-    location: zoom || 'Zoom',
+    location: zoom || 'Google Meet',
     ctz: HOST_TZ,
   });
   return 'https://calendar.google.com/calendar/render?' + p.toString();

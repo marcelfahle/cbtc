@@ -5,8 +5,9 @@ export const prerender = false;
 
 // RSVP for a live Q&A session: { session, fields: { name, email, question?, website? (honeypot) } }
 // Sends two emails via Resend: a note to the hosts and a confirmation to the runner
-// with the Zoom link and a calendar invitation (.ics, METHOD:REQUEST) attached.
-// Required env: RESEND_API_KEY, APPLY_TO_EMAIL. Optional: APPLY_FROM_EMAIL, QA_ZOOM_URL.
+// with the Google Meet link and a calendar invitation (.ics, METHOD:REQUEST) attached.
+// Required env: RESEND_API_KEY, APPLY_TO_EMAIL. Optional: APPLY_FROM_EMAIL, QA_MEET_URL
+// (one link for all four sessions unless a session sets its own `link`).
 
 const json = (status: number, data: unknown) =>
   new Response(JSON.stringify(data), { status, headers: { 'Content-Type': 'application/json' } });
@@ -33,7 +34,8 @@ export const POST: APIRoute = async ({ request }) => {
   const apiKey = env('RESEND_API_KEY');
   const to = String(env('APPLY_TO_EMAIL') ?? '').split(',').map((s: string) => s.trim()).filter(Boolean);
   const from = env('APPLY_FROM_EMAIL') ?? 'Costa Blanca Trail Camp <onboarding@resend.dev>';
-  const zoom = String(env('QA_ZOOM_URL') ?? '').trim();
+  const zoom = String(session?.link ?? env('QA_MEET_URL') ?? '').trim();
+  const replyTo = 'hello@costablancatrailcamp.com';
   const organizerEmail = (String(from).match(/<([^>]+)>/)?.[1] ?? String(from)).trim();
 
   if (!apiKey || to.length === 0) {
@@ -54,9 +56,9 @@ export const POST: APIRoute = async ({ request }) => {
   const runnerText = [
     `Hi ${name.split(' ')[0]},`,
     '',
-    `You're in for the live Q&A on ${when} (Spain time). It runs about 45 minutes on Zoom.`,
+    `You're in for the live Q&A on ${when} (Spain time). It runs about 45 minutes on Google Meet.`,
     '',
-    zoom ? `Join here: ${zoom}` : 'We will send the Zoom link a day before.',
+    zoom ? `Join here: ${zoom}` : 'We will send the Google Meet link a day before.',
     '',
     'The invitation is attached, so one tap puts it in your calendar. We talk through the February week day by day, the trails, rooms, prices and travel, and then it is your questions. Nothing to prepare, nothing to decide on the call.',
     '',
@@ -82,7 +84,7 @@ export const POST: APIRoute = async ({ request }) => {
     [hostRes, runnerRes] = await Promise.all([
       send({ from, to, reply_to: email, subject: `[CBTC] Q&A RSVP ${session.weekday} ${session.day}: ${name}`, text: hostText }),
       send({
-        from, to: [email], reply_to: to[0],
+        from, to: [email], reply_to: replyTo,
         subject: `Your seat for the live Q&A, ${session.weekday} ${session.day} ${session.month}`,
         text: runnerText,
         attachments: [{ filename: 'costa-blanca-trail-camp-qa.ics', content: toBase64(ics), content_type: 'text/calendar; method=REQUEST; charset=utf-8' }],

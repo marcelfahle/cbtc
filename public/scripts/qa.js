@@ -1,4 +1,4 @@
-// /camp/2027/02/qa: localise session times, handle the RSVP form, show the calendar step.
+// /camp/2027/02/qa: localise session times, handle the RSVP form, show the calendar step. `zoom` is the meeting link (Google Meet).
 import { sessions, sessionById, googleCalendarUrl, buildIcs, sessionLabel } from '/scripts/qa-sessions.js';
 
 const $ = (s, r = document) => r.querySelector(s);
