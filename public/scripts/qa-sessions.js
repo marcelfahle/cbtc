@@ -15,10 +15,10 @@ export const HOST_TZ = 'Europe/Madrid';
 
 export const sessions = [
   // Anna can't do Thursdays (Marcel, 2 Nov). Paste each session's Google Meet link into `link`.
-  { id: 'mon-09', utc: '2026-11-09T18:00:00Z', weekday: 'Monday',    day: '9',  month: 'November', time: '19:00', tz: 'CET', tag: 'First one', link: '' },
+  { id: 'mon-09', utc: '2026-11-09T18:00:00Z', weekday: 'Monday',    day: '9',  month: 'November', time: '19:00', tz: 'CET', link: '' },
   { id: 'tue-10', utc: '2026-11-10T18:00:00Z', weekday: 'Tuesday',   day: '10', month: 'November', time: '19:00', tz: 'CET', link: '' },
   { id: 'wed-18', utc: '2026-11-18T18:00:00Z', weekday: 'Wednesday', day: '18', month: 'November', time: '19:00', tz: 'CET', link: '' },
-  { id: 'fri-20', utc: '2026-11-20T18:00:00Z', weekday: 'Friday',    day: '20', month: 'November', time: '19:00', tz: 'CET', tag: 'Last one', link: '' },
+  { id: 'fri-20', utc: '2026-11-20T18:00:00Z', weekday: 'Friday',    day: '20', month: 'November', time: '19:00', tz: 'CET', link: '' },
 ];
 
 export const sessionById = id => sessions.find(s => s.id === id);

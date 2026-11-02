@@ -67,15 +67,18 @@ p{text-wrap:pretty}
 @media(max-width:600px){.brand{font-size:12px;gap:8px}.brand img{width:34px;height:34px}}
 
 /* Head */
-.head{padding:clamp(28px,5vw,64px) 0 clamp(28px,4vw,44px);max-width:46rem}
+.head{padding:clamp(28px,5vw,64px) 0 clamp(28px,4vw,44px);display:grid;gap:28px;align-items:center}
+@media(min-width:60rem){.head{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(32px,5vw,72px)}}
+.head .text{max-width:34rem}
+/* Polaroid of the two hosts, same device as the homepage */
+.polaroid{position:relative;justify-self:center;width:min(100%,30rem);background:var(--paper);padding:12px 12px 44px;border-radius:4px;box-shadow:0 1px 2px rgba(20,40,29,.1),0 30px 60px -36px rgba(20,40,29,.55);transform:rotate(1.4deg)}
+.polaroid img{width:100%;aspect-ratio:5/4;object-fit:cover;border-radius:2px}
+.polaroid figcaption{position:absolute;left:16px;right:16px;bottom:12px;font-family:"Newsreader",serif;font-style:italic;font-size:17px;color:var(--forest-2);display:flex;justify-content:space-between;gap:12px}
+.polaroid figcaption small{font-family:"Source Sans 3";font-style:normal;font-size:13px;color:var(--forest-3)}
+@media(min-width:60rem){.polaroid{transform:rotate(2deg)}}
 .head h1{font-size:clamp(36px,5.6vw,72px);font-weight:900;text-transform:uppercase;letter-spacing:-.04em;line-height:.92;margin-top:16px;text-wrap:initial}
 .head h1 em{display:block;text-transform:none;line-height:1.05;padding-left:.03em}
 .head .lede{font-size:clamp(18px,1.5vw,22px);color:var(--forest-2);margin-top:20px;max-width:30em}
-.hosts{display:flex;align-items:center;gap:14px;margin-top:22px;font-size:15px;color:var(--forest-2)}
-.hosts .faces{display:flex;flex:none}
-.hosts img{flex:none;width:44px;height:44px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2.5px var(--paper),0 6px 16px -8px rgba(20,40,29,.6)}
-.hosts img+img{margin-left:-10px}
-.hosts b{color:var(--forest)}
 
 /* Two columns: the pick on the left, the short version on the right */
 .grid{display:grid;gap:clamp(28px,4vw,56px);align-items:start}
@@ -93,7 +96,6 @@ p{text-wrap:pretty}
 .slot .day{display:grid;align-content:center;padding:12px 20px 12px 24px;border-right:1.5px dashed rgba(20,40,29,.25);min-width:9.5em}
 .slot .day b{font-family:"Archivo";font-weight:900;font-size:clamp(21px,2vw,27px);letter-spacing:-.03em;line-height:.95;text-transform:uppercase}
 .slot .day small{display:block;margin-top:3px;font-size:15px;color:var(--forest-2)}
-.slot .tag{display:inline-block;margin-left:6px;vertical-align:1px;font-family:"Archivo";font-weight:800;font-size:10px;letter-spacing:.12em;text-transform:uppercase;background:var(--sun);color:var(--forest);padding:3px 7px 2px;border-radius:999px}
 .slot .when{display:grid;align-content:center;gap:2px;padding:12px 18px}
 .slot .when b{font-family:"Archivo";font-weight:800;font-size:19px;letter-spacing:-.01em;white-space:nowrap}
 .slot .when b span{font-weight:600;font-size:15px;color:var(--forest-3);margin-left:.4em}
@@ -170,13 +172,15 @@ footer a:hover{text-decoration:underline;text-underline-offset:.2em}
 </div>
 
 <header class="head">
-  <p class="kicker">{camp.name} · {camp.window} · Live Q&A</p>
-  <h1>Ask us anything <em>before you decide</em></h1>
-  <p class="lede">Four live group calls over the next two weeks, {DURATION_MIN} minutes each, same content every time. We walk you through the February week, then it’s your questions. Pick an evening and we’ll send the link and a calendar invite.</p>
-  <div class="hosts">
-    <div class="faces"><img src="/images/monika.webp" alt="Monika Fahle" width="44" height="44"><img src="/images/anna.webp" alt="Anna Berglind Pálmadóttir" width="44" height="44"></div>
-    <p><b>With Monika and Anna,</b> who are on the trails with you in February.</p>
+  <div class="text">
+    <p class="kicker">{camp.name} · {camp.window} · Live Q&A</p>
+    <h1>Ask us anything <em>before you decide</em></h1>
+    <p class="lede">Four live group calls over the next two weeks, {DURATION_MIN} minutes each, same content every time. Monika and Anna walk you through the February week, then it’s your questions. Pick an evening and we’ll send the link and a calendar invite.</p>
   </div>
+  <figure class="polaroid">
+    <img src="/images/hosts-sunset-700.webp" srcset="/images/hosts-sunset-700.webp 700w, /images/hosts-sunset-1400.webp 1400w" sizes="(min-width:60rem) 30rem, 100vw" width="700" height="560" alt="Monika Fahle and Anna Berglind Pálmadóttir on a trail above Dénia at sunset" fetchpriority="high">
+    <figcaption><span>Monika and Anna</span><small>Your hosts, above Dénia</small></figcaption>
+  </figure>
 </header>
 
 <div class="grid">
@@ -187,7 +191,7 @@ footer a:hover{text-decoration:underline;text-underline-offset:.2em}
         {sessions.map(s => (
           <label class="slot">
             <input type="radio" name="session" value={s.id} />
-            <span class="day"><b>{s.weekday}</b><small>{s.day} {s.month}{s.tag && <span class="tag">{s.tag}</span>}</small></span>
+            <span class="day"><b>{s.weekday}</b><small>{s.day} {s.month}</small></span>
             <span class="when"><b>{s.time}<span>{s.tz}, Spain</span></b><small data-local={s.id}></small></span>
             <span class="go"><span class="ring" aria-hidden="true"></span></span>
           </label>
