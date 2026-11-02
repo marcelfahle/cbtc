@@ -1,7 +1,7 @@
 // The live Q&A sessions for the February 2027 camp (open house on Google Meet).
 // Single source for the page, the client script and /api/rsvp.
 // Edit `sessions` to move a date. `utc` is the start in UTC; Spain is CET (UTC+1)
-// in November, so 18:00 in Dénia is 17:00Z. The label is what we print.
+// in November, so 19:00 in Dénia is 18:00Z. The label is what we print.
 // `link` is optional per session; otherwise /api/rsvp uses the QA_MEET_URL env var for all four.
 export const camp = {
   id: 'february',
@@ -14,10 +14,11 @@ export const DURATION_MIN = 45;
 export const HOST_TZ = 'Europe/Madrid';
 
 export const sessions = [
-  { id: 'tue-10', utc: '2026-11-10T17:00:00Z', weekday: 'Tuesday',   day: '10', month: 'November', time: '18:00', tz: 'CET', tag: 'First one' },
-  { id: 'thu-12', utc: '2026-11-12T17:00:00Z', weekday: 'Thursday',  day: '12', month: 'November', time: '18:00', tz: 'CET' },
-  { id: 'wed-18', utc: '2026-11-18T17:00:00Z', weekday: 'Wednesday', day: '18', month: 'November', time: '18:00', tz: 'CET' },
-  { id: 'fri-20', utc: '2026-11-20T17:00:00Z', weekday: 'Friday',    day: '20', month: 'November', time: '18:00', tz: 'CET', tag: 'Last one' },
+  // Anna can't do Thursdays (Marcel, 2 Nov). Paste each session's Google Meet link into `link`.
+  { id: 'mon-09', utc: '2026-11-09T18:00:00Z', weekday: 'Monday',    day: '9',  month: 'November', time: '19:00', tz: 'CET', tag: 'First one', link: '' },
+  { id: 'tue-10', utc: '2026-11-10T18:00:00Z', weekday: 'Tuesday',   day: '10', month: 'November', time: '19:00', tz: 'CET', link: '' },
+  { id: 'wed-18', utc: '2026-11-18T18:00:00Z', weekday: 'Wednesday', day: '18', month: 'November', time: '19:00', tz: 'CET', link: '' },
+  { id: 'fri-20', utc: '2026-11-20T18:00:00Z', weekday: 'Friday',    day: '20', month: 'November', time: '19:00', tz: 'CET', tag: 'Last one', link: '' },
 ];
 
 export const sessionById = id => sessions.find(s => s.id === id);
@@ -34,7 +35,7 @@ export const eventDescription = zoom =>
     `Page: ${camp.page}`,
   ].join('\n');
 
-// Compact ISO stamp for iCalendar: 20261110T170000Z
+// Compact ISO stamp for iCalendar: 20261110T180000Z
 const stamp = iso => iso.replace(/[-:]/g, '').replace(/\.\d{3}/, '');
 const icsText = s => String(s).replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/,/g, '\\,').replace(/;/g, '\\;');
 
