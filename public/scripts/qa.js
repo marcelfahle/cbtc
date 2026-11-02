@@ -6,9 +6,9 @@ const $ = (s, r = document) => r.querySelector(s);
 // "Your time": the viewer's local time for each session, only when it differs from Spain's.
 try {
   const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  const fmt = new Intl.DateTimeFormat(undefined, { hour: '2-digit', minute: '2-digit', timeZone: tz });
+  const fmt = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hourCycle: 'h23', timeZone: tz });
   const dayFmt = new Intl.DateTimeFormat('en-GB', { weekday: 'short', timeZone: tz });
-  const hostFmt = new Intl.DateTimeFormat(undefined, { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Madrid' });
+  const hostFmt = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hourCycle: 'h23', timeZone: 'Europe/Madrid' });
   for (const s of sessions) {
     const el = $(`[data-local="${s.id}"]`);
     if (!el) continue;
@@ -16,7 +16,7 @@ try {
     const local = fmt.format(d), host = hostFmt.format(d);
     if (local === host) { el.hidden = true; continue; }
     const sameDay = dayFmt.format(d).toLowerCase() === s.weekday.slice(0, 3).toLowerCase();
-    el.textContent = `${local} where you are` + (sameDay ? '' : ` (${dayFmt.format(d)})`);
+    el.textContent = `${local} your time` + (sameDay ? '' : ` (${dayFmt.format(d)})`);
   }
   const zone = $('[data-your-zone]');
   if (zone) zone.textContent = tz.replace(/_/g, ' ');
