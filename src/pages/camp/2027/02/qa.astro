@@ -1,0 +1,341 @@
+---
+// /camp/2027/02/qa: RSVP page for the four live Q&A sessions before the February camp.
+// Unlisted (noindex), sent by email to the people who asked for details. Pick an evening,
+// leave name and email, get the Zoom link and a calendar invitation. Sessions live in
+// public/scripts/qa-sessions.js, the RSVP lands in /api/rsvp. Design follows homepage v2:
+// same fonts, tokens and ticket language, trimmed to one decision.
+import { sessions, camp, DURATION_MIN } from '../../../../../public/scripts/qa-sessions.js';
+
+const title = 'Live Q&A before the February camp · Costa Blanca Trail Camp';
+const description = 'Four live, small-group Q&A sessions on Zoom with Monika and Anna about the 2–7 February 2027 camp. Pick an evening, get the link and a calendar invite.';
+const url = camp.page;
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title}</title>
+<meta name="description" content={description}>
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href={url}>
+<meta property="og:type" content="website"><meta property="og:site_name" content="Costa Blanca Trail Camp"><meta property="og:title" content="Live Q&A before the February camp"><meta property="og:description" content={description}><meta property="og:url" content={url}><meta property="og:image" content="https://www.costablancatrailcamp.com/images/og-sunrise.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#C9D6DC">
+<link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/Archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/SourceSans3-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/Newsreader-italic-var.woff2" as="font" type="font/woff2" crossorigin>
+<script is:inline>document.documentElement.classList.add('js')</script>
+<style is:global>
+@font-face{font-family:"Archivo";src:url("/fonts/Archivo-var.woff2") format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Source Sans 3";src:url("/fonts/SourceSans3-var.woff2") format("woff2");font-weight:200 900;font-display:swap}
+@font-face{font-family:"Newsreader";src:url("/fonts/Newsreader-italic-var.woff2") format("woff2");font-weight:200 800;font-style:italic;font-display:swap}
+
+:root{
+  --ivory:#F8F3E8; --paper:#FFFCF4; --sand:#F1E5CB; --sage:#DDE5D2; --sage-2:#C7D3BA;
+  --sky:#D5E1E4; --sky-2:#B3C7D0;
+  --forest:#14281D; --forest-2:#3A4A3F; --forest-3:#5A6A5C;
+  --ochre:#7A5512; --sun:#F2C14E; --apricot:#F2A878; --dusk:#D9775A;
+  --terra:#9B482E; --terra-deep:#77351F;
+  --line:rgba(20,40,29,.16);
+  --wrap:clamp(16px,5vw,72px);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:"Source Sans 3",system-ui,sans-serif;font-size:clamp(17px,1.05vw + 12px,19px);line-height:1.5;color:var(--forest);background:var(--ivory);overflow-x:clip}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:"Archivo",sans-serif;letter-spacing:-.025em;line-height:1;font-weight:800;text-wrap:balance}
+h2{font-size:clamp(32px,4.2vw,58px);letter-spacing:-.035em;line-height:.98}
+h2 em,h1 em,.serif{font-family:"Newsreader",serif;font-style:italic;font-weight:500;letter-spacing:-.015em}
+h2 em{color:var(--ochre)}
+p{text-wrap:pretty}
+.wrap{padding-inline:var(--wrap)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.kicker{display:inline-flex;align-items:center;gap:12px;font-family:"Archivo";font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--ochre)}
+.kicker::before{content:"";flex:none;width:18px;height:12px;border-radius:2px;background:linear-gradient(#fff 0 50%,var(--sun) 50% 100%);box-shadow:0 0 0 1px rgba(20,40,29,.22)}
+.lead{font-size:clamp(18px,1.4vw,21px);color:var(--forest-2);margin-top:20px;max-width:32em}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:52px;padding:.8em 1.5em;border-radius:999px;border:0;font:inherit;font-weight:700;font-size:1rem;line-height:1.1;text-decoration:none;cursor:pointer;background:var(--terra);color:#FFF8F0;transition:background .2s,transform .3s var(--ease)}
+.btn:hover{background:var(--terra-deep);transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn[disabled]{opacity:.7;cursor:progress;transform:none}
+.btn.ghost{background:transparent;color:var(--forest);box-shadow:inset 0 0 0 1.5px rgba(20,40,29,.4)}
+.btn.ghost:hover{background:rgba(20,40,29,.06);box-shadow:inset 0 0 0 1.5px var(--forest)}
+.btn:focus-visible,a:focus-visible,input:focus-visible,button:focus-visible,textarea:focus-visible{outline:3px solid var(--ochre);outline-offset:3px}
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+.js .rv.d1{transition-delay:.08s}.js .rv.d2{transition-delay:.16s}.js .rv.d3{transition-delay:.24s}.js .rv.d4{transition-delay:.32s}
+
+/* Nav */
+.nav{position:absolute;inset-inline:0;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px var(--wrap);color:var(--forest)}
+.brand{display:flex;align-items:center;gap:12px;font-family:"Archivo";font-weight:800;font-size:15px;line-height:1.05;letter-spacing:.03em;text-transform:uppercase;text-decoration:none;max-width:12em}
+.brand img{width:42px;height:42px;flex:none}
+.nav .btn{min-height:44px;padding:.55em 1.15em;font-size:15px}
+@media(max-width:600px){.nav{gap:8px;padding:12px 16px}.brand{font-size:12px;gap:8px}.brand img{width:34px;height:34px}.nav .btn{font-size:13px;padding:10px 14px}}
+
+/* Hero: early evening, the hour of the call */
+.hero{position:relative;isolation:isolate;overflow:hidden;padding:clamp(120px,14vw,176px) var(--wrap) clamp(56px,7vw,96px);
+  background:linear-gradient(180deg,#A7BCCA 0%,#C9D6DC 30%,#E8DFC4 70%,var(--ivory) 100%)}
+.hero .inner{position:relative;z-index:2;max-width:62rem}
+.hero h1{font-size:clamp(40px,7vw,104px);font-weight:900;text-transform:uppercase;letter-spacing:-.04em;line-height:.9;margin-top:18px;text-wrap:initial}
+.hero h1 em{display:block;text-transform:none;font-weight:500;letter-spacing:-.02em;line-height:1;color:var(--ochre);padding-left:.04em}
+.hero .kicker{color:#5A3E0B}
+.hero .lede{font-size:clamp(18px,1.6vw,23px);max-width:30em;margin-top:24px;color:var(--forest-2)}
+.js .hero .inner>*{animation:up 1s var(--ease) both}
+.js .hero .inner>:nth-child(2){animation-delay:.08s}.js .hero .inner>:nth-child(3){animation-delay:.18s}.js .hero .inner>:nth-child(4){animation-delay:.28s}
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.hero .facts{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:30px;font-size:15px;color:var(--forest-2)}
+.hero .facts span{display:inline-flex;align-items:center;gap:8px}
+.hero .facts span::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--sun);box-shadow:0 0 0 3px rgba(242,193,78,.3)}
+/* A low sun setting behind the ridge */
+.hero .sunball{position:absolute;z-index:1;right:clamp(8vw,14vw,22vw);bottom:clamp(60px,10vw,150px);width:clamp(90px,12vw,170px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 35%,#FBE6A6,var(--sun) 60%,var(--apricot));box-shadow:0 0 0 10px rgba(242,193,78,.18),0 0 90px 24px rgba(247,216,145,.75);opacity:.95}
+.hero .ridge{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:clamp(40px,7vw,110px);z-index:2}
+@media(max-width:47.99rem){.hero .sunball{width:70px;right:16px;bottom:40px}}
+
+/* Section rhythm */
+section{position:relative;padding:clamp(56px,8vw,112px) var(--wrap)}
+.two{display:grid;gap:clamp(32px,4vw,56px)}
+@media(min-width:64rem){.two{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);align-items:start}.two .intro{position:sticky;top:40px}}
+
+/* The pick: four stubs */
+.pick{background:var(--sage)}
+.slots{display:grid;gap:14px;margin-top:8px}
+.slot{position:relative;display:grid;grid-template-columns:auto 1fr auto;align-items:stretch;min-height:92px;background:var(--paper);border-radius:14px;cursor:pointer;
+  box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 12px 32px -18px rgba(20,40,29,.45);transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .25s;
+  -webkit-mask:radial-gradient(circle 8px at 0 50%,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 8px at 100% 50%,#0000 98%,#000) right/51% 100% no-repeat;
+  mask:radial-gradient(circle 8px at 0 50%,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 8px at 100% 50%,#0000 98%,#000) right/51% 100% no-repeat}
+.slot:hover{transform:translateY(-2px) rotate(-.3deg)}
+.slot input{position:absolute;opacity:0;width:1px;height:1px}
+.slot .day{display:grid;align-content:center;padding:14px 22px 14px 28px;border-right:1.5px dashed rgba(20,40,29,.25);min-width:9.5em}
+.slot .day b{font-family:"Archivo";font-weight:900;font-size:clamp(22px,2.2vw,30px);letter-spacing:-.03em;line-height:.95;text-transform:uppercase}
+.slot .day small{display:block;margin-top:4px;font-size:15px;color:var(--forest-2)}
+.slot .when{display:grid;align-content:center;gap:2px;padding:14px 20px}
+.slot .when b{font-family:"Archivo";font-weight:800;font-size:19px;letter-spacing:-.01em;white-space:nowrap}
+.slot .when b span{font-weight:600;font-size:15px;color:var(--forest-3);margin-left:.4em}
+.slot .when small{font-size:14px;color:var(--ochre);font-weight:600}
+.slot .go{display:grid;place-items:center;padding:0 22px 0 18px;border-left:1.5px dashed rgba(20,40,29,.25)}
+.slot .ring{width:28px;height:28px;border-radius:50%;box-shadow:inset 0 0 0 2px rgba(20,40,29,.35);display:grid;place-items:center;transition:box-shadow .2s,background .2s}
+.slot .ring::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--paper);transform:scale(0);transition:transform .3s var(--ease)}
+.slot:has(input:checked){background:#FFF6E2;box-shadow:0 0 0 2px var(--terra),0 16px 36px -18px rgba(20,40,29,.5)}
+.slot:has(input:checked) .ring{background:var(--terra);box-shadow:none}
+.slot:has(input:checked) .ring::after{transform:scale(1)}
+.slot:has(input:focus-visible){outline:3px solid var(--ochre);outline-offset:3px}
+.slot .tag{display:inline-block;margin-left:6px;vertical-align:1px;font-family:"Archivo";font-weight:800;font-size:10px;letter-spacing:.12em;text-transform:uppercase;background:var(--sun);color:var(--forest);padding:3px 7px 2px;border-radius:999px}
+.slot.faded{opacity:.42;pointer-events:none}
+.slot.chosen{pointer-events:none}
+.slot.chosen::after{content:"Seat saved";position:absolute;right:76px;top:50%;transform:translateY(-50%) rotate(-6deg);font-family:"Archivo";font-weight:900;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra);border:2.5px solid currentColor;border-radius:6px;padding:5px 9px;opacity:.85}
+@media(max-width:560px){.slot{grid-template-columns:1fr auto}.slot .day{border:0;padding:16px 18px 2px 22px;min-width:0}.slot .when{grid-column:1;padding:0 18px 16px 22px}.slot .go{grid-column:2;grid-row:1/3;padding:0 18px}.slot.chosen::after{right:66px;font-size:11px}}
+.pick .zone{margin-top:16px;font-size:14px;color:var(--forest-3)}
+.pick .zone b{font-weight:600;color:var(--forest-2)}
+
+/* The form: a postcard */
+.card{position:relative;background:var(--paper);border-radius:6px;padding:clamp(26px,3.5vw,44px) clamp(22px,3.5vw,44px) clamp(24px,3vw,36px);box-shadow:0 1px 2px rgba(20,40,29,.08),0 30px 60px -40px rgba(20,40,29,.5);margin-top:26px}
+.card::before{content:"";position:absolute;top:-14px;left:50%;width:120px;height:30px;transform:translateX(-50%) rotate(-2deg);background:rgba(242,193,78,.55);box-shadow:0 1px 2px rgba(20,40,29,.1)}
+form{display:grid;gap:20px}
+.field{display:grid;gap:6px}
+.field label{font-weight:700}
+.field label span{font-weight:400;color:var(--forest-3)}
+.field input,.field textarea{font:inherit;min-height:52px;padding:.55em .1em;border:0;border-bottom:1.5px solid rgba(20,40,29,.35);border-radius:0;background:transparent;color:var(--forest);transition:border-color .2s;resize:vertical}
+.field textarea{min-height:74px;line-height:1.4}
+.field input:hover,.field textarea:hover{border-bottom-color:var(--forest)}
+.field input:focus-visible,.field textarea:focus-visible{outline:none;border-bottom:2.5px solid var(--terra);background:rgba(242,193,78,.08)}
+.field ::placeholder{color:#7C7F70}
+.form-foot{display:grid;gap:10px;margin-top:4px}
+.form-foot .btn{width:100%}
+.form-foot .fine{font-size:.92rem;color:var(--forest-3)}
+.honeypot{position:absolute;left:-9999px;width:0;height:0;opacity:0}
+[data-error],[data-pick-nudge]{color:#9B2C12;font-weight:600}
+
+/* Done */
+.done{outline:none}
+.done .stamp{display:inline-block;font-family:"Archivo";font-weight:900;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);border:2.5px solid currentColor;border-radius:6px;padding:6px 10px;transform:rotate(-3deg);margin-bottom:18px}
+.done h3{font-family:"Newsreader",serif;font-style:italic;font-weight:500;font-size:clamp(26px,2.4vw,36px);letter-spacing:-.01em;line-height:1.15}
+.done p{margin-top:14px;color:var(--forest-2)}
+.done .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.done .acts .btn{min-height:46px;font-size:15px}
+.done .fine{font-size:.92rem;color:var(--forest-3);margin-top:18px}
+.done .fine a{text-decoration:underline;text-underline-offset:.2em}
+
+/* On the call */
+.oncall{background:linear-gradient(180deg,var(--ivory),var(--sky) 100%)}
+.agenda{list-style:none;display:grid;margin-top:8px}
+.agenda li{display:grid;grid-template-columns:52px 1fr;gap:16px;padding:18px 0;border-top:1px solid var(--line);align-items:start}
+.agenda li:last-child{border-bottom:1px solid var(--line)}
+.agenda .t{font-family:"Archivo";font-weight:800;font-size:13px;letter-spacing:.08em;color:var(--ochre);padding-top:5px;font-variant-numeric:tabular-nums}
+.agenda h3{font-size:clamp(19px,1.5vw,23px)}
+.agenda p{color:var(--forest-2);margin-top:4px;font-size:clamp(16px,1.15vw,18px)}
+.hosts{display:flex;align-items:center;gap:18px;margin-top:28px}
+.hosts .faces{display:flex}
+.hosts img{flex:none;width:64px;height:64px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 3px var(--paper),0 8px 20px -10px rgba(20,40,29,.6)}
+.hosts img+img{margin-left:-14px}
+.hosts p{font-size:15px;color:var(--forest-2);max-width:26em}
+.hosts p b{display:block;color:var(--forest);font-family:"Archivo";font-weight:800;font-size:14px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:2px}
+
+/* After */
+.after{background:var(--sand)}
+.after .prose{max-width:38em;display:grid;gap:14px;color:var(--forest-2);font-size:clamp(17px,1.25vw,19px)}
+.after .prose b{color:var(--forest)}
+.after .prose a{text-decoration:underline;text-underline-offset:.2em}
+
+/* Footer: night */
+footer{position:relative;background:var(--forest);color:#DCE0D3;padding:clamp(56px,7vw,96px) var(--wrap) 40px;font-size:15px;
+  background-image:radial-gradient(1.8px 1.8px at 12% 22%,#fff8 50%,transparent 51%),radial-gradient(1.6px 1.6px at 28% 64%,#fffb 50%,transparent 51%),radial-gradient(2px 2px at 46% 18%,#fff9 50%,transparent 51%),radial-gradient(1.6px 1.6px at 63% 48%,#fff8 50%,transparent 51%),radial-gradient(1.4px 1.4px at 81% 30%,#fffa 50%,transparent 51%),radial-gradient(1.8px 1.8px at 92% 70%,#fff8 50%,transparent 51%)}
+footer .grid{display:grid;gap:28px}
+@media(min-width:56rem){footer .grid{grid-template-columns:1.2fr 1fr;align-items:end}}
+footer .brand{color:var(--ivory);font-size:15px}
+footer .brand img{filter:invert(1) sepia(.15)}
+footer .sign{font-family:"Newsreader",serif;font-style:italic;font-size:clamp(28px,3vw,44px);line-height:1.05;color:var(--ivory);margin-top:22px;max-width:14em}
+footer .sign em{color:var(--sun);font-style:italic}
+footer p{max-width:44em}
+footer a{color:var(--ivory)}
+footer .meta{display:grid;gap:10px;color:#B7BFAF}
+footer .moon{position:absolute;right:clamp(24px,8vw,120px);top:clamp(28px,4vw,56px);width:38px;height:38px;border-radius:50%;box-shadow:inset -9px -3px 0 0 #E9E4D4;rotate:-20deg;opacity:.9}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
+  .js .rv{opacity:1;transform:none}
+}
+</style>
+<script async src="https://plausible.io/js/pa-Ph375L-pQZDyOfoQSaRdy.js"></script><script is:inline>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)};plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
+</head>
+<body>
+
+<nav class="nav" aria-label="Primary navigation">
+  <a class="brand" href="/"><img src="/images/mark.svg" alt="" width="42" height="42">Costa Blanca Trail Camp</a>
+  <a class="btn ghost" href="/#camps">The camps</a>
+</nav>
+
+<header class="hero">
+  <span class="sunball" aria-hidden="true"></span>
+  <div class="inner">
+    <p class="kicker">{camp.name} · {camp.window} · Live on Zoom</p>
+    <h1>Ask us anything <em>before you decide</em></h1>
+    <p class="lede">Four small-group evenings with Monika and Anna over the next two weeks. We walk you through the February week, you ask whatever you want to know. Pick the one that fits and we’ll send the link and a calendar invite.</p>
+    <p class="facts"><span>About {DURATION_MIN} minutes</span><span>A handful of runners per call</span><span>Camera optional</span><span>Nothing to pay</span></p>
+  </div>
+  <svg class="ridge" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path fill="#DDE5D2" d="M0 90V40L84 58 154 32 250 66 308 52 418 82 490 38 554 58 642 50 746 86 822 56 912 74 974 50 1070 78 1150 62 1220 84 1324 44 1440 70V90z"/></svg>
+</header>
+
+<section class="pick" id="pick" aria-labelledby="pick-h">
+  <div class="two">
+    <div class="intro">
+      <p class="kicker">Step one</p>
+      <h2 id="pick-h" class="rv" style="margin-top:16px">Pick the evening <em>that fits</em></h2>
+      <p class="lead rv d1">All four at six in the evening, Spain time, on different weekdays, so one of them should clear your training and your calendar. Same content each time. Come to one.</p>
+      <p class="zone rv d2">Times shown in Spain time. Where it differs, your local time is under each date<span hidden> (<b data-your-zone></b>)</span>.</p>
+    </div>
+
+    <div>
+      <form data-rsvp novalidate>
+        <fieldset class="slots rv">
+          <legend class="sr">Choose a session</legend>
+          {sessions.map((s, i) => (
+            <label class:list={['slot', 'rv', `d${i + 1}`]}>
+              <input type="radio" name="session" value={s.id} />
+              <span class="day"><b>{s.weekday}</b><small>{s.day} {s.month}{s.tag && <span class="tag">{s.tag}</span>}</small></span>
+              <span class="when"><b>{s.time}<span>{s.tz}, Spain</span></b><small data-local={s.id}></small></span>
+              <span class="go"><span class="ring" aria-hidden="true"></span></span>
+            </label>
+          ))}
+        </fieldset>
+        <p data-pick-nudge hidden>Choose one of the four evenings first.</p>
+
+        <div class="card rv d2">
+          <div class="field">
+            <label for="name">Your name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required placeholder="First name is fine" />
+          </div>
+          <div class="field">
+            <label for="email">Email <span>for the Zoom link and the invite</span></label>
+            <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required placeholder="you@example.com" />
+          </div>
+          <div class="field">
+            <label for="question">One thing you want answered <span>optional</span></label>
+            <textarea id="question" name="question" rows="2" placeholder="The climbs, the rooms, the pace, flights, anything"></textarea>
+          </div>
+          <label class="honeypot" aria-hidden="true">Website <input name="website" type="text" tabindex="-1" autocomplete="off" /></label>
+          <div class="form-foot">
+            <button class="btn" type="submit">Save my seat</button>
+            <p data-error role="alert" hidden></p>
+            <p class="fine">The Zoom link and a calendar invitation reach your inbox within a minute. No payment, nothing to decide yet. <a href="/privacy">Privacy</a>.</p>
+          </div>
+        </div>
+      </form>
+
+      <div class="card done" id="done" tabindex="-1" role="status" aria-live="polite" hidden>
+        <span class="stamp">Seat saved</span>
+        <h3>See you on <span data-done-when></span></h3>
+        <p>The Zoom link and the invitation are on their way to <b data-done-email></b>. Put it in your calendar now so the week doesn’t swallow it.</p>
+        <div class="acts">
+          <a class="btn" data-gcal href="#" target="_blank" rel="noopener">Add to Google Calendar</a>
+          <a class="btn ghost" data-ics href="#">Apple or Outlook (.ics)</a>
+          <a class="btn ghost" data-zoom href="#" target="_blank" rel="noopener" hidden>Open the Zoom link</a>
+        </div>
+        <p class="fine">Date stops working? Reply to the confirmation email and we’ll move you to another evening.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="oncall" id="oncall" aria-labelledby="oncall-h">
+  <div class="two">
+    <div class="intro">
+      <p class="kicker">On the call</p>
+      <h2 id="oncall-h" class="rv" style="margin-top:16px">Forty minutes, <em>no slides</em></h2>
+      <p class="lead rv d1">Two hosts, a few runners, the questions you’d ask a friend who’s been. We talk you through the week, then it’s yours.</p>
+      <div class="hosts rv d2">
+        <div class="faces"><img src="/images/monika.webp" alt="Monika Fahle" width="64" height="64"><img src="/images/anna.webp" alt="Anna Berglind Pálmadóttir" width="64" height="64"></div>
+        <p><b>Monika and Anna</b>Both race internationally, both will be on the trails with you every day in February.</p>
+      </div>
+    </div>
+    <ol class="agenda rv d1">
+      <li><span class="t">00</span><div><h3>Who’s on the call</h3><p>Quick round. Where you run, what you’re training for. Lurking is allowed.</p></div></li>
+      <li><span class="t">05</span><div><h3>The week, day by day</h3><p>Tuesday arrival to Sunday flight. What a mountain day looks like from breakfast to the sea.</p></div></li>
+      <li><span class="t">15</span><div><h3>How hard it really is</h3><p>Distance, climbing, the rocky bits we hike. Who the camp fits and who should wait a year.</p></div></li>
+      <li><span class="t">22</span><div><h3>Rooms, prices, getting there</h3><p>Shared or single, what the price includes, the friend discount, Alicante and Valencia airports.</p></div></li>
+      <li><span class="t">28</span><div><h3>Your questions</h3><p>The reason we’re here. Ask the awkward ones. If we don’t know yet, we say so.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="after" id="after" aria-labelledby="after-h">
+  <div class="two">
+    <div class="intro">
+      <p class="kicker">After the call</p>
+      <h2 id="after-h" class="rv" style="margin-top:16px">Then you <em>decide</em></h2>
+    </div>
+    <div class="prose rv d1">
+      <p><b>The next morning you get an email</b> with everything we covered, the dates, the prices and the answers to the questions that came up.</p>
+      <p><b>If it’s a yes,</b> reply with “I’m in” and we send a deposit link. The deposit holds your spot, the rest follows later. The group is small, so places go in the order deposits arrive.</p>
+      <p><b>If it’s a no,</b> or a not this year, that’s a good outcome too. Better to know now than on a ridge in February.</p>
+      <p><b>Can’t make any of the four?</b> Email <a href="mailto:hello@costablancatrailcamp.com?subject=Q%26A%20another%20time">hello@costablancatrailcamp.com</a> and we’ll find twenty minutes that work.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="moon" aria-hidden="true"></span>
+  <div class="grid">
+    <div>
+      <a class="brand" href="/"><img src="/images/mark.svg" alt="" width="42" height="42">Costa Blanca Trail Camp</a>
+      <p class="sign">See you on <em>Zoom,</em> then on the trails</p>
+    </div>
+    <div class="meta">
+      <p>{camp.name} · {camp.window} · Costa Blanca, Spain. Women’s trail camps by Monika Fahle and Anna Berglind Pálmadóttir.</p>
+      <p><a aria-label="Instagram @costablancatrailcamp" href="https://www.instagram.com/costablancatrailcamp/">@costablancatrailcamp</a></p>
+      <p><a href="/">Back to the camps</a> · <a href="/privacy">Privacy policy</a></p>
+    </div>
+  </div>
+</footer>
+
+<script is:inline>
+// Reveal on scroll
+(function(){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});document.querySelectorAll('.rv').forEach(function(el){io.observe(el)})})();
+</script>
+<script type="module" src="/scripts/qa.js"></script>
+<script src="/scripts/meta-pixel-consent.js" defer></script>
+</body>
+</html>
