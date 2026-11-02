@@ -110,24 +110,26 @@ p{text-wrap:pretty}
 @media(max-width:560px){.slots{grid-template-columns:1fr}.slot{grid-template-columns:1fr auto}.slot .day{border:0;padding:14px 16px 2px 20px;min-width:0}.slot .when{grid-column:1;padding:0 16px 14px 20px}.slot .go{grid-column:2;grid-row:1/3;padding:0 16px}}
 .zone{margin-top:12px;font-size:14px;color:var(--forest-3)}
 
-/* The form */
-.card{position:relative;background:var(--paper);border-radius:6px;padding:clamp(24px,3vw,36px) clamp(20px,3vw,36px) clamp(22px,2.5vw,30px);box-shadow:0 1px 2px rgba(20,40,29,.08),0 30px 60px -40px rgba(20,40,29,.5);margin-top:24px}
+/* The form: boxed inputs so label, box and hint read as one unit */
+.card{position:relative;background:var(--paper);border-radius:6px;padding:clamp(28px,3vw,40px) clamp(20px,3vw,36px) clamp(24px,2.5vw,32px);box-shadow:0 1px 2px rgba(20,40,29,.08),0 30px 60px -40px rgba(20,40,29,.5);margin-top:28px}
 .card::before{content:"";position:absolute;top:-14px;left:50%;width:120px;height:30px;transform:translateX(-50%) rotate(-2deg);background:rgba(242,193,78,.55);box-shadow:0 1px 2px rgba(20,40,29,.1)}
-form{display:grid;gap:18px}
-.field{display:grid;gap:6px}
-.field label{font-weight:700}
+form{display:grid;gap:0}
+.card{display:grid;gap:22px}
+.field{display:grid;gap:8px}
+.field label{font-weight:700;line-height:1.2}
 .field label span{font-weight:400;color:var(--forest-3)}
-.field input,.field textarea{font:inherit;min-height:50px;padding:.5em .1em;border:0;border-bottom:1.5px solid rgba(20,40,29,.35);border-radius:0;background:transparent;color:var(--forest);transition:border-color .2s;resize:vertical}
-.field textarea{min-height:66px;line-height:1.4}
-.field input:hover,.field textarea:hover{border-bottom-color:var(--forest)}
-.field input:focus-visible,.field textarea:focus-visible{outline:none;border-bottom:2.5px solid var(--terra);background:rgba(242,193,78,.08)}
-.field ::placeholder{color:#7C7F70}
-.form-foot{display:grid;gap:10px;margin-top:2px}
-.form-foot .btn{width:100%}
-.form-foot .fine{font-size:.92rem;color:var(--forest-3)}
+.field input,.field textarea{width:100%;font:inherit;font-size:max(16px,1rem);min-height:54px;padding:13px 16px;border:1.5px solid rgba(20,40,29,.28);border-radius:12px;background:#fff;color:var(--forest);transition:border-color .2s,box-shadow .2s;resize:vertical}
+.field textarea{min-height:88px;line-height:1.45}
+.field input:hover,.field textarea:hover{border-color:rgba(20,40,29,.55)}
+.field input:focus-visible,.field textarea:focus-visible{outline:none;border-color:var(--terra);box-shadow:0 0 0 3px rgba(155,72,46,.18)}
+.field ::placeholder{color:#8A8D80}
+.form-foot{display:grid;gap:12px;margin-top:4px}
+.form-foot .btn{width:100%;min-height:56px;font-size:1.05rem}
+.form-foot .fine{font-size:.92rem;color:var(--forest-3);text-align:center}
 .form-foot a{text-decoration:underline;text-underline-offset:.2em}
 .honeypot{position:absolute;left:-9999px;width:0;height:0;opacity:0}
 [data-error],[data-pick-nudge]{color:#9B2C12;font-weight:600}
+[data-pick-nudge]{margin-top:12px}
 
 /* Done */
 .done{outline:none}
@@ -190,7 +192,7 @@ footer a:hover{text-decoration:underline;text-underline-offset:.2em}
         ))}
       </fieldset>
       <p class="zone">Where your local time differs, it shows under each date.</p>
-      <p data-pick-nudge hidden>Choose one of the four evenings first.</p>
+      <p data-pick-nudge role="alert" hidden>Choose one of the four evenings first.</p>
 
       <div class="card">
         <div class="field">
@@ -203,7 +205,7 @@ footer a:hover{text-decoration:underline;text-underline-offset:.2em}
         </div>
         <div class="field">
           <label for="question">One thing you want answered <span>optional</span></label>
-          <textarea id="question" name="question" rows="2" placeholder="The climbs, the rooms, the pace, flights, anything"></textarea>
+          <textarea id="question" name="question" rows="2" placeholder="The climbs, the rooms, flights, anything"></textarea>
         </div>
         <label class="honeypot" aria-hidden="true">Website <input name="website" type="text" tabindex="-1" autocomplete="off" /></label>
         <div class="form-foot">
