@@ -34,7 +34,7 @@ export const POST: APIRoute = async ({ request }) => {
   const apiKey = env('RESEND_API_KEY');
   const to = String(env('APPLY_TO_EMAIL') ?? '').split(',').map((s: string) => s.trim()).filter(Boolean);
   const from = env('APPLY_FROM_EMAIL') ?? 'Costa Blanca Trail Camp <onboarding@resend.dev>';
-  const zoom = String(session?.link ?? env('QA_MEET_URL') ?? '').trim();
+  const zoom = String(session?.link || env('QA_MEET_URL') || '').trim();
   const replyTo = 'hello@costablancatrailcamp.com';
   const organizerEmail = (String(from).match(/<([^>]+)>/)?.[1] ?? String(from)).trim();
 

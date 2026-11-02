@@ -22,7 +22,7 @@ try {
   if (zone) zone.textContent = tz.replace(/_/g, ' ');
 } catch (_) {}
 
-// Pre-select from ?s=thu-12 so emails can deep-link a session.
+// Pre-select from ?s=tue-10 so emails can deep-link a session.
 try {
   const pre = new URLSearchParams(location.search).get('s');
   const input = pre && $(`input[name="session"][value="${pre}"]`);
