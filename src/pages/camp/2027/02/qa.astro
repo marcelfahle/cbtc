@@ -115,6 +115,7 @@ p{text-wrap:pretty}
 .card::before{content:"";position:absolute;top:-14px;left:50%;width:120px;height:30px;transform:translateX(-50%) rotate(-2deg);background:rgba(242,193,78,.55);box-shadow:0 1px 2px rgba(20,40,29,.1)}
 form{display:grid;gap:0}
 .card{display:grid;gap:22px}
+.card[hidden],form[hidden],[hidden]{display:none}
 .field{display:grid;gap:8px}
 .field label{font-weight:700;line-height:1.2}
 .field label span{font-weight:400;color:var(--forest-3)}
@@ -132,7 +133,8 @@ form{display:grid;gap:0}
 [data-pick-nudge]{margin-top:12px}
 
 /* Done */
-.done{outline:none}
+.done{outline:none;gap:0}
+.done>*{justify-self:start}
 .done .stamp{display:inline-block;font-family:"Archivo";font-weight:900;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);border:2.5px solid currentColor;border-radius:6px;padding:6px 10px;transform:rotate(-3deg);margin-bottom:16px}
 .done h2{font-family:"Newsreader",serif;font-style:italic;font-weight:500;font-size:clamp(26px,2.4vw,34px);letter-spacing:-.01em;line-height:1.15}
 .done p{margin-top:12px;color:var(--forest-2)}
