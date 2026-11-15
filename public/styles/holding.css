@@ -29,6 +29,8 @@ main{position:relative;z-index:2;display:grid;gap:clamp(28px,4vw,56px);padding:c
 h1{font:900 clamp(38px,4.3vw,64px)/.92 Archivo,sans-serif;text-transform:uppercase;letter-spacing:-.035em;word-spacing:.1em;margin-bottom:26px}
 h1 .accent{display:block;font:italic 500 1.18em/1 Newsreader,serif;text-transform:none;letter-spacing:-.02em;color:var(--ochre);padding-left:.04em}
 .copy>p{max-width:30em;color:var(--forest-2);margin-bottom:16px;font-size:clamp(18px,1.4vw,21px)}
+.copy>p.camp-intro{font-weight:700;color:var(--forest);line-height:1.3;margin-bottom:10px;text-wrap:balance}
+.copy>p.camp-purpose{font-size:18px;line-height:1.4;margin-bottom:28px}
 .copy>p.signature{font:italic 500 clamp(28px,2.4vw,34px)/1.2 Newsreader,serif;color:var(--forest);margin:22px 0 26px}
 
 form{max-width:34em}

@@ -23,7 +23,7 @@ const then = next && after ? `<p class="then">Then ${after}. Dates coming soon.<
 // Structured data: the business, the site, every camp with confirmed dates, and the questions section.
 // Built from camps.js and the <details> in src/home.html so it can't drift from what the page says.
 const site = 'https://www.costablancatrailcamp.com';
-const place = { '@type': 'PostalAddress', addressLocality: 'Dénia', addressRegion: 'Alicante', addressCountry: 'ES' };
+const place = { '@type': 'PostalAddress', addressRegion: 'Costa Blanca', addressCountry: 'ES' };
 const strip = t => t.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
 const graph = [
   { '@type': 'Organization', '@id': site + '/#org', name: 'Costa Blanca Trail Camp', url: site + '/', logo: site + '/apple-touch-icon.png', email: 'hello@costablancatrailcamp.com', address: place, sameAs: ['https://www.instagram.com/costablancatrailcamp/'] },
