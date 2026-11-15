@@ -10,8 +10,6 @@ for (const path of ['public/index.html', 'src/pages/checklist.astro', 'src/pages
 test('holding homepage does not publish pricing', () => {
  const html=fs.readFileSync(new URL('../public/index.html',import.meta.url),'utf8');assert.doesNotMatch(html,/€|10% off/);
 });
-test('packing checklist is provisional and accommodates both room types', () => {
-  const copy = fs.readFileSync(new URL('../src/pages/checklist.astro', import.meta.url), 'utf8');
-  assert.match(copy, /Choose a shared or private room/);
-  assert.match(copy, /provisional packing notes for winter/);
+test('runner notes are retired without dated promotional content',()=>{
+ for(const path of ['src/pages/checklist.astro','src/pages/routes/benigembla.astro'])assert.match(fs.readFileSync(new URL('../'+path,import.meta.url),'utf8'),/Astro.redirect/);
 });

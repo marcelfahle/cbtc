@@ -44,6 +44,26 @@
       "source": "/index.html",
       "destination": "/",
       "permanent": false
+    },
+    {
+      "source": "/checklist/",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/routes/benigembla/",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/camp/2027/02/qa/",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/hero-gallery/",
+      "destination": "/",
+      "permanent": false
     }
   ]
 }
