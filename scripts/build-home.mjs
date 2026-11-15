@@ -28,15 +28,7 @@ const strip = t => t.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
 const graph = [
   { '@type': 'Organization', '@id': site + '/#org', name: 'Costa Blanca Trail Camp', url: site + '/', logo: site + '/apple-touch-icon.png', email: 'hello@costablancatrailcamp.com', address: place, sameAs: ['https://www.instagram.com/costablancatrailcamp/'] },
   { '@type': 'WebSite', '@id': site + '/#website', name: 'Costa Blanca Trail Camp', url: site + '/', inLanguage: 'en', publisher: { '@id': site + '/#org' } },
-  ...camps.filter(c => c.dates?.start).map(c => ({
-    '@type': 'Event', name: `Costa Blanca Trail Camp · ${c.month} ${c.year}`,
-    description: `Women’s trail running camp in the mountains behind Dénia on the Costa Blanca, Spain. ${c.dates.span}, ${c.year}.`,
-    startDate: c.dates.start, endDate: c.dates.end,
-    eventStatus: 'https://schema.org/EventScheduled', eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-    location: { '@type': 'Place', name: 'Dénia, Costa Blanca', address: place },
-    image: [site + '/images/' + c.photo], organizer: { '@id': site + '/#org' },
-    ...(c.price && { offers: c.price.rows.map(([room, amount]) => ({ '@type': 'Offer', name: room, price: amount.replace(/\D/g, ''), priceCurrency: 'EUR', url: site + '/#interest' })) }),
-  })),
+
 ];
 const faqs = [...html.matchAll(/<details[^>]*>\s*<summary>([\s\S]*?)<\/summary>([\s\S]*?)<\/details>/g)];
 if (faqs.length) graph.push({ '@type': 'FAQPage', '@id': site + '/#questions', mainEntity: faqs.map(([, q, a]) => ({ '@type': 'Question', name: strip(q), acceptedAnswer: { '@type': 'Answer', text: strip(a) } })) });

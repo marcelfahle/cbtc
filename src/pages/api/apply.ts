@@ -39,6 +39,8 @@ export const POST: APIRoute = async ({ request }) => {
     return json(400, { error: 'Tell us a line or two about your running.' });
   }
 
+  if (formName === 'future-interest' && data?.fields?.consent !== true) return json(400, { error: 'Please agree to receive camp updates.' });
+
   let preferences: string[] = [];
   if (formName === 'interest') {
     if (!name) return json(400, { error: 'Please enter your name.' });
@@ -64,7 +66,9 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   const subject =
-    formName === 'interest'
+    formName === 'future-interest'
+      ? '[CBTC] Future camp updates: ' + email
+      : formName === 'interest'
       ? `[CBTC] 2027 camp interest: ${name || email}`
       : formName === 'waitlist'
       ? `[CBTC] Winter 2027 waitlist: ${name || email}`
@@ -76,6 +80,8 @@ export const POST: APIRoute = async ({ request }) => {
     `Form: ${formName}`,
     name && `Name: ${name}`,
     `Email: ${email}`,
+    formName === 'future-interest' && 'Consent: future camp updates by email (holding page, 2026-11-15).',
+    formName === 'future-interest' && 'Unsubscribe: remove requests to hello@costablancatrailcamp.com from future outreach. Include this unsubscribe address in every update. No dated camp campaigns.',
     formName === 'interest' && `Camp preferences: ${preferenceSummary(preferences)}`,
     from_ && `Coming from: ${from_}`,
     link && `Link: ${link}`,
@@ -100,7 +106,7 @@ export const POST: APIRoute = async ({ request }) => {
   } catch { return json(502, { error: 'Could not deliver your message. Please try again.' }); }
 
   if (!res.ok) {
-    console.error('resend error', res.status, await res.text());
+    console.error('resend error', res.status);
     return json(502, { error: 'Could not deliver your message. Please try again.' });
   }
 

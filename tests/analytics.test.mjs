@@ -414,22 +414,7 @@ test('fit-call CTA reveals only with a configured HTTPS booking URL', async () =
   assert.equal(context.link.href, bookingUrl);
 });
 
-test('all rendered page shells have exactly one Plausible pageview loader', () => {
-  const plausibleSrc = 'https://plausible.io/js/pa-Ph375L-pQZDyOfoQSaRdy.js';
-  assert.equal((homeHtml.match(new RegExp(plausibleSrc, 'g')) || []).length, 1);
-  assert.equal((runnerLayoutSource.match(new RegExp(plausibleSrc, 'g')) || []).length, 1);
-  assert.ok(runnerLayoutSource.includes('plausible.init()'));
-});
-
-test('homepage and runner footers link the current Instagram handle accessibly', () => {
-  const instagramUrl = 'https://www.instagram.com/costablancatrailcamp/';
-  for (const source of [homeHtml, runnerLayoutSource]) {
-    assert.ok(source.includes(instagramUrl));
-    assert.ok(source.includes('@costablancatrailcamp'));
-    assert.ok(source.includes('aria-label="Instagram @costablancatrailcamp"'));
-  }
-});
-
+test('holding page does not load tracking scripts',()=>{assert.doesNotMatch(homeHtml,/plausible.io|meta-pixel-consent.js|fbq/);});
 test('waitlist submits once, confirms dates by email and tracks only after success', async () => {
   let payload;
   const waitlist = makeForm('waitlist', { website: '', name: 'Runner', email: 'runner@example.com', from: 'Denia' });

@@ -63,3 +63,15 @@ for(const camps of ['january',['unknown'],['later','january'],[null],{},['__prot
 test('interest requires name and does not disguise provider errors',async()=>{assert.equal((await harness().post({formName:'interest',fields:{email:'test@example.com'}})).status,400);assert.equal((await harness(false).post({formName:'interest',fields:{name:'Runner',email:'test@example.com'}})).status,502)});
 
 test('network exception gives retryable error, not success',async()=>{assert.equal((await harness('throw').post({formName:'interest',fields:{name:'Runner',email:'test@example.com'}})).status,502)});
+
+for (const provider of [true, false, 'throw']) test('future interest email-only provider ' + provider, async () => {
+ const h=harness(provider); const res=await h.post({formName:'future-interest', fields:{email:'future@example.com', consent:true}});
+ assert.equal(res.status,provider===true?200:502);
+ if(provider===true){assert.match(h.deliveries[0].subject,/Future camp updates/);assert.match(h.deliveries[0].text,/Consent: future camp updates/);assert.match(h.deliveries[0].text,/Unsubscribe:/);assert.doesNotMatch(h.deliveries[0].text,/Name:|Camp preferences:/);}
+});
+test('future interest requires consent and valid email; honeypot delivers nothing', async()=>{
+ const h=harness();
+ for(const fields of [{email:'future@example.com'},{email:'bad',consent:true}]) assert.equal((await h.post({formName:'future-interest',fields})).status,400);
+ assert.equal((await h.post({formName:'future-interest',fields:{website:'bot'}})).status,200);
+ assert.equal(h.deliveries.length,0);
+});

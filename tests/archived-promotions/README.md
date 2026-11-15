@@ -1,0 +1,1 @@
+Historical promotion assertions, superseded by the approved holding page on 2026-11-15. Retained for reference, not part of the active test suite. Current public contract: ../holding.test.mjs; browser: ../../scripts/qa-holding.mjs. These historical files refer to the old paths and are not standalone runnable tests.
