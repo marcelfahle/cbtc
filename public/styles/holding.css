@@ -67,3 +67,24 @@ button:disabled{opacity:.65;cursor:wait}
 .error{color:#77351F;font-weight:600;margin-top:12px}
 .success{padding:18px 0;font-weight:600}
 footer :focus-visible{outline-color:#F2C14E}
+
+/* Future camp updates form: name, where from and email; running note optional. */
+form{max-width:31em}
+.fields{display:grid;gap:14px 12px}
+@media(min-width:481px){.fields{grid-template-columns:1fr 1fr}.field.wide{grid-column:1/-1}}
+.field label,.extra summary{display:block;font-weight:700;font-size:16px;color:var(--forest);margin:0 0 6px 6px}
+.field input{min-height:52px}
+.field input[aria-invalid=true]{border-color:var(--terra-deep);box-shadow:0 0 0 1px var(--terra-deep)}
+.field-error{font-size:15px;font-weight:600;color:var(--terra-deep);margin:6px 0 0 6px}
+.extra{margin:14px 0 18px}
+.extra summary{display:inline-flex;align-items:center;gap:8px;cursor:pointer;list-style:none;margin:0;padding:6px;border-radius:8px;font-weight:600;color:var(--forest-2)}
+.extra summary::-webkit-details-marker{display:none}
+.extra summary::before{content:'+';display:grid;place-items:center;width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(20,40,29,.4);font:700 16px/1 'Source Sans 3',sans-serif;transition:transform .25s var(--ease)}
+.extra[open] summary::before{transform:rotate(45deg)}
+.extra summary span{font-weight:400;color:var(--forest-3)}
+.extra textarea{display:block;width:100%;margin-top:8px;font:inherit;font-size:17px;line-height:1.45;padding:14px 18px;border:1.5px solid rgba(20,40,29,.35);border-radius:20px;background:var(--paper);color:var(--forest);resize:vertical;min-height:96px}
+.extra textarea::placeholder{color:#6E7264}
+form>button{width:100%}
+@media(min-width:481px){form>button{width:auto;min-width:14em}}
+form .consent{margin:12px 0 0 6px}
+@media(prefers-reduced-motion:reduce){.extra summary::before{transition:none}}

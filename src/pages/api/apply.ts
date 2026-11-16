@@ -8,6 +8,21 @@ export const prerender = false;
 // Delivers by email via Resend. Required env: RESEND_API_KEY, APPLY_TO_EMAIL.
 // Optional: APPLY_FROM_EMAIL (must be a Resend-verified sender).
 
+// Light per-instance throttle for the holding-page form. Serverless instances do not share
+// memory, so this only slows bursts from one address; the honeypot and validation do the rest.
+const recent = new Map<string, number[]>();
+const delivered = new Map<string, number>();
+const WINDOW_MS = 10 * 60 * 1000;
+const LIMIT = 5;
+const throttled = (ip: string, now: number) => {
+  const hits = (recent.get(ip) ?? []).filter(t => now - t < WINDOW_MS);
+  hits.push(now);
+  recent.set(ip, hits);
+  if (recent.size > 5000) recent.clear();
+  return hits.length > LIMIT;
+};
+const hasLink = (v: string) => /https?:|www\.|<|>/i.test(v);
+
 const json = (status: number, data: unknown) =>
   new Response(JSON.stringify(data), {
     status,
@@ -27,8 +42,8 @@ export const POST: APIRoute = async ({ request }) => {
 
   const formName = String(data?.formName ?? 'form').slice(0, 40);
   const email = String(data?.fields?.email ?? '').trim().slice(0, 200);
-  const name = String(data?.fields?.name ?? '').trim().slice(0, 200);
-  const from_ = String(data?.fields?.from ?? '').trim().slice(0, 200);
+  const name = String(data?.fields?.name ?? '').replace(/\s+/g, ' ').trim().slice(0, 200);
+  const from_ = String(data?.fields?.from ?? '').replace(/\s+/g, ' ').trim().slice(0, 200);
   const running = String(data?.fields?.running ?? '').trim().slice(0, 4000);
   const link = String(data?.fields?.link ?? '').trim().slice(0, 300);
 
@@ -39,7 +54,20 @@ export const POST: APIRoute = async ({ request }) => {
     return json(400, { error: 'Tell us a line or two about your running.' });
   }
 
-  if (formName === 'future-interest' && data?.fields?.consent !== true) return json(400, { error: 'Please agree to receive camp updates.' });
+  if (formName === 'future-interest') {
+    if (!name || name.length < 2 || name.length > 120) return json(400, { error: 'Please tell us your name.', field: 'name' });
+    if (!from_ || from_.length < 2 || from_.length > 120) return json(400, { error: 'Please tell us where you’re from.', field: 'from' });
+    if (hasLink(name) || hasLink(from_)) return json(400, { error: 'Please use plain words, no links.', field: hasLink(name) ? 'name' : 'from' });
+    if (running.length > 1000) return json(400, { error: 'Please keep the running note under 1,000 characters.', field: 'running' });
+    if (data?.fields?.consent !== true) return json(400, { error: 'Please agree to receive camp updates.' });
+    const now = Date.now();
+    const ip = String(request.headers?.get?.('x-forwarded-for') ?? '').split(',')[0].trim() || 'unknown';
+    if (throttled(ip, now)) return json(429, { error: 'Too many tries. Please wait a few minutes.' });
+    // A double tap or retry after a slow response must not send the hosts a second email.
+    const key = [email.toLowerCase(), name.toLowerCase(), from_.toLowerCase(), running].join('|');
+    for (const [k, t] of delivered) if (now - t > WINDOW_MS) delivered.delete(k);
+    if (delivered.has(key)) return json(200, { ok: true });
+  }
 
   let preferences: string[] = [];
   if (formName === 'interest') {
@@ -67,7 +95,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   const subject =
     formName === 'future-interest'
-      ? '[CBTC] Future camp updates: ' + email
+      ? `[CBTC] Future camp updates: ${name} (${from_})`
       : formName === 'interest'
       ? `[CBTC] 2027 camp interest: ${name || email}`
       : formName === 'waitlist'
@@ -80,10 +108,11 @@ export const POST: APIRoute = async ({ request }) => {
     `Form: ${formName}`,
     name && `Name: ${name}`,
     `Email: ${email}`,
-    formName === 'future-interest' && 'Consent: future camp updates by email (holding page, 2026-11-15).',
+    formName === 'future-interest' && 'Consent: future camp updates by email (holding page form with name and location, 2026-11-16).',
     formName === 'future-interest' && 'Unsubscribe: remove requests to hello@costablancatrailcamp.com from future outreach. Include this unsubscribe address in every update. No dated camp campaigns.',
     formName === 'interest' && `Camp preferences: ${preferenceSummary(preferences)}`,
-    from_ && `Coming from: ${from_}`,
+    from_ && (formName === 'future-interest' ? `Where from: ${from_}` : `Coming from: ${from_}`),
+    formName === 'future-interest' && !running && 'Their running: not given (optional)',
     link && `Link: ${link}`,
     running && `Their running:\n${running}`,
     `Page: ${data?.pageUrl ?? ''}`,
@@ -109,6 +138,8 @@ export const POST: APIRoute = async ({ request }) => {
     console.error('resend error', res.status);
     return json(502, { error: 'Could not deliver your message. Please try again.' });
   }
+
+  if (formName === 'future-interest') delivered.set([email.toLowerCase(), name.toLowerCase(), from_.toLowerCase(), running].join('|'), Date.now());
 
   return json(200, { ok: true, ...(formName === 'interest' ? { camps: preferences, preferenceSummary: preferenceSummary(preferences) } : {}) });
 };

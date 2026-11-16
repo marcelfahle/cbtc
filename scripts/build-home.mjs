@@ -30,7 +30,7 @@ const graph = [
   { '@type': 'WebSite', '@id': site + '/#website', name: 'Costa Blanca Trail Camp', url: site + '/', inLanguage: 'en', publisher: { '@id': site + '/#org' } },
 
 ];
-const faqs = [...html.matchAll(/<details[^>]*>\s*<summary>([\s\S]*?)<\/summary>([\s\S]*?)<\/details>/g)];
+const faqs = [...html.matchAll(/<details(?! class="extra")[^>]*>\s*<summary>([\s\S]*?)<\/summary>([\s\S]*?)<\/details>/g)];
 if (faqs.length) graph.push({ '@type': 'FAQPage', '@id': site + '/#questions', mainEntity: faqs.map(([, q, a]) => ({ '@type': 'Question', name: strip(q), acceptedAnswer: { '@type': 'Answer', text: strip(a) } })) });
 const jsonld = `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c')}</script>`;
 

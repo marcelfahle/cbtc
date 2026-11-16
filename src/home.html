@@ -23,12 +23,17 @@
 <p class="camp-purpose">Mountain trails, time for yourself and a group of women to share it with.</p>
 <h1 id="thank-you">Thank you for <span class="accent">all the love</span></h1>
 <p>Thank you for the overwhelming response to Costa Blanca Trail Camp. Camp sign-ups are currently closed.</p>
-<p>Want to hear about future camps with us? Leave your email and we'll be in touch when there's news.</p>
+<p>Want to hear about future camps with us? Tell us who you are and we'll be in touch when there's news.</p>
 <p class="signature">Anna &amp; Monika</p>
-<form data-form="future-interest" aria-label="Future camp updates">
-<label class="sr" for="email">Your email address</label>
-<div class="email-row"><input id="email" name="email" type="email" autocomplete="email" placeholder="Your email address" maxlength="200" required aria-describedby="consent"><button type="submit">Keep me posted</button></div>
+<form data-form="future-interest" aria-label="Future camp updates" novalidate>
+<div class="fields">
+<div class="field"><label for="name">Your name</label><input id="name" name="name" type="text" autocomplete="name" autocapitalize="words" maxlength="120" required aria-describedby="name-error"><p class="field-error" id="name-error" hidden></p></div>
+<div class="field"><label for="from">Where you’re from</label><input id="from" name="from" type="text" autocomplete="address-level2" autocapitalize="words" maxlength="120" placeholder="Town or country" required aria-describedby="from-error"><p class="field-error" id="from-error" hidden></p></div>
+<div class="field wide"><label for="email">Email</label><input id="email" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" maxlength="200" required aria-describedby="email-error consent"><p class="field-error" id="email-error" hidden></p></div>
+</div>
+<details class="extra"><summary>Tell us about your running <span>(optional)</span></summary><label class="sr" for="running">Your running (optional)</label><textarea id="running" name="running" rows="3" maxlength="1000" placeholder="For example: I run trails most weekends and did my first 20&nbsp;km race this year."></textarea></details>
 <div class="trap" aria-hidden="true"><label>Website<input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
+<button type="submit">Keep me posted</button>
 <p class="consent" id="consent">By signing up, you agree to receive future camp updates by email. <a href="/privacy">Privacy policy</a>.</p>
 </form>
 <p class="fine">Only camp updates. Unsubscribe anytime.</p>
@@ -40,6 +45,6 @@
 <svg class="ridge" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path fill="#14281D" d="M0 90V52L92 22 156 40 236 28 306 58 402 12 460 34 564 24 630 50 718 14 790 34 850 26 960 60 1030 32 1114 48 1178 28 1274 58 1350 40 1440 48V90Z"/></svg>
 </div>
 <footer><span>Costa Blanca Trail Camp</span><a href="/privacy">Privacy policy</a></footer>
-<script src="/scripts/holding.js" defer></script>
+<script src="/scripts/holding.js?v=2" defer></script>
 </body>
 </html>

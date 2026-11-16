@@ -2,10 +2,14 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const read=p=>fs.readFileSync(p,'utf8');
-test('approved holding copy, email only, authentic hosts image and no dated offers',()=>{
+test('approved holding copy, compact name/location/email form, authentic hosts image and no dated offers',()=>{
  const html=read('public/index.html');
  for(const copy of ['Thank you for all the love','Camp sign-ups are currently closed.','Keep me posted','Only camp updates. Unsubscribe anytime.','hosts-running-600.webp','mailto:hello@costablancatrailcamp.com?subject=Unsubscribe'])assert.ok(html.replace(/<[^>]*>/g,'').includes(copy)||html.includes(copy),copy);
- assert.doesNotMatch(html,/February|April|2027|EventScheduled|"@type":"Offer"|name="name"|name="camps"/);
+ assert.doesNotMatch(html,/February|April|2027|EventScheduled|"@type":"Offer"|name="camps"/);
+ for(const field of ['name="name" type="text" autocomplete="name"','name="from"','name="email" type="email"']) assert.ok(html.includes(field)&&html.split(field)[1].split('>')[0].includes('required'),field);
+ assert.match(html,/<details class="extra"><summary>Tell us about your running <span>\(optional\)<\/span>/);
+ assert.doesNotMatch(html.split('id="running"')[1].split('>')[0],/required/);
+ for(const id of ['name','from','email']) assert.ok(html.includes('<label for="'+id+'">'),id+' has a visible label');
  const graph=JSON.parse(html.split('<script type="application/ld+json">')[1].split('</script>')[0])['@graph'];
  assert.deepEqual(graph.map(n=>n['@type']),['Organization','WebSite']);
 });
