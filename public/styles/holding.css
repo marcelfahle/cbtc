@@ -20,7 +20,9 @@ header{padding:22px var(--wrap) 0}
 .brand img{width:42px;height:42px;flex:none}
 
 main{position:relative;z-index:2;display:grid;gap:clamp(28px,4vw,56px);padding:clamp(20px,4vw,48px) var(--wrap) clamp(16px,2vw,32px);max-width:1320px;margin:auto}
-@media(min-width:900px){main{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);align-items:center}.copy{order:-1}}
+/* Source order is intro, photo, thank-you, so phones read the camp intro first.
+   Desktop places intro and thank-you in the left column with the photo spanning both rows, as before. */
+@media(min-width:900px){main{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);grid-template-areas:'intro photo' 'copy photo';row-gap:0;align-items:center}.intro{grid-area:intro;align-self:end}.copy{grid-area:copy;align-self:start}.polaroid{grid-area:photo}}
 
 /* PR trail blaze (white over yellow), decorative only */
 .blaze{display:block;width:22px;height:14px;border-radius:2px;background:linear-gradient(#fff 0 50%,var(--sun) 50% 100%);box-shadow:0 0 0 1px rgba(20,40,29,.22);margin-bottom:18px}
@@ -28,9 +30,9 @@ main{position:relative;z-index:2;display:grid;gap:clamp(28px,4vw,56px);padding:c
 /* Headline in the old hero's two-voice style: Archivo caps + Newsreader italic ochre */
 h1{font:900 clamp(38px,4.3vw,64px)/.92 Archivo,sans-serif;text-transform:uppercase;letter-spacing:-.035em;word-spacing:.1em;margin-bottom:26px}
 h1 .accent{display:block;font:italic 500 1.18em/1 Newsreader,serif;text-transform:none;letter-spacing:-.02em;color:var(--ochre);padding-left:.04em}
-.copy>p{max-width:30em;color:var(--forest-2);margin-bottom:16px;font-size:clamp(18px,1.4vw,21px)}
-.copy>p.camp-intro{font-weight:700;color:var(--forest);line-height:1.3;margin-bottom:10px;text-wrap:balance}
-.copy>p.camp-purpose{font-size:18px;line-height:1.4;margin-bottom:28px}
+.copy>p,.intro>p{max-width:30em;color:var(--forest-2);margin-bottom:16px;font-size:clamp(18px,1.4vw,21px)}
+.intro>p.camp-intro{font-weight:700;color:var(--forest);line-height:1.3;margin-bottom:10px;text-wrap:balance}
+.intro>p.camp-purpose{font-size:18px;line-height:1.4;margin-bottom:28px}
 .copy>p.signature{font:italic 500 clamp(28px,2.4vw,34px)/1.2 Newsreader,serif;color:var(--forest);margin:22px 0 26px}
 
 form{max-width:34em}
@@ -60,7 +62,7 @@ button:hover{background:var(--terra-deep);transform:translateY(-2px)}
 footer{position:relative;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px 28px;padding:clamp(40px,5vw,56px) var(--wrap) 32px;color:#DCE0D3;font-size:15px;
   background-color:var(--forest);background-image:radial-gradient(1.8px 1.8px at 12% 30%,#fff8 50%,transparent 51%),radial-gradient(1.6px 1.6px at 31% 70%,#fffb 50%,transparent 51%),radial-gradient(2px 2px at 48% 24%,#fff9 50%,transparent 51%),radial-gradient(1.6px 1.6px at 66% 58%,#fffa 50%,transparent 51%),radial-gradient(1.9px 1.9px at 86% 22%,#fff7 50%,transparent 51%)}
 footer a{color:var(--ivory)}
-@media(max-width:899px){main{max-width:640px}.polaroid{width:min(92%,30rem);margin-top:4px}h1{font-size:clamp(32px,9.4vw,52px)}}
+@media(max-width:899px){main{max-width:640px}.intro>p.camp-purpose{margin-bottom:0}.polaroid{width:min(80%,26rem);margin-top:4px}h1{font-size:clamp(32px,9.4vw,52px)}}
 @media(max-width:480px){.email-row{flex-direction:column}button{width:100%}body{font-size:18px}}
 
 button:disabled{opacity:.65;cursor:wait}

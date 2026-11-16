@@ -19,6 +19,11 @@ test('women-only camp context precedes thank-you and metadata uses Costa Blanca'
  assert.ok(html.includes('<p class="camp-intro">'+intro+'</p>'));
  assert.ok(html.includes('Mountain trails, time for yourself and a group of women to share it with.'));
  assert.ok(html.indexOf('<p class="camp-intro">')<html.indexOf('<h1'));
+ // Phone reading order follows the source: intro, then photo, then thank-you. Intro appears once.
+ assert.equal(html.split('class="camp-intro"').length,2);assert.equal(html.split('class="camp-purpose"').length,2);
+ assert.ok(html.indexOf('<div class="intro">')<html.indexOf('<figure class="polaroid">'));
+ assert.ok(html.indexOf('class="camp-purpose"')<html.indexOf('<figure class="polaroid">'));
+ assert.ok(html.indexOf('<figure class="polaroid">')<html.indexOf('<section class="copy"'));
  for(const key of ['name="description"','property="og:description"','name="twitter:description"']) assert.ok(html.includes(key+' content="'+intro));
  assert.doesNotMatch(html,/Dénia|Denia/);
 });
